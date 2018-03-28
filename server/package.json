@@ -2,8 +2,11 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
+    "db:create": "createdb --echo math_for_kids",
+    "db:drop": "dropdb --echo --if-exists math_for_kids",
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -14,7 +17,9 @@
     "ejs": "^2.5.8",
     "express": "^4.16.3",
     "jwt-simple": "^0.5.1",
-    "morgan": "^1.9.0"
+    "knex": "^0.14.4",
+    "morgan": "^1.9.0",
+    "pg": "^7.4.1"
   },
   "devDependencies": {
     "nodemon": "^1.17.2"
