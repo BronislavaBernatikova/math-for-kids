@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.Field {
+  font-size: 0.6em;
+  margin: 0.2em 0;
+}
+
+.NavBar {
+  display: flex;
+  background-color: tomato;
+  color: white;
+}
+
+.NavBar * {
+  color: inherit;
+}
+
+.NavBar > * {
+  padding: 0.75em 0.5em;
+  text-decoration: none;
+  border-bottom: 5px solid tomato;
+
+}
+
+.NavBar > .active {
+  border-bottom: 5px solid white;
+}
+
+.NavBar > *:first-child {
+  margin-left: auto;
+}

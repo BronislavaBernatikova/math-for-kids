@@ -3,9 +3,9 @@ const router = express.Router();
 const knex = require('../db');
 const bcrypt = require('bcrypt');
 //const Expressions = require('../controllers/expressions');
-const Users = require('../controllers/users');
-const Quiz = require('../controllers/quizes');
-const Token = require('../controllers/tokens');
+const Users = require('../controllers/users_controller');
+const Quiz = require('../controllers/quizes_controller');
+const Token = require('../controllers/token_controller');
 
 
 // middleware function to check for logged-in users
