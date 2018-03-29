@@ -42,13 +42,15 @@ const Quiz = {
 }
 
 const User = {
+
   all(){
     return fetch(
       `${BASE_URL}/users/index`,
-      { headers: {'Authorisation':getJWT()}}
+      { headers: {'Authorization':getJWT()}}
     )
     .then(res => res.json());
   },
+
   create(props){
     return fetch(
       `${BASE_URL}/users/create`,
@@ -63,6 +65,14 @@ const User = {
           return {error: 'Could not create the user'};
         }
       });
+  },
+
+  one(id){
+    return fetch(
+      `${BASE_URL}/users/${id}`,
+      { headers: {'Authorization': getJWT()} }
+    )
+    .then(res => res.json());
   }
 };
 

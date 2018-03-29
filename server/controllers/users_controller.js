@@ -53,6 +53,7 @@ const Users = {
           res.json({
                     token : token,
                     expires: expires,
+                    user_id: user.id
                   //user: user.toJSON()// i dont need to send user!!
                   });
         })
@@ -78,9 +79,10 @@ const Users = {
       .from('users')
       .where('id', userId)
       .then( user => {
+
          knex('quizes')
           .select('*')
-          .where('userId', userId)
+          .where('user_id', userId)
           .then( quizes => {
             user.quizes = quizes;
             res.json(user);

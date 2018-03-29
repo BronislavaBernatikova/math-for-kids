@@ -22,6 +22,7 @@ class SignInPage extends Component {
         console.log('dataxy: ', data);
         if(!data.error) {
           localStorage.setItem('jwt', data.token);
+          localStorage.setItem('userId', data.user_id);
           onSignIn()
           this.props.history.push('/');
           console.log('history: ',this.props.history);

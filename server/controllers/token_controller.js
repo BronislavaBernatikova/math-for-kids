@@ -40,6 +40,7 @@ const Tokens = {
           res.json({
                     token : token,
                     expires: expires,
+                    user_id: user.id
                   //user: user.toJSON()// i dont need to send user!!
                   });
         }

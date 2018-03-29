@@ -5,6 +5,8 @@ import SignInPage from './SignInPage';
 import SignUpPage from './SignUpPage';
 import NavBar from './NavBar';
 import HomePage from './HomePage';
+import AuthRoute from './AuthRoute';
+import UserPage from './UserPage';
 
 
 
@@ -56,6 +58,11 @@ class App extends Component {
           />
           <Switch>
             <Route exact path="/" component={HomePage} />
+            <AuthRoute
+              isAuthenticated={this.isSignedIn()}
+              exact
+              path="/users/:id" component={UserPage}
+            />
             <Route path="/sign_in"
                    render={ props => (
                      <SignInPage {...props} onSignIn={this.signIn} />
