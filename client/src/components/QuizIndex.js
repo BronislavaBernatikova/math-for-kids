@@ -1,26 +1,32 @@
-import React, {Component} from 'react';
-//import { User } from '../lib/requests';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-class QuizIndex extends Component {
-  constructor(props){
-    super(props);
-  }
+function QuizIndex (props) {
+  const { quizes = [] } = props;
 
-  render(){
-    const quizes = this.props.quizes;
-    console.log('quizesJB:', quizes);
+    //console.log('quizesJB:', quizes);
+
      return(
       <div className="QuizIndex">
 
         <table id="quizes-table">
           <tbody>
-            {quizes && quizes.map((quiz,index) => {
+            <tr>
+              <th>Date</th>
+              <th>No Of Expressions</th>
+              <th>Right Answers</th>
+              <th>Time</th>
+            </tr>
+            {
+              quizes.map((quiz,index) => {
               return(
                 <tr key={index} id={`row${index}`}>
-                  <td>{quiz.date}</td>
-                  <td>{quiz.expression_count}</td>
-                  <td>{quiz.right_answer_count}</td>
-                  <td>{quiz.time}</td>
+                    <td>
+                      <Link to={`/quizes/${quiz.id}`}>{(quiz.date).slice(0,10)}</Link>
+                    </td>
+                    <td>{quiz.expression_count}</td>
+                    <td>{quiz.right_answer_count}</td>
+                    <td>{quiz.time}</td>
                 </tr>
               )
             })}
@@ -28,20 +34,8 @@ class QuizIndex extends Component {
         </table>
       </div>
      )
-  }
 }
 
 export default QuizIndex;
-{/* <tr>
-  <th>Date</th>
-  <th>No Of Expressions</th>
-  <th>Right Answers</th>
-  <th>Time</th>
-</tr> */}
-// quizes.map( quiz =>
-// <tr key={quiz.id}>
-//   <th>{quiz.date} </th>
-//   <th>{quiz.expression_count}</th>
-//   <th>{quiz.right_answer_count}</th>
-//   <th>{quiz.time}</th>
-// </tr>
+// {quizes && quizes.map((quiz,index) => {
+// typeof

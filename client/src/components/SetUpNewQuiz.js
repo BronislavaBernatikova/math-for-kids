@@ -1,26 +1,64 @@
-import React from 'react';
 
-function SetUpNewQuiz (props) {
-const {onSubmit = () => {} } = props;
+import React, {Component} from 'react';
 
-function handleSubmit(event) {
-  event.preventDefault();
-  const formData = new formData(event.target);
-  const newQuiz = {
-    numberOfExpressions: formData.get('numberOfExpressions'),
-    arithmeticOperator: formData.get('arithmeticOperator'),
-    difficulty: formData.get('difficulty')
-  };
-  onSubmit(newQuiz);
+class SetUpNewQuiz extends Component {
+
+constructor(props){
+  super(props);
+  this.state = {
+    numberOfExpressions: '10',
+    arithmeticOperator: 'add',
+    difficulty: '100'
+  }
+  this.props.OnSubmit
+  console.log('props: ', props);
+  this.handleChangeNumberOfExpressions = this.handleChangeNumberOfExpressions.bind(this);
+  this.handleChangeArithmeticOperator = this.handleChangeArithmeticOperator.bind(this);
+  this.handleChangeDifficulty = this.handleChangeDifficulty.bind(this);
+  this.handleSubmit = this.handleSubmit.bind(this);
+
 }
 
+handleChangeNumberOfExpressions(event) {
+    this.setState({
+      numberOfExpressions: event.target.value
+    })
+  }
+handleChangeArithmeticOperator(event) {
+  this.setState({
+    arithmeticOperator: event.target.value
+  })
+}
+handleChangeDifficulty(event) {
+  this.setState({
+    difficulty: event.target.value
+  })
+}
+
+onSubmit(a) {return a}
+
+handleSubmit (event) {
+  event.preventDefault();
+
+  const newQuiz = {
+    numberOfExpressions: this.state.numberOfExpressions,
+    arithmeticOperator: this.state.arithmeticOperator,
+    difficulty: this.state.difficulty
+  };
+  this.props.onSubmit(newQuiz);
+  //console.log('newQuiz:', newQuiz);
+}
+render(){
   return (
     <form className="SetUpNewQuiz"
-          onSubmit={handleSubmit}
-          >
-      <div class="field">
+          onSubmit={this.handleSubmit}
+    >
+      <div className="field">
         <label>Number of expressions</label>
-        <select name="numberOfExpressions">
+        <select name="numberOfExpressions"
+                value={this.state.numberOfExpressions}
+                onChange={this.handleChangeNumberOfExpressions}
+        >
           <option value="10">10</option>
           <option value="20">20</option>
           <option value="30">30</option>
@@ -29,9 +67,12 @@ function handleSubmit(event) {
         </select>
       </div>
 
-      <div class="field">
-        <label>Type</label>
-        <select name="arithmeticOperator">
+      <div className="field">
+        <label>Operator</label>
+        <select name="arithmeticOperator"
+                value={this.state.arithmeticOperator}
+                onChange={this.handleChangeArithmeticOperator}
+        >
           <option value="add">Adding</option>
           <option value="subtract">Subtraction</option>
           <option value="multiply">Multiplycation</option>
@@ -39,9 +80,12 @@ function handleSubmit(event) {
         </select>
       </div>
 
-      <div class="field">
+      <div className="field">
         <label>Difficulty</label>
-        <select name="difficulty">
+        <select name="difficulty"
+                value={this.state.difficulty}
+                onChange={this.handleChangeDifficulty}
+          >
           <option value="10">Numbers up to 10</option>
           <option value="100">Numbers up to 100</option>
           <option value="300">Numbers up to 300</option>
@@ -50,9 +94,12 @@ function handleSubmit(event) {
           <option value="1000">Numbers up to 1000</option>
         </select>
       </div>
+      <div>
+        <input type="submit" value="Submit"/>
+      </div>
     </form>
   )
-
+}
 
 }
 export default SetUpNewQuiz;

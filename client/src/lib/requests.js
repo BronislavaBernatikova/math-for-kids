@@ -20,12 +20,33 @@ const Expression = {
   }
 }
 
-const Quiz = {
-  create(params) {
+const Answer = {
+  create (params) {
     return fetch(
-      `${BASE_URL}/quizes`,
-      { method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+      `${BASE_URL}/answers/create`,
+      {
+        headers: {
+          'Authorization': getJWT(),
+          'Content-Type':'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(params)
+      }
+    )
+    .then(res => res.json());
+  },
+}
+
+const Quiz = {
+  create (params) {
+    return fetch(
+      `${BASE_URL}/quizes/create`,
+      {
+        headers: {
+          'Authorization': getJWT(),
+          'Content-Type':'application/json'
+        },
+        method: 'POST',
         body: JSON.stringify(params)
       }
     )
@@ -38,7 +59,16 @@ const Quiz = {
       { headers: {'Authorization':getJWT()}}
     )
     .then(res => res.json());
+  },
+
+  one(id) {
+    return fetch(
+      `${BASE_URL}/quizes/${id}`,
+      { headers: {'Authorization': getJWT()} }
+    )
+    .then(res => res.json());
   }
+
 }
 
 const User = {
@@ -51,12 +81,12 @@ const User = {
     .then(res => res.json());
   },
 
-  create(props){
+  create(params){
     return fetch(
       `${BASE_URL}/users/create`,
       { method:'POST',
         headers: {'Content-type': 'application/json'},
-        body: JSON.stringify(props)
+        body: JSON.stringify(params)
       })
       .then( res => {
         if(res.status === 200){
@@ -89,4 +119,4 @@ const Token = {
   }
 }
 
-export { Expression, Quiz, User, Token };
+export { Expression, Quiz, Answer, User, Token };

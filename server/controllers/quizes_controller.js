@@ -4,6 +4,8 @@ const Quiz = {
 
   create(req,res){
     console.log('data from react; ');
+    console.log('req.currentUser:', req.currentUser);
+    console.log('req.body:', req.body);
     const userId = req.currentUser.id;
     const expression_count = req.body.numberOfExpressions;
     const difficulty = req.body.difficulty;

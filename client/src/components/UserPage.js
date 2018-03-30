@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-import { User } from '../lib/requests';
+import { User, Quiz } from '../lib/requests';
 import QuizIndex from './QuizIndex';
+import SetUpNewQuiz from './SetUpNewQuiz';
+
 
 
 class UserPage extends Component {
@@ -9,7 +11,19 @@ class UserPage extends Component {
     this.state = {
       user: {}
     }
+    this.createNewQuiz = this.createNewQuiz.bind(this);
   }
+
+  createNewQuiz(quizParams){
+    console.log('quizParams:', quizParams);
+    Quiz
+      .create(quizParams)
+      .then( quiz => {
+        console.log('quiz in userpage:', quiz);
+        //const quiz.id =
+      })
+  }
+
   componentDidMount(){
     const userId = localStorage.userId;
     //console.log('userId:', userId);
@@ -24,15 +38,17 @@ class UserPage extends Component {
   }
 
   render(){
-    console.log('userPage-quizes: ', this.state.user.quizes);
-    const user = this.state.user;
+    //console.log('userPage-quizes: ', this.state.user.quizes);
+    //const user = this.state.user;
     const quizes = this.state.user.quizes;
       return(
         <main>
-        <QuizIndex quizes={quizes} />
+          <SetUpNewQuiz onSubmit={this.createNewQuiz} />
+          <QuizIndex quizes={quizes} />
         </main>
       );
   }
 }
 
 export default UserPage;
+//handleSubmit={this.handleSubmit}

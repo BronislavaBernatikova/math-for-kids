@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import jwtDecode from 'jwt-decode';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import SignInPage from './SignInPage';
+import QuizShowPage from './QuizShowPage';
 import SignUpPage from './SignUpPage';
 import NavBar from './NavBar';
 import HomePage from './HomePage';
@@ -27,7 +28,7 @@ class App extends Component {
 
   signIn() {
     const jwt =  localStorage.getItem('jwt');
-    console.log('jwt-app-signIn: ', jwt);
+    //console.log('jwt-app-signIn: ', jwt);
     if(jwt){
       const payload = jwtDecode(jwt);
       this.setState({
@@ -62,6 +63,11 @@ class App extends Component {
               isAuthenticated={this.isSignedIn()}
               exact
               path="/users/:id" component={UserPage}
+            />
+            <AuthRoute
+              isAuthenticated={this.isSignedIn()}
+              path="/quizes/:id"
+              component={QuizShowPage}
             />
             <Route path="/sign_in"
                    render={ props => (
