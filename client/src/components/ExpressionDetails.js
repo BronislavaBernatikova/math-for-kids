@@ -11,14 +11,14 @@ function ExpressionDetails(props){
 
     if(user_answer === expression.solution){
       onSubmit({
-        user_id: localStorage.userId,
+        expression_id: expressionId,
         correct_answer: true,
         quiz_id: quizId
       })
     }
     if(user_answer !== expression.solution){
       onSubmit({
-        user_id: localStorage.userId,
+        expression_id: expressionId,
         correct_answer: false,
         quiz_id: quizId
       })
@@ -29,7 +29,7 @@ function ExpressionDetails(props){
     <div className="ExpressionDetails">
       <div>{expression.num1}</div>
       <div>{expression.operator}</div>
-      <div>{expression.num}</div>
+      <div>{expression.num2}</div>
 
       <form onSubmit={handleSubmit}>
         <div>

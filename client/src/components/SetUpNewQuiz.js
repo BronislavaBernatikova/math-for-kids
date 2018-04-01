@@ -10,7 +10,7 @@ constructor(props){
     arithmeticOperator: 'add',
     difficulty: '100'
   }
-  this.props.OnSubmit
+
   console.log('props: ', props);
   this.handleChangeNumberOfExpressions = this.handleChangeNumberOfExpressions.bind(this);
   this.handleChangeArithmeticOperator = this.handleChangeArithmeticOperator.bind(this);
@@ -35,7 +35,7 @@ handleChangeDifficulty(event) {
   })
 }
 
-onSubmit(a) {return a}
+//onSubmit(a) {return a}
 
 handleSubmit (event) {
   event.preventDefault();
