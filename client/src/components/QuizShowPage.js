@@ -17,6 +17,7 @@ class QuizShowPage extends Component {
       //loading: true
     }
     this.createAnswer = this.createAnswer.bind(this);
+    this.addRightAnswerCountToQuiz = this.addRightAnswerCountToQuiz.bind(this);
   }
 
   createAnswer(event){
@@ -66,6 +67,17 @@ class QuizShowPage extends Component {
       })
   }
 
+  addRightAnswerCountToQuiz(right_answer){
+    const dataToUpdate = {
+      right_answer_count: right_answer,
+      quiz_id: this.state.quiz.id
+    }
+
+    Quiz
+      .update(dataToUpdate)
+
+  }
+
   componentDidMount(){
     this.setState({
       //current_expression: this.state.expressions[this.state.answered_count],
@@ -83,14 +95,13 @@ class QuizShowPage extends Component {
 
   render(){
     const current_expression = this.state.current_expression;
-    console.log('current_expression in render:', current_expression);
     const answered_count = this.state.answered_count;
     const expression_count = this.state.expression_count;
     const quizId = this.state.quiz.id;
     const loading = this.state.loading;
-    console.log('answered_count in render:', answered_count);
-    console.log('expression_count in render:', expression_count);
-
+    //console.log('current_expression in render:', current_expression);
+    //console.log('answered_count in render:', answered_count);
+    //console.log('expression_count in render:', expression_count);
     if(!answered_count && !expression_count){
       return(
         <div>Something went wrong</div>
@@ -101,7 +112,14 @@ class QuizShowPage extends Component {
       return(
         <div className="QuizShowPage">
           <h5>Quiz Show Page</h5>
+          <p>Current quiz settings: {"  "}
+            {current_expression.operator}
+            , {"  "} difficulty -> numbers up to
+            {current_expression.difficulty}
+            , {"  "} number of expressions -> {expression_count}
+          </p>
 
+            <div>expression number {answered_count + 1}</div>
             <div>{current_expression.num1}</div>
             <div>{current_expression.operator}</div>
             <div>{current_expression.num2}</div>
@@ -119,11 +137,14 @@ class QuizShowPage extends Component {
       )}
 
       if(answered_count === expression_count){
-        const wrong_answer= this.state.expression_count - this.state.right_answer_count
+        const right_answer= this.state.right_answer_count;
+        const wrong_answer= this.state.expression_count - right_answer;
+
         return(
           <div className="QuizShowPage" >
             <h3>Quiz is finished.</h3>
             <h4>You have {wrong_answer} wrong answers</h4>
+            {this.addRightAnswerCountToQuiz(right_answer)}
           </div>
         )
       }
@@ -138,7 +159,7 @@ class QuizShowPage extends Component {
           </main>
         )
       }
-      
+
    }
 }
 

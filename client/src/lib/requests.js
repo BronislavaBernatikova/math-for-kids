@@ -38,7 +38,7 @@ const Answer = {
 }
 
 const Quiz = {
-  create (params) {
+  create(params) {
     return fetch(
       `${BASE_URL}/quizes/create`,
       {
@@ -67,7 +67,23 @@ const Quiz = {
       { headers: {'Authorization': getJWT()} }
     )
     .then(res => res.json());
+  },
+
+  update(params) {
+    return fetch(
+      `${BASE_URL}/quizes/update`,
+      {
+        headers: {
+          'Authorization': getJWT(),
+          'Content-Type':'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(params)
+      }
+    )
+    .then(res => res.json());
   }
+
 
 }
 

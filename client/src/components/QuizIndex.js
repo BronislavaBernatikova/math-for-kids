@@ -12,6 +12,7 @@ function QuizIndex (props) {
         <table id="quizes-table">
           <tbody>
             <tr>
+              <th></th>
               <th>Date</th>
               <th>No Of Expressions</th>
               <th>Right Answers</th>
@@ -21,6 +22,7 @@ function QuizIndex (props) {
               quizes.map((quiz,index) => {
               return(
                 <tr key={index} id={`row${index}`}>
+                    <td>{index + 1}</td>
                     <td>
                       <Link to={`/quizes/${quiz.id}`}>{(quiz.date).slice(0,10)}</Link>
                     </td>

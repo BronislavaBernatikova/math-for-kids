@@ -54,6 +54,21 @@ const Quiz = {
             res.json(quiz);
           })
       })
+  },
+
+  update(req, res){
+    const right_answer_count = req.body.right_answer_count;
+    const quiz_id = req.body.quiz_id;
+
+    return knex('quizes')
+      .where('id', quiz_id)
+      .update({right_answer_count: right_answer_count})
+      .returning('*')
+      .then( quizData => {
+        const quiz = quizData[0];
+        console.log('right answer count updated!');
+        res.json(quiz);
+      })
   }
 }
 //Promise.all

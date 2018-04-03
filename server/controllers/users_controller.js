@@ -83,6 +83,7 @@ const Users = {
          knex('quizes')
           .select('*')
           .where('user_id', userId)
+          .orderBy('id', 'desc')
           .then( quizes => {
             user.quizes = quizes;
             res.json(user);
