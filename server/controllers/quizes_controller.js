@@ -28,7 +28,7 @@ const Quiz = {
           .from('expressions')
           .where('operator',operator)
           .where('difficulty', difficulty)
-          .limit('numberOfExpressions',expression_count)
+          .limit(expression_count)
           .then( expressions => {
             quiz.expressions = expressions;
             res.json(quiz);

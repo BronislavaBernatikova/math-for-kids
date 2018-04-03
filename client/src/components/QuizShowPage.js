@@ -43,18 +43,26 @@ class QuizShowPage extends Component {
       .create(answerParams)
       .then( answer => {
         console.log('answer created:', answer);
-            answer.correct_answer ? (
+        console.log('correct answer?:', answer.correct_answer);
+            answer.correct_answer ? [
               this.setState({
                 right_answer_count: (this.state.right_answer_count + 1),
-                answered_count: (this.state.answered_count + 1),
-                current_expression: this.props.newQuiz.expressions[0]
-              })
-            ) : (
+                answered_count: (this.state.answered_count + 1)
+              }),
               this.setState({
-                answered_count: (this.state.answered_count + 1),
                 current_expression: this.props.newQuiz.expressions[this.state.answered_count]
               })
-            )
+            ] : [
+              this.setState({
+                answered_count: (this.state.answered_count + 1)
+              }),
+              this.setState({
+                current_expression: this.props.newQuiz.expressions[this.state.answered_count]
+              })
+            ]
+            console.log('answered_count-v:', this.state.answered_count);
+            console.log('right_answer_count-v:', this.state.right_answer_count);
+            console.log('current_expression-v:', this.state.current_expression);
       })
   }
 
@@ -75,30 +83,17 @@ class QuizShowPage extends Component {
 
   render(){
     const current_expression = this.state.current_expression;
-    console.log('current_expression:', current_expression);
+    console.log('current_expression in render:', current_expression);
     const answered_count = this.state.answered_count;
     const expression_count = this.state.expression_count;
     const quizId = this.state.quiz.id;
     const loading = this.state.loading;
-    console.log('loading:', this.state.loading);
-    console.log('answered_count:', answered_count);
-    console.log('expression_count:', expression_count);
+    console.log('answered_count in render:', answered_count);
+    console.log('expression_count in render:', expression_count);
 
     if(!answered_count && !expression_count){
       return(
         <div>Something went wrong</div>
-      )
-    }
-
-    if (!current_expression) {
-      return (
-        <main
-          className="QuizShowPage"
-          style={{margin: '0 1rem'}}
-        >
-          <h2>Expressions</h2>
-          <h4>Loading...</h4>
-        </main>
       )
     }
 
@@ -123,15 +118,27 @@ class QuizShowPage extends Component {
         </div>
       )}
 
-    if(answered_count > expression_count){
-      const wrong_answer= this.state.expression_count - this.state.right_answer_count
-      return(
-        <div className="QuizShowPage" >
-          <h3>Quiz is finished.</h3>
-          <h4>You have {wrong_answer} wrong answers</h4>
-        </div>
-      )
-    }
+      if(answered_count === expression_count){
+        const wrong_answer= this.state.expression_count - this.state.right_answer_count
+        return(
+          <div className="QuizShowPage" >
+            <h3>Quiz is finished.</h3>
+            <h4>You have {wrong_answer} wrong answers</h4>
+          </div>
+        )
+      }
+      if (!current_expression) {
+        return (
+          <main
+            className="QuizShowPage"
+            style={{margin: '0 1rem'}}
+          >
+            <h2>Expressions</h2>
+            <h4>Loading...</h4>
+          </main>
+        )
+      }
+      
    }
 }
 

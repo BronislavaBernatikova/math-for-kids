@@ -20,7 +20,7 @@ let createRecord = (knex, operator, difficulty) => {
     const difficulties = [10, 100, 300, 500, 700, 1000];
     operators.forEach( operator => {
       difficulties.forEach( difficulty => {
-        for (let i = 1; i < 5; i += 1) {
+        for (let i = 1; i < 50; i += 1) {
           records.push(createRecord(knex, operator, difficulty));
         }
       });
