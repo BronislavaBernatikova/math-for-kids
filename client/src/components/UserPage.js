@@ -20,6 +20,7 @@ class UserPage extends Component {
       .create(quizParams)
       .then( quiz => {
         console.log('quiz in userpage:', quiz);
+        
         const quizId = quiz.id;
         // this.setState({
         //   newQuiz : quiz
