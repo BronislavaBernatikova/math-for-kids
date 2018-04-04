@@ -28,7 +28,7 @@ const Quiz = {
           .from('expressions')
           .where('operator',operator)
           .where('difficulty', difficulty)
-          .limit('numberOfExpressions',expression_count)
+          .limit(expression_count)
           .then( expressions => {
             quiz.expressions = expressions;
             res.json(quiz);
@@ -54,7 +54,35 @@ const Quiz = {
             res.json(quiz);
           })
       })
+  },
+
+  update(req, res){
+    const right_answer_count = req.body.right_answer;
+    const seconds = req.body.time;
+    const quiz_id = req.body.quiz_id;
+
+    function formatSeconds (sec) {
+      let date = new Date(1970,0,1);
+      date.setSeconds(sec);
+      return date.toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, "$1");
+    }
+
+    const time = formatSeconds(seconds);
+    // console.log('time from request', seconds);
+    // console.log('time after function:', time);
+
+    return knex('quizes')
+      .where('id', quiz_id)
+      .update({
+        right_answer_count: right_answer_count,
+        time: time
+      })
+      .returning('*')
+      .then( quizData => {
+        const quiz = quizData[0];
+        console.log('right answer count updated!');
+        res.json(quiz);
+      })
   }
 }
-//Promise.all
 module.exports = Quiz;

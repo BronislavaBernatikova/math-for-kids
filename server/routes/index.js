@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 const Users = require('../controllers/users_controller');
 const Quizes = require('../controllers/quizes_controller');
 const Token = require('../controllers/token_controller');
-
+const Answers = require('../controllers/answers_controller');
 
 // middleware function to check for logged-in users
 const authentication = (req, res, next) => {
@@ -36,8 +36,12 @@ userRouter.get('/:id', Users.show);
 const quizRouter = express.Router();
 router.use('/quizes', quizRouter);
 quizRouter.post('/create',Quizes.create);
-//quizRouter.get('/index', Quiz.index);
+quizRouter.post('/update', Quizes.update);
 quizRouter.get('/:id', Quizes.show);
+
+const answerRouter = express.Router();
+router.use('/answers', answerRouter);
+answerRouter.post('/create', Answers.create);
 
 const tokenRouter = express.Router();
 router.use('/tokens', tokenRouter);
