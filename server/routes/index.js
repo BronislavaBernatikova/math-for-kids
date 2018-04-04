@@ -36,7 +36,7 @@ userRouter.get('/:id', Users.show);
 const quizRouter = express.Router();
 router.use('/quizes', quizRouter);
 quizRouter.post('/create',Quizes.create);
-//quizRouter.get('/index', Quiz.index);
+quizRouter.post('/update', Quizes.update);
 quizRouter.get('/:id', Quizes.show);
 
 const answerRouter = express.Router();
