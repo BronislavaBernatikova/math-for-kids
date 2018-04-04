@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 
 function QuizIndex (props) {
   const { quizes = [] } = props;
@@ -23,9 +23,7 @@ function QuizIndex (props) {
               return(
                 <tr key={index} id={`row${index}`}>
                     <td>{index + 1}</td>
-                    <td>
-                      <Link to={`/quizes/${quiz.id}`}>{(quiz.date).slice(0,10)}</Link>
-                    </td>
+                    <td>{(quiz.date).slice(0,10)}</td>
                     <td>{quiz.expression_count}</td>
                     <td>{quiz.right_answer_count}</td>
                     <td>{quiz.time}</td>
@@ -41,3 +39,6 @@ function QuizIndex (props) {
 export default QuizIndex;
 // {quizes && quizes.map((quiz,index) => {
 // typeof
+{/* <td>
+  <Link to={`/quizes/${quiz.id}`}>{(quiz.date).slice(0,10)}</Link>
+</td> */}

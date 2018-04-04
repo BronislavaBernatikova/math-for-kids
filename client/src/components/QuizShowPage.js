@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import { Quiz, Answer } from '../lib/requests';
 import ExpressionDetails from './ExpressionDetails';
+import StopWatch from './StopWatch';
 
 class QuizShowPage extends Component {
   constructor(props){
@@ -13,11 +14,26 @@ class QuizShowPage extends Component {
       expression_count: 0,
       right_answer_count: 0,
       answered_count: 0,
-      current_expression: {}
-      //loading: true
+      current_expression: {},
+      seconds: 0
     }
+    this.counter = null;
     this.createAnswer = this.createAnswer.bind(this);
-    this.addRightAnswerCountToQuiz = this.addRightAnswerCountToQuiz.bind(this);
+    this.updateQuizData = this.updateQuizData.bind(this);
+    this.startStopWatch = this.startStopWatch.bind(this);
+    this.stopStopWatch = this.stopStopWatch.bind(this);
+  }
+
+  startStopWatch(){
+      this.counter = setInterval(() => {
+      this.setState({
+        seconds: this.state.seconds + 1
+      })
+    }, 1000);
+  }
+
+  stopStopWatch(){
+    clearInterval(this.counter);
   }
 
   createAnswer(event){
@@ -26,12 +42,8 @@ class QuizShowPage extends Component {
     const user_answer = parseFloat(formData.get('user_answer'));
     const current_expression = this.state.current_expression;
     let correct_answer;
-    //debugger;
-    // if(user_answer === current_expression.solution){
-    //   correct_answer = true
-    // } else {
-    //   correct_answer = false
-    // }
+    event.target.reset();
+
     user_answer === current_expression.solution ? (correct_answer = true) : (correct_answer = false);
 
     const answerParams = {
@@ -43,8 +55,8 @@ class QuizShowPage extends Component {
     Answer
       .create(answerParams)
       .then( answer => {
-        console.log('answer created:', answer);
-        console.log('correct answer?:', answer.correct_answer);
+        // console.log('answer created:', answer);
+        // console.log('correct answer?:', answer.correct_answer);
             answer.correct_answer ? [
               this.setState({
                 right_answer_count: (this.state.right_answer_count + 1),
@@ -61,21 +73,15 @@ class QuizShowPage extends Component {
                 current_expression: this.props.newQuiz.expressions[this.state.answered_count]
               })
             ]
-            console.log('answered_count-v:', this.state.answered_count);
-            console.log('right_answer_count-v:', this.state.right_answer_count);
-            console.log('current_expression-v:', this.state.current_expression);
+            // console.log('answered_count-v:', this.state.answered_count);
+            // console.log('right_answer_count-v:', this.state.right_answer_count);
+            // console.log('current_expression-v:', this.state.current_expression);
       })
   }
 
-  addRightAnswerCountToQuiz(right_answer){
-    const dataToUpdate = {
-      right_answer_count: right_answer,
-      quiz_id: this.state.quiz.id
-    }
-
+  updateQuizData(quizDataToUpdate){
     Quiz
-      .update(dataToUpdate)
-
+      .update(quizDataToUpdate)
   }
 
   componentDidMount(){
@@ -87,8 +93,9 @@ class QuizShowPage extends Component {
       expression_count: this.props.newQuiz.expression_count,
       right_answer_count: 0,
       answered_count: 0,
-      current_expression: this.props.newQuiz.expressions[0]
+      current_expression: this.props.newQuiz.expressions[0],
     })
+    this.startStopWatch();
     // console.log('this.props JB:', this.props.newQuiz);
     // console.log('this.state.quiz JB:', this.state.quiz);
   }
@@ -108,10 +115,11 @@ class QuizShowPage extends Component {
       )
     }
 
-    if(answered_count < expression_count){
+    else if(answered_count < expression_count){
       return(
         <div className="QuizShowPage">
           <h5>Quiz Show Page</h5>
+          <StopWatch seconds={this.state.seconds}/>
           <p>Current quiz settings: {"  "}
             {current_expression.operator}
             , {"  "} difficulty -> numbers up to
@@ -124,9 +132,11 @@ class QuizShowPage extends Component {
             <div>{current_expression.operator}</div>
             <div>{current_expression.num2}</div>
 
-            <form onSubmit={this.createAnswer}>
+            <form id="answerForm" onSubmit={this.createAnswer}>
               <div>
-                <input name="user_answer" id="user_answer" />
+                <input name="user_answer"
+                       id="user_answer"
+                     />
               </div>
 
               <div>
@@ -136,29 +146,38 @@ class QuizShowPage extends Component {
         </div>
       )}
 
-      if(answered_count === expression_count){
+      else if(answered_count === expression_count){
         const right_answer= this.state.right_answer_count;
         const wrong_answer= this.state.expression_count - right_answer;
+
+        const quizDataToUpdate = {
+          right_answer: right_answer,
+          time: this.state.seconds,
+          quiz_id: this.state.quiz.id
+        }
+        this.stopStopWatch();
 
         return(
           <div className="QuizShowPage" >
             <h3>Quiz is finished.</h3>
+            <h4>Duration:</h4>
+            <StopWatch seconds={this.state.seconds} />
             <h4>You have {wrong_answer} wrong answers</h4>
-            {this.addRightAnswerCountToQuiz(right_answer)}
+            {this.updateQuizData(quizDataToUpdate)}
           </div>
         )
       }
-      if (!current_expression) {
-        return (
-          <main
-            className="QuizShowPage"
-            style={{margin: '0 1rem'}}
-          >
-            <h2>Expressions</h2>
-            <h4>Loading...</h4>
-          </main>
-        )
-      }
+      // else if(!current_expression){
+      //   return (
+      //     <main
+      //       className="QuizShowPage"
+      //       style={{margin: '0 1rem'}}
+      //     >
+      //       <h2>Expressions</h2>
+      //       <h4>Loading...</h4>
+      //     </main>
+      //   )
+      // }
 
    }
 }
