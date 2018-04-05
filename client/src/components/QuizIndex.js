@@ -1,5 +1,5 @@
 import React from 'react';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function QuizIndex (props) {
   const { quizes = [] } = props;
@@ -27,6 +27,9 @@ function QuizIndex (props) {
                     <td>{quiz.expression_count}</td>
                     <td>{quiz.right_answer_count}</td>
                     <td>{quiz.time}</td>
+                    <td>
+                      <Link to={`/quizes/show/${quiz.id}`}>Repeat Quiz</Link>
+                    </td>
                 </tr>
               )
             })}
@@ -39,6 +42,3 @@ function QuizIndex (props) {
 export default QuizIndex;
 // {quizes && quizes.map((quiz,index) => {
 // typeof
-{/* <td>
-  <Link to={`/quizes/${quiz.id}`}>{(quiz.date).slice(0,10)}</Link>
-</td> */}

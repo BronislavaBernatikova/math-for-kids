@@ -38,22 +38,25 @@ const Quiz = {
 
   show(req,res){
     const quizId = req.params.id;
-    const userId = req.currentUser.id;
+    //const userId = req.currentUser.id;
 
-    knex
-      .first()
-      .from('quizes')
-      .where('id', quizId)
-      .then( quiz => {
+        knex('quizes')
+          .first()
+          .where('id', quizId)
+          .then( quiz => {
 
-        knex('answers')
-          .select('*')
-          .where('quiz_id', quizId)
-          .then( answers => {
-            quiz.answers = answers;
-            res.json(quiz);
+            knex('expressions')
+              .join('answers','expressions.id','=','answers.expression_id')
+              .select('expressions.operator','expressions.num1', 'expressions.num2',
+                      'expressions.solution', 'expression_id','expressions.difficulty',
+                      'answers.id','correct_answer')
+              .where('quiz_id', quizId)
+              .then( expressions => {
+                quiz.expressions = expressions;
+
+                res.json(quiz);
+              })
           })
-      })
   },
 
   update(req, res){
@@ -84,5 +87,6 @@ const Quiz = {
         res.json(quiz);
       })
   }
+
 }
 module.exports = Quiz;

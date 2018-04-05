@@ -35,6 +35,21 @@ const Answer = {
     )
     .then(res => res.json());
   },
+
+  update(params) {
+    return fetch(
+      `${BASE_URL}/answers/update`,
+      {
+        headers: {
+          'Authorization': getJWT(),
+          'Content-Type':'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(params)
+      }
+    )
+    .then(res => res.json());
+  }
 }
 
 const Quiz = {
@@ -63,7 +78,7 @@ const Quiz = {
 
   one(id) {
     return fetch(
-      `${BASE_URL}/quizes/${id}`,
+      `${BASE_URL}/quizes/show/${id}`,
       { headers: {'Authorization': getJWT()} }
     )
     .then(res => res.json());

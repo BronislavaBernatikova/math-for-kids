@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { Quiz, Answer } from '../lib/requests';
-import ExpressionDetails from './ExpressionDetails';
+// import ExpressionDetails from './ExpressionDetails';
 import StopWatch from './StopWatch';
 
 class QuizShowPage extends Component {
@@ -104,8 +104,8 @@ class QuizShowPage extends Component {
     const current_expression = this.state.current_expression;
     const answered_count = this.state.answered_count;
     const expression_count = this.state.expression_count;
-    const quizId = this.state.quiz.id;
-    const loading = this.state.loading;
+    // const quizId = this.state.quiz.id;
+    // const loading = this.state.loading;
     //console.log('current_expression in render:', current_expression);
     //console.log('answered_count in render:', answered_count);
     //console.log('expression_count in render:', expression_count);

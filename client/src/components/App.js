@@ -6,8 +6,9 @@ import QuizShowPage from './QuizShowPage';
 import SignUpPage from './SignUpPage';
 import NavBar from './NavBar';
 import HomePage from './HomePage';
-import AuthRoute from './AuthRoute';
+//import AuthRoute from './AuthRoute';
 import UserPage from './UserPage';
+import RepeatQuizPage from './RepeatQuizPage';
 
 
 
@@ -72,7 +73,12 @@ class App extends Component {
                      <UserPage {...props} newQuizData={this.quizDataFromUserPage} />
                    )}
             />
-            <Route path="/quizes/:id"
+            <Route path="/quizes/show/:id"
+                   render={ props => (
+                     <RepeatQuizPage {...props} />
+                   )}
+            />
+            <Route path="/quizes/new"
                    render={ props => (
                      <QuizShowPage newQuiz={this.state.newQuiz} />
                    )}
