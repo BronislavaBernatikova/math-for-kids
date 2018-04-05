@@ -60,6 +60,7 @@ const Quiz = {
   },
 
   update(req, res){
+    console.log('server update');
     const right_answer_count = req.body.right_answer;
     const seconds = req.body.time;
     const quiz_id = req.body.quiz_id;
@@ -72,7 +73,7 @@ const Quiz = {
 
     const time = formatSeconds(seconds);
     // console.log('time from request', seconds);
-    // console.log('time after function:', time);
+    //console.log('time after function:', time);
 
     return knex('quizes')
       .where('id', quiz_id)
@@ -83,9 +84,9 @@ const Quiz = {
       .returning('*')
       .then( quizData => {
         const quiz = quizData[0];
-        console.log('right answer count updated!');
+        console.log('right answer count updated!', quiz);
         res.json(quiz);
-      })
+       })
   }
 
 }

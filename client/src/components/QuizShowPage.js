@@ -167,18 +167,6 @@ class QuizShowPage extends Component {
           </div>
         )
       }
-      // else if(!current_expression){
-      //   return (
-      //     <main
-      //       className="QuizShowPage"
-      //       style={{margin: '0 1rem'}}
-      //     >
-      //       <h2>Expressions</h2>
-      //       <h4>Loading...</h4>
-      //     </main>
-      //   )
-      // }
-
    }
 }
 

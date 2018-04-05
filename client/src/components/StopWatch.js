@@ -16,18 +16,3 @@ function StopWatch(props){
     )
 }
 export default StopWatch;
-
-// function formatSeconds(seconds)
-// {
-//     var date = new Date(1970,0,1);
-//     date.setSeconds(seconds);
-//     return date.toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, "$1");
-// }
-
-// moment().startOf('day')
-//         .seconds(15457)
-//         .format('H:mm:ss');
-//
-// moment().startOf('year').seconds(30000000).format('DDD HH:mm:ss')
-//
-// .format('YYYY DDD HH:mm:ss')
