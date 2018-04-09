@@ -6,8 +6,7 @@ class CorrectWrongAnswers extends Component {
     super(props)
     this.state = {
       expressions: [],
-      loading: true,
-      wrongAnswered: []
+      loading: true
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     console.log('in correct answers component');
@@ -16,21 +15,21 @@ class CorrectWrongAnswers extends Component {
   handleSubmit(event){
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const user_answers = [];
+    const wrongAnswered = [];
 
     const expressions = this.state.expressions;
     for(let expression of expressions){
       let answer = parseFloat(formData.get(`answer-${expression.id}`));
       if (answer !== expression.solution) {
-        user_answers.push(expression);
+        wrongAnswered.push(expression);
       }
     }
-    console.log('user_answers:', user_answers);
-    //console.log('formData:', formData);
-    // this.setState({
-    //   expressions: this.state.wrongAnswered
-    // })
+    //console.log('wrongAnswered:', wrongAnswered);
 
+    this.setState({
+      expressions: wrongAnswered
+    })
+    event.target.reset();
   }
 
   componentDidMount(){
@@ -59,6 +58,12 @@ class CorrectWrongAnswers extends Component {
           Loading expressions..
         </div>
       )}
+    if(expressions.length === 0){
+      return(
+        <div className="CorrectWrongAnswers">
+          <h1>Well done, you did it! :) </h1>
+        </div>
+      )}
 
     if (expressions){
       return(
@@ -84,16 +89,7 @@ class CorrectWrongAnswers extends Component {
           </div>
         </form>
       )}
+
   }
 }
 export default CorrectWrongAnswers;
-{/* <div className="CorrectWrongAnswers">
-  <div>Correct your wrong answers:</div>
-  {expressions.map( (expression, index) => {
-    <div className="expression_${index}">
-      <div>{expression.num1}</div>
-      <div>{expression.operator}</div>
-      <div>{expression.num2}</div>
-    </div>
-  })}
-</div> */}

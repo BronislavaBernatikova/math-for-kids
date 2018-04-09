@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Quiz, Answer } from '../lib/requests';
 import Timer from './Timer';
+import CorrectWrongAnswers from './CorrectWrongAnswers';
 
 class RepeatQuizPage extends Component {
   constructor(props){
@@ -12,7 +13,8 @@ class RepeatQuizPage extends Component {
       expression: {},
       right_answer_count: 0,
       loading: true,
-      timer: false
+      timer: false,
+      newQuiz: {}
     }
     this.updateAnswer = this.updateAnswer.bind(this);
     this.updateTime = this.updateTime.bind(this);
@@ -39,8 +41,7 @@ class RepeatQuizPage extends Component {
         console.log('answer:', answer);
 
         let right_answer_count = this.state.right_answer_count;
-
-        answer.correct_answer ? right_answer_count + 1 : right_answer_count;
+        answer.correct_answer ? (right_answer_count += 1) : (right_answer_count);
 
           this.setState({
             right_answer_count: right_answer_count,
@@ -63,7 +64,7 @@ class RepeatQuizPage extends Component {
       .then( quiz => {
         console.log('quiz:', quiz);
           this.setState({
-            quiz: quiz
+            newQuiz: quiz
           })
       })
   }
@@ -95,8 +96,6 @@ class RepeatQuizPage extends Component {
     const { expression, answered_count, loading, right_answer_count } = this.state
     const expression_count = this.state.expressions.length;
     const quizId = this.props.match.params.id;
-    const wrong_answer = expression_count - right_answer_count;
-    const last_quiz_right_ans = this.state.quiz.right_answer_count;
 
     if(loading){
       return(
@@ -105,7 +104,7 @@ class RepeatQuizPage extends Component {
         </div>
       )}
 
-    if(answered_count < expression_count){
+    else if(answered_count < expression_count){
       return(
         <div className="RepeatQuizPage">
           <h5>You are repeating quiz nuber: {`${quizId}`}</h5>
@@ -137,19 +136,27 @@ class RepeatQuizPage extends Component {
         </div>
       )}
 
-    if(answered_count === expression_count){
+    else if(answered_count === expression_count){
+      const wrong_answer = expression_count - right_answer_count;
+      const last_right_answers = this.state.quiz.right_answer_count;
+
       this.triggerStopTimer()
+       console.log('last_quiz_right_ans:', last_right_answers);
+       console.log('right_answer_count in render:', right_answer_count);
       return(
         <div className="RepeatQuizPage">
           <div>Finished!</div>
-
+          <div>Duration:</div>
+          <div>{this.state.newQuiz.time}</div>
+          
           <div>You have {wrong_answer} wrong answers.</div>
 
-          {last_quiz_right_ans < right_answer_count ? (
+          {last_right_answers < right_answer_count ? (
             <p>Well Done! You improved your score from last time!</p>
           ):(
             <p>You haven't improve your score from last time. Try harder!</p>
           )}
+          <CorrectWrongAnswers quizId={quizId}/>
         </div>
       )}
 
