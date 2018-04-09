@@ -31,8 +31,7 @@ class Timer extends Component {
   }
 
   componentDidMount(){
-    console.log('timer A:', this.props.timer);
-    if(this.props.timer == true) {
+    if(this.props.timer === true) {
       this.startTimer();
     } else {
       this.stopTimer();

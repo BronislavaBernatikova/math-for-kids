@@ -15,11 +15,10 @@ class UserPage extends Component {
   }
 
   createNewQuiz(quizParams){
-    //console.log('quizParams:', quizParams);
     Quiz
       .create(quizParams)
       .then( quiz => {
-        //console.log('quiz in userpage:', quiz);
+        
         const {newQuizData =()=> {} } = this.props;
         newQuizData(quiz);
         this.props.history.push(`/quizes/new`);

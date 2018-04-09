@@ -51,7 +51,6 @@ class RepeatQuizPage extends Component {
   }
 
   updateTime(timeData){
-    console.log('updateTime', timeData)
 
     let quizDataToUpdate = {
       time: timeData,
@@ -61,17 +60,18 @@ class RepeatQuizPage extends Component {
 
     Quiz
       .update(quizDataToUpdate)
-      //.then( quiz => {
-        //console.log('quiz:');
-          // this.setState({
-          //   quiz: quiz
-          // })
-      //})
+      .then( quiz => {
+        console.log('quiz:', quiz);
+          this.setState({
+            quiz: quiz
+          })
+      })
   }
 
   triggerStopTimer(){
-    console.log('this.refs:', this.refs);
-    this.refs.child.stopTimer();
+    if (this.refs.child) {
+      this.refs.child.stopTimer();
+    }
   }
 
   componentDidMount(){
@@ -80,7 +80,6 @@ class RepeatQuizPage extends Component {
     Quiz
       .one(quizId)
       .then( quiz => {
-        console.log('quiz in repeat page:', quiz);
         this.setState({
           quiz: quiz,
           expressions: quiz.expressions,

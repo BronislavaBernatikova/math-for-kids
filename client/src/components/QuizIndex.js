@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 function QuizIndex (props) {
   const { quizes = [] } = props;
 
-    //console.log('quizesJB:', quizes);
-
      return(
       <div className="QuizIndex">
 
@@ -40,5 +38,3 @@ function QuizIndex (props) {
 }
 
 export default QuizIndex;
-// {quizes && quizes.map((quiz,index) => {
-// typeof
