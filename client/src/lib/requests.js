@@ -68,13 +68,13 @@ const Quiz = {
     .then(res => res.json());
   },
 
-  all(user_id) {
-    return fetch(
-      `${BASE_URL}/quizes/index`,
-      { headers: {'Authorization':getJWT()}}
-    )
-    .then(res => res.json());
-  },
+  // all(user_id) {
+  //   return fetch(
+  //     `${BASE_URL}/quizes/index`,
+  //     { headers: {'Authorization':getJWT()}}
+  //   )
+  //   .then(res => res.json());
+  // },
 
   one(id) {
     return fetch(
@@ -97,9 +97,15 @@ const Quiz = {
       }
     )
     .then(res => res.json());
+  },
+
+  correct(quizId) {
+    return fetch(
+      `${BASE_URL}/quizes/correct/${quizId}`,
+      { headers: {'Authorization': getJWT()} }
+    )
+    .then(res => res.json());
   }
-
-
 }
 
 const User = {

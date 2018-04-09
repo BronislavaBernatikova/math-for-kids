@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import { Quiz, Answer } from '../lib/requests';
 import StopWatch from './StopWatch';
+import CorrectWrongAnswers from './CorrectWrongAnswers';
 
 class QuizShowPage extends Component {
   constructor(props){
@@ -92,9 +93,8 @@ class QuizShowPage extends Component {
   }
 
   render(){
-    const current_expression = this.state.current_expression;
-    const answered_count = this.state.answered_count;
-    const expression_count = this.state.expression_count;
+    const { current_expression, answered_count, expression_count } = this.state;
+    const quizId = this.state.quiz.id;
 
     if(!answered_count && !expression_count){
       return(
@@ -139,7 +139,7 @@ class QuizShowPage extends Component {
         const quizDataToUpdate = {
           right_answer: right_answer,
           time: this.state.seconds,
-          quiz_id: this.state.quiz.id
+          quiz_id: quizId
         }
         this.stopStopWatch();
 
@@ -150,6 +150,7 @@ class QuizShowPage extends Component {
             <StopWatch seconds={this.state.seconds} />
             <h4>You have {wrong_answer} wrong answers</h4>
             {this.updateQuizData(quizDataToUpdate)}
+            <CorrectWrongAnswers quizId={quizId}/>
           </div>
         )
       }
@@ -157,3 +158,7 @@ class QuizShowPage extends Component {
 }
 
 export default QuizShowPage;
+
+// const answered_count = this.state.answered_count;
+// const expression_count = this.state.expression_count;
+// const quizId = this.state.quiz.id;

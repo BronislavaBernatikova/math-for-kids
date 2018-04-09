@@ -60,7 +60,6 @@ const Quiz = {
   },
 
   update(req, res){
-    console.log('server update');
     const right_answer_count = req.body.right_answer;
     const seconds = req.body.time;
     const quiz_id = req.body.quiz_id;
@@ -70,10 +69,7 @@ const Quiz = {
       date.setSeconds(sec);
       return date.toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, "$1");
     }
-
     const time = formatSeconds(seconds);
-    // console.log('time from request', seconds);
-    //console.log('time after function:', time);
 
     return knex('quizes')
       .where('id', quiz_id)
@@ -84,9 +80,26 @@ const Quiz = {
       .returning('*')
       .then( quizData => {
         const quiz = quizData[0];
-        console.log('right answer count updated!', quiz);
+        //console.log('right answer count updated!', quiz);
         res.json(quiz);
        })
+  },
+
+  correct(req,res){
+    const quiz_id = req.params.id;
+
+    knex('answers')
+      .join('expressions','expressions.id','=','answers.expression_id')
+      .select('expressions.operator','expressions.num1', 'expressions.num2',
+              'expressions.solution', 'expression_id', 'answers.id','answers.correct_answer','answers.quiz_id')
+      .where({
+        quiz_id: quiz_id,
+        correct_answer: false
+      })
+      .then( expressions => {
+        console.log('expressions: ', expressions);
+        res.json(expressions);
+      })
   }
 
 }
