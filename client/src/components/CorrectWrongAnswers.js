@@ -7,9 +7,30 @@ class CorrectWrongAnswers extends Component {
     this.state = {
       expressions: [],
       loading: true,
-      allCorect: 0
+      wrongAnswered: []
     }
+    this.handleSubmit = this.handleSubmit.bind(this);
     console.log('in correct answers component');
+  }
+
+  handleSubmit(event){
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const user_answers = [];
+
+    const expressions = this.state.expressions;
+    for(let expression of expressions){
+      let answer = parseFloat(formData.get(`answer-${expression.id}`));
+      if (answer !== expression.solution) {
+        user_answers.push(expression);
+      }
+    }
+    console.log('user_answers:', user_answers);
+    //console.log('formData:', formData);
+    // this.setState({
+    //   expressions: this.state.wrongAnswered
+    // })
+
   }
 
   componentDidMount(){
@@ -41,7 +62,9 @@ class CorrectWrongAnswers extends Component {
 
     if (expressions){
       return(
-        <div className="CorrectWrongAnswers">
+        <form className="CorrectWrongAnswers"
+              onSubmit={this.handleSubmit}
+        >
           <div>Correct your wrong answers:</div>
           {expressions.map( expression => (
             <div className={expression.id}>
@@ -49,9 +72,17 @@ class CorrectWrongAnswers extends Component {
               <div>{expression.operator}</div>
               <div>{expression.num2}</div>
               <div>{"---------------"}</div>
+              <input name={`answer-${expression.id}`}
+                     id={`answer-${expression.id}`}
+              />
             </div>
           ))}
-        </div>
+          <div>
+            <input type="submit"
+                   value="Done"
+            />
+          </div>
+        </form>
       )}
   }
 }
