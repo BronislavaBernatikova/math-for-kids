@@ -141,14 +141,13 @@ class RepeatQuizPage extends Component {
       const last_right_answers = this.state.quiz.right_answer_count;
 
       this.triggerStopTimer()
-       console.log('last_quiz_right_ans:', last_right_answers);
-       console.log('right_answer_count in render:', right_answer_count);
+       // console.log('last_quiz_right_ans:', last_right_answers);
+       // console.log('right_answer_count in render:', right_answer_count);
       return(
         <div className="RepeatQuizPage">
           <div>Finished!</div>
           <div>Duration:</div>
           <div>{this.state.newQuiz.time}</div>
-          
           <div>You have {wrong_answer} wrong answers.</div>
 
           {last_right_answers < right_answer_count ? (
@@ -156,6 +155,7 @@ class RepeatQuizPage extends Component {
           ):(
             <p>You haven't improve your score from last time. Try harder!</p>
           )}
+
           <CorrectWrongAnswers quizId={quizId}/>
         </div>
       )}

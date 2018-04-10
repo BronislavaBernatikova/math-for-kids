@@ -16,21 +16,34 @@ const Quiz = {
       expression_count: expression_count
     };
 
-     return knex('quizes')
+    function randomizer(arr,n){
+      let finalArr = [];
+      let random;
+      do{
+        random = arr[Math.floor((Math.random()*arr.length))];
+        if(!finalArr.includes(random)){
+        finalArr.push(random);}
+      }
+      while(finalArr.length < n)
+      return finalArr;
+    }
+
+    return knex('quizes')
       //.into('quizes')
       .insert(_data)
-       .returning('*')
-       .then( quizData => {
-         const quiz = quizData[0];
+      .returning('*')
+      .then( quizData => {
+        const quiz = quizData[0];
 
         knex
           .select('*')
           .from('expressions')
           .where('operator',operator)
           .where('difficulty', difficulty)
-          .limit(expression_count)
-          .then( expressions => {
+          .then( expArray => {
+            const expressions = randomizer(expArray,expression_count);
             quiz.expressions = expressions;
+            console.log('randomized quiz:', quiz);
             res.json(quiz);
           })
       })
@@ -53,7 +66,6 @@ const Quiz = {
               .where('quiz_id', quizId)
               .then( expressions => {
                 quiz.expressions = expressions;
-
                 res.json(quiz);
               })
           })
@@ -104,3 +116,37 @@ const Quiz = {
 
 }
 module.exports = Quiz;
+
+// create(req,res){
+//   console.log('data from react; ');
+//   console.log('req.currentUser:', req.currentUser);
+//   console.log('req.body:', req.body);
+//   const userId = req.currentUser.id;
+//   const expression_count = req.body.numberOfExpressions;
+//   const difficulty = req.body.difficulty;
+//   const operator = req.body.arithmeticOperator;
+//   const _data = {
+//     user_id: userId,
+//     date: new Date(),
+//     expression_count: expression_count
+//   };
+//
+//   return knex('quizes')
+//     //.into('quizes')
+//     .insert(_data)
+//     .returning('*')
+//     .then( quizData => {
+//       const quiz = quizData[0];
+//
+//       knex
+//         .select('*')
+//         .from('expressions')
+//         .where('operator',operator)
+//         .where('difficulty', difficulty)
+//         .limit(expression_count)
+//         .then( expressions => {
+//           quiz.expressions = expressions;
+//           res.json(quiz);
+//         })
+//     })
+// },
