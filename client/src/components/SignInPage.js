@@ -19,13 +19,11 @@ class SignInPage extends Component {
         password: formData.get('password')
       })
       .then( data => {
-        console.log('dataxy: ', data);
         if(!data.error) {
           localStorage.setItem('jwt', data.token);
           localStorage.setItem('userId', data.user_id);
           onSignIn()
           this.props.history.push('/');
-          console.log('history: ',this.props.history);
         }
       })
   }

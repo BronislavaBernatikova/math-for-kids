@@ -13,11 +13,12 @@ function NavBar(props) {
   return (
     <nav className="NavBar">
       <NavLink exact to="/">Home</NavLink>
-      <NavLink exact to="/users/:id">User Page</NavLink>
       {
         user? (
-          [ <span key="1">Hello, {user.first_name}</span>,
-            <a key="2" fref="/sign_out" onClick={handleSignOut}>Sign Out</a>
+          [
+            <NavLink key="1" exact to={`/users/${user.first_name}`}>User Page</NavLink>,
+            <span key="2">Hello, {user.first_name}</span>,
+            <a key="3" fref="/sign_out" onClick={handleSignOut}>Sign Out</a>
           ]
         ) : (
           [ <NavLink exact to="/sign_in">Sign In</NavLink>,

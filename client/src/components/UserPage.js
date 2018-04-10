@@ -15,19 +15,13 @@ class UserPage extends Component {
   }
 
   createNewQuiz(quizParams){
-    console.log('quizParams:', quizParams);
     Quiz
       .create(quizParams)
       .then( quiz => {
-        console.log('quiz in userpage:', quiz);
 
-        const quizId = quiz.id;
-        // this.setState({
-        //   newQuiz : quiz
-        // })
         const {newQuizData =()=> {} } = this.props;
         newQuizData(quiz);
-        this.props.history.push(`/quizes/${quizId}`);
+        this.props.history.push(`/quizes/new`);
       })
   }
 
@@ -58,4 +52,3 @@ class UserPage extends Component {
 }
 
 export default UserPage;
-//handleSubmit={this.handleSubmit}
