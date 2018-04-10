@@ -35,6 +35,21 @@ const Answer = {
     )
     .then(res => res.json());
   },
+
+  update(params) {
+    return fetch(
+      `${BASE_URL}/answers/update`,
+      {
+        headers: {
+          'Authorization': getJWT(),
+          'Content-Type':'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(params)
+      }
+    )
+    .then(res => res.json());
+  }
 }
 
 const Quiz = {
@@ -53,17 +68,17 @@ const Quiz = {
     .then(res => res.json());
   },
 
-  all(user_id) {
-    return fetch(
-      `${BASE_URL}/quizes/index`,
-      { headers: {'Authorization':getJWT()}}
-    )
-    .then(res => res.json());
-  },
+  // all(user_id) {
+  //   return fetch(
+  //     `${BASE_URL}/quizes/index`,
+  //     { headers: {'Authorization':getJWT()}}
+  //   )
+  //   .then(res => res.json());
+  // },
 
   one(id) {
     return fetch(
-      `${BASE_URL}/quizes/${id}`,
+      `${BASE_URL}/quizes/show/${id}`,
       { headers: {'Authorization': getJWT()} }
     )
     .then(res => res.json());
@@ -82,9 +97,15 @@ const Quiz = {
       }
     )
     .then(res => res.json());
+  },
+
+  correct(quizId) {
+    return fetch(
+      `${BASE_URL}/quizes/correct/${quizId}`,
+      { headers: {'Authorization': getJWT()} }
+    )
+    .then(res => res.json());
   }
-
-
 }
 
 const User = {

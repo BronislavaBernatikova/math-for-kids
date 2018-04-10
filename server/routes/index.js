@@ -37,11 +37,14 @@ const quizRouter = express.Router();
 router.use('/quizes', quizRouter);
 quizRouter.post('/create',Quizes.create);
 quizRouter.post('/update', Quizes.update);
-quizRouter.get('/:id', Quizes.show);
+quizRouter.get('/show/:id', Quizes.show);
+quizRouter.get('/correct/:id', Quizes.correct);
+
 
 const answerRouter = express.Router();
 router.use('/answers', answerRouter);
 answerRouter.post('/create', Answers.create);
+answerRouter.post('/update', Answers.update);
 
 const tokenRouter = express.Router();
 router.use('/tokens', tokenRouter);
