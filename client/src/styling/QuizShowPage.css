@@ -1,0 +1,56 @@
+
+.QuizShowPage {
+  height: 1000px;
+  display: flex;
+  flex-direction: column;
+  border: black solid thin;
+  margin: 10px;
+  padding: 10px;
+  /* background-image: url("https://image.shutterstock.com/z/stock-vector-background-illustration-of-math-symbols-and-formulas-730379383.jpg"); */
+}
+
+.main-container-1 {
+  border: green thin solid;
+}
+
+.main-container-2 {
+  border: green thin solid;
+  display: flex;
+
+}
+
+.container-1 {
+  border: blue thin solid;
+}
+
+.container-2 {
+  border: blue thin solid;
+}
+
+.container-3 {
+  border: blue thin solid;
+}
+.settings {
+  border: black solid thin;
+  width: 100px;
+  padding: 10px;
+}
+.stopWatch {
+  border: black thin solid;
+}
+.expression {
+  border: solid thin black;
+  min-width: 100px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.expression > div {
+  width: 50px;
+  height: 50px;
+  border: red thin solid;
+  /* font-size: 40px; */
+  /* font-weight: normal; */
+  /* letter-spacing: 4px; */
+}
