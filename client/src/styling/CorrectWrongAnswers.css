@@ -1,0 +1,15 @@
+.CorrectWrongAnswers {
+  border: solid black thin;
+  font-size: 50px;
+}
+
+.CorrectWrongAnswers .container {
+  display:flex;
+  flex-wrap: wrap;
+  border: solid blue thin;
+}
+
+.container > * {
+  text-align: center;
+  border: solid blue thin;
+}

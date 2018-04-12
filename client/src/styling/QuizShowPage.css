@@ -3,91 +3,64 @@
   min-height: 900px;
   display: flex;
   flex-direction: column;
-  /* border: black solid thin; */
-  /* margin: 10px; */
-  /* padding: 10px; */
   font-family: 'Gaegu', cursive;
   background: linear-gradient(to bottom right,rgb(161,187,255), rgb(100,116,158));
   background-image: url("https://image.shutterstock.com/z/stock-vector-background-illustration-of-math-symbols-and-formulas-730379383.jpg");
 }
-.wrapper {
+.wrapper-1 {
   background-color: rgb(255,255,255,0.7);
-  height: 1000px;
-  margin: 10px;
-}
-.h1 {
-  font-family: 'Gaegu', cursive;
-  text-align: center;
-  font-size: 50px;
-  text-shadow: 2px 2px lightgrey;
+  /* width: : 90% */
+  height: 100%;
+  margin: 20px;
 }
 .main-container-1 {
   /* border: green thin solid; */
   padding: 10px;
   padding-bottom: 10px;
   text-align: center;
-  font-size: 40px;
+  font-size: 20px;
 }
 .container {
+  /* border: green thin solid; */
   display: flex;
   justify-content: space-between;
+}
+.h1 {
+  font-family: 'Gaegu', cursive;
+  font-size: 30px;
+  text-shadow: 2px 2px lightgrey;
+}
+.counter {
+  font-size: 30px;
+  padding-top: 12px;
+  text-shadow: 2px 2px lightgrey;
 }
 .main-container-2 {
   /* border: green thin solid; */
   display: flex;
+  flex-direction: column;
   padding: 50px 10px;
-
-}
-
-.container-1 {
-  border: blue thin solid;
-  flex-grow: 1;
-  flex-shrink: 1;
-}
-
-.container-2 {
-  /* border: blue thin solid; */
-  flex-grow: 1;
-  flex-shrink: 1;
-}
-
-.container-3 {
-  border: blue thin solid;
-  flex-grow: 1;
-  flex-shrink: 1;
-  font-size: 30px;
-}
-.settings {
-  border: black solid thin;
-  max-width: 400px;
-  padding: 10px;
-  font-size: 30px;
 }
 .stopWatch {
   /* border: black thin solid; */
   text-align: center;
-  padding-top: 25px;
-  /* padding: 50px 10px; */
-  font-size: 50px;
+  padding: 50px 10px;
+  font-size: 30px;
   text-shadow: 2px 2px lightgrey;
-  /* background-color: rgb(255,255,255,0.7); */
-  /* box-shadow: 0 0 10px 10px white; */
-  /* border-radius: 50%; */
 }
 .expression {
   /* border: solid thin black; */
-  /* border-radius: 50%; */
   display: flex;
   flex-direction: column;
   align-content: center;
   text-align: center;
   padding: 100px 10px;
-  /* background-color: rgb(255,255,255,0.7); */
   /* box-shadow: 0 0 10px 10px white; */
-
 }
 .expression input {
-  font-size: 20px;
+  font-size: 30px;
+  text-align: center;
+  max-width: 150px;
   font-family: 'Gaegu', cursive;
   border-radius: 5px;
 }
@@ -96,6 +69,45 @@
   /* border: red thin solid; */
   font-size: 40px;
 }
+.main-container-3 {
+  /* border: green thin solid; */
+  display: flex;
+  justify-content: space-around;
+  font-size: 30px;
+  text-shadow: 2px 2px lightgrey;
+  padding-bottom: 15px;
+}
+
+.wrapper-2 {
+  background-color: rgb(255,255,255,0.7);
+  height: 100%;
+  margin: 20px;
+}
+.wrapper-2 > div {
+  font-size: 30px;
+  font-family: 'Gaegu', cursive;
+  padding: 10px;
+}
+ div .finished {
+   border: solid black thin;
+  font-size: 80px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: rgb(3,2,120);
+  text-shadow: 2px 2px rgb(161,187,255);
+  text-align: center;
+}
+.time {
+  display: flex;
+}
+.main-container-4 {
+  border: black thin solid;
+  display: flex;
+  flex-direction: column;
+}
+
+/* @media only screen and (max-width: 1366px) { */
+
 @media only screen and (max-width: 414px) {
 
    .stopWatch {

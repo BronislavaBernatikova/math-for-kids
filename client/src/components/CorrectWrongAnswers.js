@@ -51,7 +51,7 @@ class CorrectWrongAnswers extends Component {
   render(){
     const { expressions, loading } = this.state;
 
-    console.log('expressions in render: ', expressions);
+    // console.log('expressions in render: ', expressions);
     if (loading){
       return(
         <div className="CorrectWrongAnswers">
@@ -71,17 +71,19 @@ class CorrectWrongAnswers extends Component {
               onSubmit={this.handleSubmit}
         >
           <div>Correct your wrong answers:</div>
+          <div className="container">
           {expressions.map( expression => (
             <div className={expression.id}>
               <div>{expression.num1}</div>
               <div>{expression.operator}</div>
               <div>{expression.num2}</div>
-              <div>{"---------------"}</div>
               <input name={`answer-${expression.id}`}
                      id={`answer-${expression.id}`}
               />
-            </div>
+
+          </div>
           ))}
+          </div>
           <div>
             <input type="submit"
                    value="Done"
