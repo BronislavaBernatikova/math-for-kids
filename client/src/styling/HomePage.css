@@ -1,0 +1,12 @@
+.HomePage {
+  display: flex;
+  background: linear-gradient(to bottom right,rgb(161,187,255), rgb(100,116,158));
+  height: 1000px;
+
+}
+
+/* div {
+  font-family: 'Gaegu', cursive;
+  font-size: 50px;
+  font-weight: bolder;
+} */

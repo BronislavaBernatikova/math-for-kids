@@ -1,56 +1,112 @@
 
 .QuizShowPage {
-  height: 1000px;
+  min-height: 900px;
   display: flex;
   flex-direction: column;
-  border: black solid thin;
+  /* border: black solid thin; */
+  /* margin: 10px; */
+  /* padding: 10px; */
+  font-family: 'Gaegu', cursive;
+  background: linear-gradient(to bottom right,rgb(161,187,255), rgb(100,116,158));
+  background-image: url("https://image.shutterstock.com/z/stock-vector-background-illustration-of-math-symbols-and-formulas-730379383.jpg");
+}
+.wrapper {
+  background-color: rgb(255,255,255,0.7);
+  height: 1000px;
   margin: 10px;
-  padding: 10px;
-  /* background-image: url("https://image.shutterstock.com/z/stock-vector-background-illustration-of-math-symbols-and-formulas-730379383.jpg"); */
 }
-
+.h1 {
+  font-family: 'Gaegu', cursive;
+  text-align: center;
+  font-size: 50px;
+  text-shadow: 2px 2px lightgrey;
+}
 .main-container-1 {
-  border: green thin solid;
+  /* border: green thin solid; */
+  padding: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  font-size: 40px;
 }
-
-.main-container-2 {
-  border: green thin solid;
+.container {
   display: flex;
+  justify-content: space-between;
+}
+.main-container-2 {
+  /* border: green thin solid; */
+  display: flex;
+  padding: 50px 10px;
 
 }
 
 .container-1 {
   border: blue thin solid;
+  flex-grow: 1;
+  flex-shrink: 1;
 }
 
 .container-2 {
-  border: blue thin solid;
+  /* border: blue thin solid; */
+  flex-grow: 1;
+  flex-shrink: 1;
 }
 
 .container-3 {
   border: blue thin solid;
+  flex-grow: 1;
+  flex-shrink: 1;
+  font-size: 30px;
 }
 .settings {
   border: black solid thin;
-  width: 100px;
+  max-width: 400px;
   padding: 10px;
+  font-size: 30px;
 }
 .stopWatch {
-  border: black thin solid;
+  /* border: black thin solid; */
+  text-align: center;
+  padding-top: 25px;
+  /* padding: 50px 10px; */
+  font-size: 50px;
+  text-shadow: 2px 2px lightgrey;
+  /* background-color: rgb(255,255,255,0.7); */
+  /* box-shadow: 0 0 10px 10px white; */
+  /* border-radius: 50%; */
 }
 .expression {
-  border: solid thin black;
-  min-width: 100px;
+  /* border: solid thin black; */
+  /* border-radius: 50%; */
   display: flex;
   flex-direction: column;
-  padding: 10px;
-}
+  align-content: center;
+  text-align: center;
+  padding: 100px 10px;
+  /* background-color: rgb(255,255,255,0.7); */
+  /* box-shadow: 0 0 10px 10px white; */
 
+}
+.expression input {
+  font-size: 20px;
+  font-family: 'Gaegu', cursive;
+  border-radius: 5px;
+}
 .expression > div {
-  width: 50px;
-  height: 50px;
-  border: red thin solid;
-  /* font-size: 40px; */
-  /* font-weight: normal; */
-  /* letter-spacing: 4px; */
+  padding: 30px;
+  /* border: red thin solid; */
+  font-size: 40px;
+}
+@media only screen and (max-width: 414px) {
+
+   .stopWatch {
+      font-size: 50px;
+   }
+   .container-1, .container-3 {
+     display: none;
+   }
+   .expression, .stopWatch {
+     padding: 30px 10px;
+   }
+
+
 }

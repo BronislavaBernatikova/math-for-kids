@@ -106,10 +106,17 @@ class QuizShowPage extends Component {
     else if(answered_count < expression_count){
       return(
         <div className="QuizShowPage">
+          <div className="wrapper">
+
 
           <div className="main-container-1">
-            <h5>Quiz Show Page</h5>
-            <Progress percent={60} active color='olive' />
+            <div className="container">
+            <h1 className="h1">Quiz show page</h1>
+            <div className="stopWatch">
+              <StopWatch seconds={this.state.seconds}/>
+            </div>
+          </div>
+            <Progress percent={60} active color='green' />
           </div>
 
           <div className="main-container-2">
@@ -117,16 +124,14 @@ class QuizShowPage extends Component {
             <div className="container-1">
               <div className="settings">
                 <p>Current quiz settings:  ({current_expression.operator})<br />
-                   difficulty -> numbers up to {current_expression.difficulty}<br />
-                   number of expressions -> {expression_count}
+                   Difficulty: numbers up to {current_expression.difficulty}<br />
+                   Number of expressions:{expression_count}
                 </p>
               </div>
             </div>
 
             <div className="container-2">
-              <div className="stopWatch">
-                <StopWatch seconds={this.state.seconds}/>
-              </div>
+
               <div className="expression">
                 <div className="square">{current_expression.num1}</div>
                 <div className="square">{current_expression.operator}</div>
@@ -145,9 +150,9 @@ class QuizShowPage extends Component {
             <div className="container-3">
               <div className="counter">expression number {answered_count + 1}</div>
             </div>
-
           </div>
-        </div>  
+          </div>
+        </div>
       )}
 
       else if(answered_count === expression_count){

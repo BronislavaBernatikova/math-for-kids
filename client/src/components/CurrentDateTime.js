@@ -24,8 +24,8 @@ class CurrentDateTime extends React.Component {
   render() {
     return(
       <span className="CurrentDateTime">
-        {this.state.dateTime.toLocaleDateString()}
-        {this.state.dateTime.toLocaleTimeString()}
+          {this.state.dateTime.toLocaleDateString()}
+          {/* {this.state.dateTime.toLocaleTimeString()} */}
       </span>
     )
   }

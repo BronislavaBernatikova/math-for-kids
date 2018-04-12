@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import CurrentDateTime from './CurrentDateTime';
+import '../styling/NavBar.css';
 
 function NavBar(props) {
   const { user, onSignOut = () => {} } = props;
