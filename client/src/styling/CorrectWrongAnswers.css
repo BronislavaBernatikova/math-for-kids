@@ -1,15 +1,52 @@
 .CorrectWrongAnswers {
-  border: solid black thin;
-  font-size: 50px;
+  /* border: dotted black thin; */
+  font-size: 40px;
 }
 
-.CorrectWrongAnswers .container {
+.container {
   display:flex;
   flex-wrap: wrap;
-  border: solid blue thin;
+  /* padding: 20px; */
+  /* border: solid red thin; */
+  padding-left: 220px;
+  padding-right: 220px;
 }
 
-.container > * {
+.container > div {
   text-align: center;
-  border: solid blue thin;
+  width: 190px;
+  /* border: solid blue thin; */
+  font-size: 28px;
+  padding: 20px;
+  margin-top: 30px;
+  margin-left: 30px;
+  background: radial-gradient(white, rgb(161,187,255));
+  border: rgb(3,2,120) solid thin;
+  box-shadow: 5px 5px 3px grey;
+  /* background-color: white;
+  box-shadow: 0 0 10px 10px white; */
+  border-radius: 5px;
+}
+.CorrectWrongAnswers  input {
+  border-radius: 5px;
+  margin: 5px;
+  text-align: center;
+  max-width: 120px;
+  font-family: 'Gaegu', cursive;
+}
+.text {
+  font-family: 'Gaegu', cursive;
+  padding: 10px;
+  text-align: center;
+}
+.button {
+  margin: 70px;
+  display: flex;
+  justify-content: center;
+}
+.button > input {
+  /* background-color: rgb(161,187,255); */
+  background: radial-gradient(white, rgb(161,187,255));
+  box-shadow: 5px 5px 3px grey;
+  border: rgb(3,2,120) solid thin;
 }

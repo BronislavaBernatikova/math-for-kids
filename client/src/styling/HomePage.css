@@ -1,12 +1,34 @@
 .HomePage {
-  display: flex;
-  background: linear-gradient(to bottom right,rgb(161,187,255), rgb(100,116,158));
-  height: 1000px;
+    display: flex;
+    background: linear-gradient(to top right, white, rgb(161,187,255));
+    }
+  .wrapper {
+    /* border: red solid thin; */
+    width: 100%;
+  }
+  .bgi-1 {
+    float: right;
+    /* border: black solid thin; */
+    padding: 150px;
+    padding-right: 100px;
+    color: rgb(3,2,120);
+    font-family: 'Sacramento', cursive;
+    font-size: 10vw;
+    text-shadow: 3px 3px rgb(100,116,158);
+  }
 
-}
+  .bgi-2 {
+    /* border: black thin solid; */
+    /* background: linear-gradient(to bottom right,rgb(161,187,255), rgb(100,116,158)); */
+    background-image: url("../images/numbers-cartoon.png");
+    background-size: 700px;
+    min-height: 803px;
+    background-repeat:no-repeat;
+    background-position:left;
+    margin-left: 20px;
+    margin-top: 40px;
+  }
 
-/* div {
-  font-family: 'Gaegu', cursive;
-  font-size: 50px;
-  font-weight: bolder;
-} */
+
+  /* font-family: 'Gaegu', cursive;
+  font-family: 'Gloria Hallelujah', cursive; */

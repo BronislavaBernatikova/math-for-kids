@@ -109,17 +109,19 @@ class QuizShowPage extends Component {
           <div className="wrapper-1">
 
             <div className="main-container-1">
-              <div className="container">
-                <h1 className="h1">Quiz show page</h1>
-                <div className="counter">Expression number {answered_count + 1}</div>
-              </div>
-              <Progress percent={60} active color='green' />
-            </div>
-
-            <div className="main-container-2">
+              <div className="container-1">
                 <div className="stopWatch">
                   <StopWatch seconds={this.state.seconds}/>
                 </div>
+                <div className="counter">Expression number {answered_count + 1} of {expression_count}</div>
+              </div>
+              <div className="progress">
+              <Progress percent={60} active color='olive' />
+            </div>
+            </div>
+
+            <div className="main-container-2">
+
                 <div className="expression">
                   <div className="square">{current_expression.num1}</div>
                   <div className="square">{current_expression.operator}</div>
@@ -133,12 +135,6 @@ class QuizShowPage extends Component {
                     </div>
                   </form>
                 </div>
-            </div>
-
-            <div className="main-container-3">
-              <div>Current quiz setting:  {current_expression.operator}</div>
-              <div>Difficulty: numbers up to {current_expression.difficulty}</div>
-              <div>Number of expressions:{expression_count}</div>
             </div>
 
           </div>
@@ -163,12 +159,13 @@ class QuizShowPage extends Component {
               <div className="main-container-4">
 
                 <div className="time">
-                  <div>Duration:</div>
+                  <div><b>Duration:</b></div>
                   <StopWatch seconds={this.state.seconds} />
                 </div>
                 <div> Wrong answers: {wrong_answer}</div>
               </div>
                 {this.updateQuizData(quizDataToUpdate)}
+
                 <CorrectWrongAnswers quizId={quizId}/>
 
             </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Quiz } from '../lib/requests';
+import '../styling/CorrectWrongAnswers.css';
 
 class CorrectWrongAnswers extends Component {
   constructor(props){
@@ -70,9 +71,9 @@ class CorrectWrongAnswers extends Component {
         <form className="CorrectWrongAnswers"
               onSubmit={this.handleSubmit}
         >
-          <div>Correct your wrong answers:</div>
+          <div className="text">Correct your wrong answers:</div>
           <div className="container">
-          {expressions.map( expression => (
+            {expressions.map( expression => (
             <div className={expression.id}>
               <div>{expression.num1}</div>
               <div>{expression.operator}</div>
@@ -84,7 +85,7 @@ class CorrectWrongAnswers extends Component {
           </div>
           ))}
           </div>
-          <div>
+          <div className="button">
             <input type="submit"
                    value="Done"
             />
