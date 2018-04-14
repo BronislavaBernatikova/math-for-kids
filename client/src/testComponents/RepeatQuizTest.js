@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Quiz, Answer } from '../lib/requests';
 import Timer from './Timer';
 import CorrectWrongAnswers from './CorrectWrongAnswers';
-import { Progress } from 'semantic-ui-react';
-import '../styling/RepeatQuizPage.css';
+
 
 class RepeatQuizPage extends Component {
   constructor(props){
@@ -109,41 +108,32 @@ class RepeatQuizPage extends Component {
     else if(answered_count < expression_count){
       return(
         <div className="RepeatQuizPage">
-          <div className="wrapper-1">
+          <h5>You are repeating quiz from: {`${quiz.date}`}</h5>
+          <Timer ref="child"
+                 timer={true}
+                 passingTimeData={this.updateTime}
+          />
+          <p>Settings: {"  "}
+              {expression.operator}
+              , {"  "} difficulty -> numbers up to
+              {expression.difficulty}
+              , {"  "} number of expressions -> {expression_count}
+          </p>
 
-            <div className="main-container-1">
-              <h5>You are repeating quiz from: {`${quiz.date}`}</h5>
-              <div className="container-1">
-                <div className="stopWatch">
-                  <Timer ref="child"
-                         timer={true}
-                         passingTimeData={this.updateTime}
-                  />
-                </div>
-                <div className="counter">Expression number {answered_count + 1} of {expression_count}</div>
-              </div>
-              <div className="progress">
-                <Progress percent={60} active color='olive' />
-              </div>
+          <div>expression number {answered_count + 1}</div>
+          <div>{expression.num1}</div>
+          <div>{expression.operator}</div>
+          <div>{expression.num2}</div>
+
+          <form onSubmit={this.updateAnswer}>
+            <div>
+              <input name="user_answer" id="user_answer" />
             </div>
 
-            <div className="main-container-2">
-              <div className="expression">
-                <div className="square">{expression.num1}</div>
-                <div className="square">{expression.operator}</div>
-                <div className="square">{expression.num2}</div>
-                <form id="answerForm" onSubmit={this.updateAnswer}>
-                  <div>
-                    <input name="user_answer" id="user_answer" />
-                  </div>
-                  <div>
-                    <input type="submit" value="Next"/>
-                  </div>
-                </form>
-              </div>
+            <div>
+              <input type="submit" value="Next"/>
             </div>
-
-          </div>
+          </form>
         </div>
       )}
 
@@ -156,25 +146,18 @@ class RepeatQuizPage extends Component {
        // console.log('right_answer_count in render:', right_answer_count);
       return(
         <div className="RepeatQuizPage">
-          <div className="wrapper-2">
-            <div className="finished">
-              {last_right_answers < right_answer_count ? (
-                <p>Well Done! You improved your score from last time!</p>
-              ):(
-                <p>You haven't improve your score from last time. Try harder!</p>
-              )}
-            </div>
+          <div>Finished!</div>
+          <div>Duration:</div>
+          <div>{this.state.newQuiz.time}</div>
+          <div>You have {wrong_answer} wrong answers.</div>
 
-            <div className="main-container-4">
-              <div className="time">
-                <div><b>Duration:</b></div>
-                <div>{this.state.newQuiz.time}</div>
-              </div>
-              <div> Wrong answers: {wrong_answer}</div>
-            </div>
-            <CorrectWrongAnswers quizId={quizId}/>
+          {last_right_answers < right_answer_count ? (
+            <p>Well Done! You improved your score from last time!</p>
+          ):(
+            <p>You haven't improve your score from last time. Try harder!</p>
+          )}
 
-          </div>
+          <CorrectWrongAnswers quizId={quizId}/>
         </div>
       )}
 

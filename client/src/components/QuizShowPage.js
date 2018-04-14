@@ -116,8 +116,8 @@ class QuizShowPage extends Component {
                 <div className="counter">Expression number {answered_count + 1} of {expression_count}</div>
               </div>
               <div className="progress">
-              <Progress percent={60} active color='olive' />
-            </div>
+                <Progress percent={60} active color='olive' />
+              </div>
             </div>
 
             <div className="main-container-2">
@@ -156,8 +156,8 @@ class QuizShowPage extends Component {
           <div className="QuizShowPage">
             <div className="wrapper-2">
               <div className="finished">Quiz is finished!</div>
-              <div className="main-container-4">
 
+              <div className="main-container-4">
                 <div className="time">
                   <div><b>Duration:</b></div>
                   <StopWatch seconds={this.state.seconds} />
@@ -170,8 +170,7 @@ class QuizShowPage extends Component {
 
             </div>
           </div>
-        )
-      }
+        )}
    }
 }
 
