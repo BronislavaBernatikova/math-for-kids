@@ -1,6 +1,7 @@
 .SetUpNewQuiz {
   /* border: blue solid thick; */
   display: flex;
+  padding: 20px;
 }
 .container-quiz1 {
   /* border: red thick solid; */
@@ -18,6 +19,7 @@
 label {
   /* border: black thin solid; */
   padding-top: 2vh;
+  text-shadow: 1px 1px rgb(100,116,158);
   /* font-weight: bold; */
 }
 .field select {

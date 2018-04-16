@@ -97,6 +97,7 @@ class QuizShowPage extends Component {
   render(){
     const { current_expression, answered_count, expression_count } = this.state;
     const quizId = this.state.quiz.id;
+    const percent = (answered_count / expression_count) * 100 // progress
 
     if(!answered_count && !expression_count){
       return(
@@ -116,7 +117,7 @@ class QuizShowPage extends Component {
                 <div className="counter">Expression number {answered_count + 1} of {expression_count}</div>
               </div>
               <div className="progress">
-                <Progress percent={60} active color='olive' />
+                <Progress percent={percent} active color='olive' />
               </div>
             </div>
 
