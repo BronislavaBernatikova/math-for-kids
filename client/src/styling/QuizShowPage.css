@@ -1,7 +1,7 @@
 html, body {
     height: 100%;
 }
-.QuizShowPage {
+.QuizShowPage, .RepeatQuizPage {
   display: flex;
   flex-direction: column;
   font-family: 'Gaegu', cursive;

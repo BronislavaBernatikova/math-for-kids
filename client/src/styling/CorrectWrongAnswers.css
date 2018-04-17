@@ -8,8 +8,9 @@
   flex-wrap: wrap;
   /* padding: 20px; */
   /* border: solid red thin; */
-  padding-left: 220px;
-  padding-right: 220px;
+  /* padding-top: 10vh; */
+  padding-left: 10vw;
+  padding-right: 10vw;
 }
 
 .container > div {
@@ -36,7 +37,8 @@
 }
 .text {
   font-family: 'Gaegu', cursive;
-  padding: 10px;
+  padding-top: 10vh;
+  padding-bottom: 5vh;
   text-align: center;
 }
 .button {
@@ -49,4 +51,10 @@
   background: radial-gradient(white, rgb(161,187,255));
   box-shadow: 5px 5px 3px grey;
   border: rgb(3,2,120) solid thin;
+}
+.wellDone {
+  font-family: 'Gaegu', cursive;
+  font-size: 5vw;
+  text-align: center;
+  padding: 40vh 0;
 }

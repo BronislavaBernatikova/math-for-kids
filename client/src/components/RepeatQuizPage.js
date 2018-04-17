@@ -3,7 +3,8 @@ import { Quiz, Answer } from '../lib/requests';
 import Timer from './Timer';
 import CorrectWrongAnswers from './CorrectWrongAnswers';
 import { Progress } from 'semantic-ui-react';
-import '../styling/RepeatQuizPage.css';
+import { Button, Header, Image, Modal } from 'semantic-ui-react'
+import '../styling/QuizShowPage.css';
 
 class RepeatQuizPage extends Component {
   constructor(props){
@@ -113,7 +114,6 @@ class RepeatQuizPage extends Component {
           <div className="wrapper-1">
 
             <div className="main-container-1">
-              <h5>You are repeating quiz from: {`${quiz.date}`}</h5>
               <div className="container-1">
                 <div className="stopWatch">
                   <Timer ref="child"
@@ -158,21 +158,29 @@ class RepeatQuizPage extends Component {
       return(
         <div className="RepeatQuizPage">
           <div className="wrapper-2">
-            <div className="finished">
-              {last_right_answers < right_answer_count ? (
-                <p>Well Done! You improved your score from last time!</p>
-              ):(
-                <p>You haven't improve your score from last time. Try harder!</p>
-              )}
-            </div>
 
-            <div className="main-container-4">
-              <div className="time">
-                <div><b>Duration:</b></div>
-                <div>{this.state.newQuiz.time}</div>
-              </div>
-              <div> Wrong answers: {wrong_answer}</div>
-            </div>
+            <Modal className="mainModal" trigger={<button ref={node => this.button = node} id="button" style={{display: 'none'}} >Click me</button>}>
+              <Modal.Content className="modalContent" image>
+                <Image wrapped size='medium' src={require('../images/math-for-kids-finished.png')} />
+                <Modal.Description className="modalDescription">
+
+                  <div className="finished">
+                          {last_right_answers < right_answer_count ? (
+                             <p>Well Done! You improved your score from last time!</p>
+                          ):(
+                            <p>You haven't improve your score from last time. Try harder!</p>
+                          )}
+                  </div>
+                  <div className="time">
+                    <div className="duration">Duration</div>
+                    <div>{this.state.newQuiz.time}</div>
+                  </div>
+                  <div> Wrong answers: {wrong_answer}</div>
+                  <p>Now correct your wrong answers please!</p>
+                </Modal.Description>
+              </Modal.Content>
+            </Modal>
+
             <CorrectWrongAnswers quizId={quizId}/>
 
           </div>
@@ -186,3 +194,29 @@ class RepeatQuizPage extends Component {
   }
 }
 export default RepeatQuizPage;
+{/* <div className="textRepeat">You are repeating quiz from: {(quiz.date).slice(0,10)}</div> */}
+
+// return(
+//   <div className="RepeatQuizPage">
+//     <div className="wrapper-2">
+//       <div className="finished">
+//         {last_right_answers < right_answer_count ? (
+//           <p>Well Done! You improved your score from last time!</p>
+//         ):(
+//           <p>You haven't improve your score from last time. Try harder!</p>
+//         )}
+//       </div>
+//
+//       <div className="main-container-4">
+//         <div className="time">
+//           <div><b>Duration:</b></div>
+//           <div>{this.state.newQuiz.time}</div>
+//         </div>
+//         <div> Wrong answers: {wrong_answer}</div>
+//       </div>
+//
+//       <CorrectWrongAnswers quizId={quizId}/>
+//
+//     </div>
+//   </div>
+// )}

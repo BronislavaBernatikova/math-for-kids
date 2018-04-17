@@ -62,7 +62,7 @@ class CorrectWrongAnswers extends Component {
     if(expressions.length === 0){
       return(
         <div className="CorrectWrongAnswers">
-          <h1>Well done, you did it! :) </h1>
+          <div className="wellDone">Well done, you did it! :) </div>
         </div>
       )}
 
