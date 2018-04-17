@@ -98,6 +98,7 @@ class RepeatQuizPage extends Component {
     const { quiz, expression, answered_count, loading, right_answer_count } = this.state
     const expression_count = this.state.expressions.length;
     const quizId = this.props.match.params.id;
+    const percent = (answered_count / expression_count) * 100 // progress bar
 
     if(loading){
       return(
@@ -123,7 +124,7 @@ class RepeatQuizPage extends Component {
                 <div className="counter">Expression number {answered_count + 1} of {expression_count}</div>
               </div>
               <div className="progress">
-                <Progress percent={60} active color='olive' />
+                <Progress percent={percent} active color='olive' />
               </div>
             </div>
 

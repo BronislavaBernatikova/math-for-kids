@@ -3,6 +3,7 @@ import { Quiz, Answer } from '../lib/requests';
 import StopWatch from './StopWatch';
 import CorrectWrongAnswers from './CorrectWrongAnswers';
 import { Progress } from 'semantic-ui-react';
+import { Button, Header, Image, Modal } from 'semantic-ui-react'
 import '../styling/QuizShowPage.css';
 
 class QuizShowPage extends Component {
@@ -16,13 +17,15 @@ class QuizShowPage extends Component {
       right_answer_count: 0,
       answered_count: 0,
       current_expression: {},
-      seconds: 0
+      seconds: 0,
+      modal: false
     }
     this.counter = null;
     this.createAnswer = this.createAnswer.bind(this);
     this.updateQuizData = this.updateQuizData.bind(this);
     this.startStopWatch = this.startStopWatch.bind(this);
     this.stopStopWatch = this.stopStopWatch.bind(this);
+    this.triggerModal = this.triggerModal.bind(this);
   }
 
   startStopWatch(){
@@ -35,6 +38,12 @@ class QuizShowPage extends Component {
 
   stopStopWatch(){
     clearInterval(this.counter);
+  }
+
+  triggerModal(){
+    this.setState({
+      modal: true
+    })
   }
 
   createAnswer(event){
@@ -83,15 +92,23 @@ class QuizShowPage extends Component {
   }
 
   componentDidMount(){
-    this.setState({
-      quiz: this.props.newQuiz,
-      expressions: this.props.newQuiz.expressions,
-      expression_count: this.props.newQuiz.expression_count,
-      right_answer_count: 0,
-      answered_count: 0,
-      current_expression: this.props.newQuiz.expressions[0],
-    })
-    this.startStopWatch();
+    if(this.props.newQuiz){
+      this.setState({
+        quiz: this.props.newQuiz,
+        expressions: this.props.newQuiz.expressions,
+        expression_count: this.props.newQuiz.expression_count,
+        right_answer_count: 0,
+        answered_count: 0,
+        current_expression: this.props.newQuiz.expressions[0],
+      })
+      this.startStopWatch();
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.button) {
+      this.button.click()
+    }
   }
 
   render(){
@@ -143,8 +160,8 @@ class QuizShowPage extends Component {
       )}
 
       else if(answered_count === expression_count){
-        const right_answer= this.state.right_answer_count;
-        const wrong_answer= this.state.expression_count - right_answer;
+        const right_answer = this.state.right_answer_count;
+        const wrong_answer = this.state.expression_count - right_answer;
 
         const quizDataToUpdate = {
           right_answer: right_answer,
@@ -152,26 +169,33 @@ class QuizShowPage extends Component {
           quiz_id: quizId
         }
         this.stopStopWatch();
-
+        this.updateQuizData(quizDataToUpdate)
         return(
           <div className="QuizShowPage">
             <div className="wrapper-2">
-              <div className="finished">Quiz is finished!</div>
 
-              <div className="main-container-4">
-                <div className="time">
-                  <div><b>Duration:</b></div>
-                  <StopWatch seconds={this.state.seconds} />
-                </div>
-                <div> Wrong answers: {wrong_answer}</div>
-              </div>
-                {this.updateQuizData(quizDataToUpdate)}
+              <Modal className="mainModal" trigger={<button ref={node => this.button = node} id="button" style={{display: 'none'}} >Click me</button>}>
+                <Modal.Content className="modalContent" image>
+                  <Image wrapped size='medium' src={require('../images/math-for-kids-finished.png')} />
+                  <Modal.Description className="modalDescription">
 
-                <CorrectWrongAnswers quizId={quizId}/>
+                    <div className="red">Quiz is Finished!</div>
+                    <div className="time">
+                      <div className="duration">Duration</div>
+                      <StopWatch seconds={this.state.seconds} />
+                    </div>
+                    <div> Wrong answers: {wrong_answer}</div>
+                    <p>Now correct your wrong answers please!</p>
+                  </Modal.Description>
+                </Modal.Content>
+              </Modal>
+
+              <CorrectWrongAnswers quizId={quizId}/>
 
             </div>
-          </div>
-        )}
+           </div>
+      )}
+
    }
 }
 
@@ -189,3 +213,34 @@ export default QuizShowPage;
 {/* <div className="container-3">
   <div className="counter">expression number {answered_count + 1}</div>
 </div> */}
+
+// else if(answered_count === expression_count){
+//   const right_answer = this.state.right_answer_count;
+//   const wrong_answer = this.state.expression_count - right_answer;
+//
+//   const quizDataToUpdate = {
+//     right_answer: right_answer,
+//     time: this.state.seconds,
+//     quiz_id: quizId
+//   }
+//   this.stopStopWatch();
+//
+//   return(
+//     <div className="QuizShowPage">
+//       <div className="wrapper-2">
+//         <div className="finished">Quiz is finished!</div>
+//
+//         <div className="main-container-4">
+//           <div className="time">
+//             <div><b>Duration:</b></div>
+//             <StopWatch seconds={this.state.seconds} />
+//           </div>
+//           <div> Wrong answers: {wrong_answer}</div>
+//         </div>
+//           {this.updateQuizData(quizDataToUpdate)}
+//
+//           <CorrectWrongAnswers quizId={quizId}/>
+//
+//       </div>
+//     </div>
+//   )}

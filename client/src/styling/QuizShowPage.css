@@ -21,14 +21,14 @@ html, body {
   margin: 20px;
 }
 .main-container-1 {
-  border: green thin solid;
+  /* border: green thin solid; */
   padding: 10px;
   padding-bottom: 10px;
   text-align: center;
   font-size: 20px;
 }
 .container-1 {
-  border: green thin solid;
+  /* border: green thin solid; */
   display: flex;
   justify-content: space-around;
   padding-left: 170px;
@@ -47,25 +47,25 @@ html, body {
   text-shadow: 2px 2px lightgrey;
 }
 .progress {
-  border: black solid thin;
+  /* border: black solid thin; */
   padding: 10px 300px;
   padding-bottom: 50px;
 }
 .main-container-2 {
-  border: green thin solid;
+  /* border: green thin solid; */
   display: flex;
   justify-content: center;
   padding: 10px 10px;
 }
 .stopWatch {
-  border: black thin solid;
+  /* border: black thin solid; */
   text-align: center;
   padding: 10px 10px;
   font-size: 30px;
   text-shadow: 2px 2px lightgrey;
 }
 .expression {
-  border: solid thin black;
+  /* border: solid thin black; */
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -97,7 +97,7 @@ html, body {
   padding: 10px;
 }
  div .finished {
-  border: solid black thin;
+  /* border: solid black thin; */
   font-size: 80px;
   padding-top: 100px;
   padding-bottom: 20px;
@@ -107,28 +107,82 @@ html, body {
 }
 .time {
   display: flex;
+  justify-content: center;
+}
+.duration {
+  padding-right: 10px;
 }
 .main-container-4 {
-  border: black thin dotted;
+  /* border: black thin dotted; */
   display: flex;
   flex-direction: column;
   justify-content: center; /* center items vertically, in this case */
   align-items: center;
 }
 
-/* @media only screen and (max-width: 1366px) { */
+/* MODAL */
+div.ui.modal.transition.visible.active.mainModal {
+  /* border: red solid thick; */
+  width: 80% !important;
+  padding: 0 !important;
+  margin-top: 18vh !important;
+  margin-bottom: 20vh !important;/* margin: 0 !important; */
+  margin-left: 10vw !important;
+  margin-right: 10vw !important;
+}
 
-@media only screen and (max-width: 414px) {
+.ui.modal>.content {
+/* div.modalContent.Image.content { */
+  /* border: black thick dotted; */
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+}
 
-   .stopWatch {
-      font-size: 50px;
-   }
-   .container-1, .container-3 {
-     display: none;
-   }
-   .expression, .stopWatch {
-     padding: 30px 10px;
-   }
+div.description.modalDescription {
+  /* border: yellow thick solid; */
+  width: 45vw;
+  height: 50vh;
+  margin: 0px;
+  padding-left: 0 !important;
+  padding-top: 14vh;
+  font-family: 'Gaegu', cursive;
+  color: black;
+  font-size: 2.5vw;
+  text-align: center;
+}
 
+div.ui.medium.image {
+  /* border: blue thick solid; */
+  height: 50vh;
+  margin-bottom: 0 !important;
+  padding: 0 !important;
+}
+div.description.modalDescription >.red {
+  color: red;
+  font-size: 5vw;
+}
+
+div.ui.page.modals.dimmer.transition.visible.active {
+  /* border: green thick solid; */
+  display: flex;
+  justify-content: center !important;
+}
+
+
+@media only screen and (max-width: 770px) {
+
+  div.ui.modal.transition.visible.active.mainModal {
+    margin-top: 10vh !important;
+  }
+  .ui.modal>.content {
+    height: 75vh;
+    display: flex;
+    justify-content: center;
+  }
+
+  div.description.modalDescription {
+    font-size: 3vw;
+  }
 
 }
