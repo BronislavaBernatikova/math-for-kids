@@ -1,0 +1,52 @@
+.SetUpNewQuiz {
+  /* border: blue solid thick; */
+  display: flex;
+  padding: 20px;
+}
+.container-quiz1 {
+  /* border: red thick solid; */
+  display: flex;
+  flex-direction: column;
+  font-family: 'Gaegu', cursive;
+}
+.field {
+  /* border: black solid thin; */
+  width: 40vw;
+  font-size: 1.5vw;
+  display: flex;
+  justify-content: space-between;
+}
+label {
+  /* border: black thin solid; */
+  padding-top: 2vh;
+  text-shadow: 1px 1px rgb(100,116,158);
+  /* font-weight: bold; */
+}
+.field select {
+  /* -webkit-appearance: none; */
+  /* border: black solid thick; */
+  font-family: 'Gaegu', cursive;
+  font-size: 1.5vw;
+  width: 20vw;
+  box-shadow: 5px 5px 3px grey;
+  margin: 5px;
+}
+.container-quiz2 {
+  /* border: black thin solid; */
+  width: 20vw;
+  display: flex;
+  justify-content: center;
+  padding: 8vh 0vh;
+}
+
+.container-quiz2 input {
+  background: radial-gradient(white, rgb(161,187,255));
+  box-shadow: 5px 5px 3px grey;
+  border: grey solid thin;
+  font-family: 'Gaegu', cursive;
+  font-size: 1.5vw;
+  text-align: center;
+  max-width: 150px;
+  border-radius: 5px;
+}
+/* rgb(3,2,120) */

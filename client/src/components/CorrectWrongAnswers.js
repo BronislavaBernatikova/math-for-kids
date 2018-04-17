@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Quiz } from '../lib/requests';
+import '../styling/CorrectWrongAnswers.css';
 
 class CorrectWrongAnswers extends Component {
   constructor(props){
@@ -51,7 +52,7 @@ class CorrectWrongAnswers extends Component {
   render(){
     const { expressions, loading } = this.state;
 
-    console.log('expressions in render: ', expressions);
+    // console.log('expressions in render: ', expressions);
     if (loading){
       return(
         <div className="CorrectWrongAnswers">
@@ -61,7 +62,7 @@ class CorrectWrongAnswers extends Component {
     if(expressions.length === 0){
       return(
         <div className="CorrectWrongAnswers">
-          <h1>Well done, you did it! :) </h1>
+          <div className="wellDone">Well done, you did it! :) </div>
         </div>
       )}
 
@@ -70,19 +71,21 @@ class CorrectWrongAnswers extends Component {
         <form className="CorrectWrongAnswers"
               onSubmit={this.handleSubmit}
         >
-          <div>Correct your wrong answers:</div>
-          {expressions.map( expression => (
+          <div className="text">Correct your wrong answers:</div>
+          <div className="container">
+            {expressions.map( expression => (
             <div className={expression.id}>
               <div>{expression.num1}</div>
               <div>{expression.operator}</div>
               <div>{expression.num2}</div>
-              <div>{"---------------"}</div>
               <input name={`answer-${expression.id}`}
                      id={`answer-${expression.id}`}
               />
-            </div>
+
+          </div>
           ))}
-          <div>
+          </div>
+          <div className="button">
             <input type="submit"
                    value="Done"
             />

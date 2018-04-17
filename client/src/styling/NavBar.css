@@ -1,0 +1,29 @@
+.NavBar {
+  display: flex;
+  /* width: 80%; */
+  background-color: rgb(3,2,120);
+  /* color: white; */
+  justify-content: space-around;
+}
+
+.NavBar > * {
+  padding: 0.90em 0.5em;
+  font-family: 'Gaegu', cursive;
+  font-size: 20px;
+  color: rgb(161,187,255);
+}
+
+.NavBar > .active {
+  /* border-bottom: 5px solid white; */
+  /* background-color: rgb(161,187,255); */
+  /* background: radial-gradient(white, rgb(161,187,255));
+  color: rgb(3,2,120);
+  border-radius: 5px; */
+}
+
+.NavBar > a:hover {
+  background: radial-gradient(white, rgb(161,187,255));
+  color: rgb(3,2,120);
+  border-radius: 5px;
+
+}

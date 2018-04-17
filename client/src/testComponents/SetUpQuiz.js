@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import '../styling/SetUpNewQuiz.css';
 
 class SetUpNewQuiz extends Component {
 
@@ -48,18 +47,17 @@ class SetUpNewQuiz extends Component {
       <form className="SetUpNewQuiz"
             onSubmit={this.handleSubmit}
       >
-        <div className="container-quiz1">
         <div className="field">
           <label>Number of expressions</label>
           <select name="numberOfExpressions"
                   value={this.state.numberOfExpressions}
                   onChange={this.handleChangeNumberOfExpressions}
           >
-            <option className="option" value="10">10</option>
-            <option className="option" value="20">20</option>
-            <option className="option" value="30">30</option>
-            <option className="option" value="40">40</option>
-            <option className="option" value="50">50</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+            <option value="50">50</option>
           </select>
         </div>
 
@@ -71,7 +69,7 @@ class SetUpNewQuiz extends Component {
           >
             <option value="add">Adding</option>
             <option value="subtract">Subtraction</option>
-            <option value="multiply">Multiplication</option>
+            <option value="multiply">Multiplycation</option>
             <option value="divide">Division</option>
           </select>
         </div>
@@ -90,11 +88,8 @@ class SetUpNewQuiz extends Component {
             <option value="1000">Numbers up to 1000</option>
           </select>
         </div>
-      </div>
-        <div className="container-quiz2">
-          <div>
-          <input type="submit" value="Start New Quiz"/>
-        </div>
+        <div>
+          <input type="submit" value="Submit"/>
         </div>
       </form>
     )}

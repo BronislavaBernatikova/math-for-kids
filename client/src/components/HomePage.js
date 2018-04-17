@@ -1,16 +1,22 @@
 import React, { Component } from 'react'
+import '../styling/HomePage.css';
+
 
 class HomePage extends Component {
   render () {
     return (
-      <main
-        className="HomePage"
-        style={{margin: '0 1rem'}}
-      >
-        <h1>Welcome to Math For Kids!</h1>
+      <main className="HomePage">
+        <div className="wrapper">
+          <div className="bgi-1">
+            <div>Math For Kids</div>
+          </div>
+          <div className="bgi-2"></div>
+        </div>
       </main>
     )
   }
 }
 
 export default HomePage;
+{/* <img src={require('../images/math-for-kids-background.jpg')} /> */}
+{/* <div>Welcome to Math For Kids!</div> */}
