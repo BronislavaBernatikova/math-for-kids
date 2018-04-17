@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Token } from '../lib/requests';
-import '../styling/SignIn.css'
+import '../styling/SignInUp.css'
 
 class SignInPage extends Component {
   constructor (props) {
@@ -31,7 +31,7 @@ class SignInPage extends Component {
 
   render() {
     return(
-      <main className="SignInPage">
+      <main className="SignInUpPage">
         <div className="wrapper">
           <div className="bgi-2">
             <form onSubmit={this.createToken}>

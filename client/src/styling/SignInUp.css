@@ -1,23 +1,25 @@
-.SignInPage {
+.SignInUpPage {
   display: flex;
   background: linear-gradient(rgb(161,187,255), white);
   border: rgb(3,2,120) solid thin;
   margin: 0 1vw;
 }
 
-.SignInPage form  div {
+.SignInUpPage form  div {
   margin: 1vw;
 }
 
-.SignInPage form {
+.SignInUpPage form {
   /* border: black thin solid; */
   width: 28vw;
   padding: 2vw;
   position: absolute;
-  top: 40vh;
+  top: 35vh;
   right: 12vw;
-  background: linear-gradient(rgb(161,187,255), white);
-  border-radius: 5px;
+  background: linear-gradient(to top right,white, rgb(161,187,255));
+  border-bottom: rgb(3,2,120) solid thin;
+  border-left: rgb(3,2,120) solid thin;
+  /* border-radius: 5px; */
 }
 
 .signInContainer-2 input {
