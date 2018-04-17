@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import CurrentDateTime from './CurrentDateTime';
+
 import '../styling/NavBar.css';
 
 function NavBar(props) {
@@ -13,20 +13,29 @@ function NavBar(props) {
 
   return (
     <nav className="NavBar">
-      <NavLink exact to="/">Home</NavLink>
+      <div className="textNav">Math For Kids</div>
+      <div className="wrapperNav">
+      <div className="keys">
+        <div><NavLink exact to="/">Home</NavLink></div>
       {
         user? (
           [
-            <NavLink key="1" exact to={`/users/${user.first_name}`}>User Page</NavLink>,
-            <span key="2">Hello, {user.first_name}</span>,
-            <a key="3" fref="/sign_out" onClick={handleSignOut}>Sign Out</a>
+            <div key="1">
+            <NavLink exact to={`/users/${user.first_name}`}>User Page</NavLink>
+            </div>,
+            <div key="2">Hello, {user.first_name}</div>,
+            <div key="3">
+            <a fref="/sign_out" onClick={handleSignOut}>Sign Out</a>
+            </div>
           ]
         ) : (
-          [ <NavLink exact to="/sign_in">Sign In</NavLink>,
-            <NavLink exact to="/sign_up">Sign Up</NavLink>
+          [
+            <div><NavLink exact to="/sign_in">Sign In</NavLink></div>,
+            <div><NavLink exact to="/sign_up">Sign Up</NavLink></div>
           ]
         )}
-      <CurrentDateTime />
+      </div>
+      </div>
     </nav>
   )
 }
