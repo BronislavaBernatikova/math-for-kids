@@ -25,7 +25,6 @@ class QuizShowPage extends Component {
     this.updateQuizData = this.updateQuizData.bind(this);
     this.startStopWatch = this.startStopWatch.bind(this);
     this.stopStopWatch = this.stopStopWatch.bind(this);
-    this.triggerModal = this.triggerModal.bind(this);
   }
 
   startStopWatch(){
@@ -38,12 +37,6 @@ class QuizShowPage extends Component {
 
   stopStopWatch(){
     clearInterval(this.counter);
-  }
-
-  triggerModal(){
-    this.setState({
-      modal: true
-    })
   }
 
   createAnswer(event){
@@ -118,7 +111,13 @@ class QuizShowPage extends Component {
 
     if(!answered_count && !expression_count){
       return(
-        <div>Something went wrong</div>
+        <div className="QuizShowPage">
+          <div className="wrapper-3">
+            <div className="dimmer">
+              <div className="errorMessage">:(<br/>Ups, something went wrong.<br/> Return to User Page, please!</div>
+            </div>
+          </div>
+        </div>
       )}
 
     else if(answered_count < expression_count){

@@ -33,39 +33,45 @@ function SignUpPage(props) {
       <div className="wrapper">
         <div className="bgi-2">
           <div className="wrapperDimm">
-      <form className="signUp" onSubmit={handleSubmit}>
-        <div className="signInContainer-1">
-          <label htmlFor="first_name">First Name</label>
-          <input name="first_name" id="first_name" />
+            <form onSubmit={handleSubmit}>
+
+              <div className="signInContainer-1">
+                <label htmlFor="first_name">First Name</label>
+                <input name="first_name" id="first_name" />
+              </div>
+
+              <div className="signInContainer-1">
+                <label htmlFor="last_name">Last Name</label>
+                <input name="last_name" id="last_name" />
+              </div>
+
+              <div className="signInContainer-1">
+                <label htmlFor="email">Email</label>
+                <input type="email" name="email" id="email" />
+              </div>
+
+              <div className="signInContainer-1">
+                <label htmlFor="password">Password</label>
+                <input type="password" name="password" id="password" />
+              </div>
+
+              <div className="signInContainer-1">
+                <label htmlFor="password_confirmation">Password Confirmation</label>
+                <input
+                  type="password"
+                  name="password_confirmation"
+                  id="password_confirmation"
+                />
+              </div>
+
+              <div className="signInContainer-2">
+              <input type="submit" value="Sign Up" />
+              </div>
+            </form>
+          </div>
         </div>
-        <div className="signInContainer-1">
-          <label htmlFor="last_name">Last Name</label>
-          <input name="last_name" id="last_name" />
-        </div>
-        <div className="signInContainer-1">
-          <label htmlFor="email">Email</label>
-          <input type="email" name="email" id="email" />
-        </div>
-        <div className="signInContainer-1">
-          <label htmlFor="password">Password</label>
-          <input type="password" name="password" id="password" />
-        </div>
-        <div className="signInContainer-1">
-          <label htmlFor="password_confirmation">Password Confirmation</label>
-          <input
-            type="password"
-            name="password_confirmation"
-            id="password_confirmation"
-          />
-        </div>
-        <div className="signInContainer-2">
-        <input type="submit" value="Sign Up" />
       </div>
-      </form>
-    </div>
-    </div>
-    </div>
-  </main>
+    </main>
   );
 }
 

@@ -8,6 +8,7 @@
   .wrapper {
     /* border: rgb(3,2,120) solid thin; */
     width: 100%;
+    position: relative;
   }
 
   .bgi-2 {

@@ -5,7 +5,7 @@
   margin: 0 1vw;
 }
 .wrapperDimm {
-  position: fixed;
+  position: absolute;
   top:0;
   left:0;
   width:100%;
@@ -23,18 +23,13 @@
   width: 28vw;
   padding: 2vw;
   position: absolute;
-  top: 35vh;
+  top: 23vh;
   right: 12vw;
   background: linear-gradient(to top right,white, rgb(161,187,255));
-  border-bottom: rgb(3,2,120) solid thin;
+  border: rgb(3,2,120) solid thin;
   border-left: rgb(3,2,120) solid thin;
-  /* border-radius: 5px; */
+  border-radius: 5px;
 }
-
-.SignInUpPage .signUp {
-  top: 28vh;
-}
-
 .signInContainer-2 input {
   background: radial-gradient(white, rgb(161,187,255));
   box-shadow: 5px 5px 3px grey;

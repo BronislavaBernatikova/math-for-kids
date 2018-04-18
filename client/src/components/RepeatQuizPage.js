@@ -95,6 +95,12 @@ class RepeatQuizPage extends Component {
       })
   }
 
+  componentDidUpdate() {
+    if (this.button) {
+      this.button.click()
+    }
+  }
+
   render(){
     const { quiz, expression, answered_count, loading, right_answer_count } = this.state
     const expression_count = this.state.expressions.length;
@@ -104,7 +110,9 @@ class RepeatQuizPage extends Component {
     if(loading){
       return(
         <div className="RepeatQuizPage">
-          Loading expressions ...
+          <div className="wrapper-1">
+            <div className="loading">Loading expressions ...</div>
+          </div>
         </div>
       )}
 
@@ -153,8 +161,7 @@ class RepeatQuizPage extends Component {
       const last_right_answers = this.state.quiz.right_answer_count;
 
       this.triggerStopTimer()
-       // console.log('last_quiz_right_ans:', last_right_answers);
-       // console.log('right_answer_count in render:', right_answer_count);
+
       return(
         <div className="RepeatQuizPage">
           <div className="wrapper-2">
@@ -166,9 +173,9 @@ class RepeatQuizPage extends Component {
 
                   <div className="finished">
                           {last_right_answers < right_answer_count ? (
-                             <p>Well Done! You improved your score from last time!</p>
+                             <p>Well Done!<br/>You improved your score from last time!</p>
                           ):(
-                            <p>You haven't improve your score from last time. Try harder!</p>
+                            <p>You haven't improve your score from last time.<br/>Try harder!</p>
                           )}
                   </div>
                   <div className="time">
@@ -189,34 +196,14 @@ class RepeatQuizPage extends Component {
 
     if(!expression){
       return(
-        <div>No expression to display :( )</div>
+        <div className="QuizShowPage">
+          <div className="wrapper-3">
+            <div className="dimmer">
+              <div className="errorMessage">:(<br/>Ups, something went wrong.<br/> Return to User Page, please!</div>
+            </div>
+          </div>
+        </div>
       )}
   }
 }
 export default RepeatQuizPage;
-{/* <div className="textRepeat">You are repeating quiz from: {(quiz.date).slice(0,10)}</div> */}
-
-// return(
-//   <div className="RepeatQuizPage">
-//     <div className="wrapper-2">
-//       <div className="finished">
-//         {last_right_answers < right_answer_count ? (
-//           <p>Well Done! You improved your score from last time!</p>
-//         ):(
-//           <p>You haven't improve your score from last time. Try harder!</p>
-//         )}
-//       </div>
-//
-//       <div className="main-container-4">
-//         <div className="time">
-//           <div><b>Duration:</b></div>
-//           <div>{this.state.newQuiz.time}</div>
-//         </div>
-//         <div> Wrong answers: {wrong_answer}</div>
-//       </div>
-//
-//       <CorrectWrongAnswers quizId={quizId}/>
-//
-//     </div>
-//   </div>
-// )}
