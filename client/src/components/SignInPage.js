@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Token } from '../lib/requests';
+import '../styling/SignInUp.css'
 
 class SignInPage extends Component {
   constructor (props) {
@@ -30,23 +31,28 @@ class SignInPage extends Component {
 
   render() {
     return(
-      <main className="SignInPage">
-        <h2>Sign In</h2>
-        <form onSubmit={this.createToken}>
-          <div>
-            <label htmlFor='email'>Email</label> <br />
-            <input type='email' id='email' name='email'/>
-          </div>
+      <main className="SignInUpPage">
+        <div className="wrapper">
+          <div className="bgi-2">
+            <div className="wrapperDimm">
+            <form onSubmit={this.createToken}>
+              <div className="signInContainer-1">
+                <label htmlFor='email'>Email</label> <br />
+                <input type='email' id='email' name='email'/>
+              </div>
 
-          <div>
-            <label htmlFor='password'>Password</label> <br />
-            <input type='password' id='password' name='password' />
-          </div>
+              <div className="signInContainer-1">
+                <label htmlFor='password'>Password</label> <br />
+                <input type='password' id='password' name='password' />
+              </div>
 
-          <div>
-            <input type='submit' value='Sign In'/>
+              <div className="signInContainer-2">
+                <input type='submit' value='Sign In'/>
+              </div>
+            </form>
           </div>
-        </form>
+          </div>
+        </div>
       </main>
     )
   }

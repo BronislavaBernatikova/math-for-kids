@@ -40,8 +40,6 @@ class UserPage extends Component {
   }
 
   render(){
-    //console.log('userPage-quizes: ', this.state.user.quizes);
-    //const user = this.state.user;
     const quizes = this.state.user.quizes;
       return(
         <main className="UserPage">

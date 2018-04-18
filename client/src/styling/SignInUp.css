@@ -1,0 +1,56 @@
+.SignInUpPage {
+  display: flex;
+  background: linear-gradient(rgb(161,187,255), white);
+  border: rgb(3,2,120) solid thin;
+  margin: 0 1vw;
+}
+.wrapperDimm {
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index:100;
+}
+
+.SignInUpPage form  div {
+  margin: 1vw;
+}
+
+.SignInUpPage form {
+  /* border: black thin solid; */
+  width: 28vw;
+  padding: 2vw;
+  position: absolute;
+  top: 23vh;
+  right: 12vw;
+  background: linear-gradient(to top right,white, rgb(161,187,255));
+  border: rgb(3,2,120) solid thin;
+  border-left: rgb(3,2,120) solid thin;
+  border-radius: 5px;
+}
+.signInContainer-2 input {
+  background: radial-gradient(white, rgb(161,187,255));
+  box-shadow: 5px 5px 3px grey;
+  border: grey solid thin;
+  font-family: 'Gaegu', cursive;
+  font-size: 1.5vw;
+  text-align: center;
+  max-width: 150px;
+  border-radius: 5px;
+}
+.signInContainer-1 input {
+  font-family: 'Gaegu', cursive;
+  font-size: 1.5vw;
+  width: 20vw;
+  box-shadow: 5px 5px 3px grey;
+  padding: 0.5vw;
+  border-radius: 5px;
+}
+.signInContainer-1 label {
+  font-family: 'Gaegu', cursive;
+  font-size: 1.5vw;
+  padding-top: 2vh;
+  text-shadow: 1px 1px rgb(100,116,158);
+}

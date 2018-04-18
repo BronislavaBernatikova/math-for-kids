@@ -1,7 +1,7 @@
 .SetUpNewQuiz {
   /* border: blue solid thick; */
   display: flex;
-  padding: 20px;
+  padding: 5vw 5vh;
 }
 .container-quiz1 {
   /* border: red thick solid; */

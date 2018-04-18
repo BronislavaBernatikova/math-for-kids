@@ -1,20 +1,14 @@
 .HomePage {
     display: flex;
-    background: linear-gradient(to top right, white, rgb(161,187,255));
+    /* background: linear-gradient(to top right, white, rgb(161,187,255)); */
+    background: linear-gradient(rgb(161,187,255), white);
+    border: rgb(3,2,120) solid thin;
+    margin: 0 1vw;
     }
   .wrapper {
-    /* border: red solid thin; */
+    /* border: rgb(3,2,120) solid thin; */
     width: 100%;
-  }
-  .bgi-1 {
-    float: right;
-    /* border: black solid thin; */
-    padding: 150px;
-    padding-right: 100px;
-    color: rgb(3,2,120);
-    font-family: 'Sacramento', cursive;
-    font-size: 10vw;
-    text-shadow: 3px 3px rgb(100,116,158);
+    position: relative;
   }
 
   .bgi-2 {
