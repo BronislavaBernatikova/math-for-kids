@@ -23,7 +23,7 @@ function NavBar(props) {
             <div key="1">
             <NavLink exact to={`/users/${user.first_name}`}>User Page</NavLink>
             </div>,
-            <div key="2">Hello, {user.first_name}</div>,
+            <div key="2" className="hello">Hello, {user.first_name}</div>,
             <div key="3">
             <a fref="/sign_out" onClick={handleSignOut}>Sign Out</a>
             </div>

@@ -4,6 +4,15 @@
   border: rgb(3,2,120) solid thin;
   margin: 0 1vw;
 }
+.wrapperDimm {
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index:100;
+}
 
 .SignInUpPage form  div {
   margin: 1vw;
@@ -20,6 +29,10 @@
   border-bottom: rgb(3,2,120) solid thin;
   border-left: rgb(3,2,120) solid thin;
   /* border-radius: 5px; */
+}
+
+.SignInUpPage .signUp {
+  top: 28vh;
 }
 
 .signInContainer-2 input {

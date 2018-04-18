@@ -32,7 +32,8 @@ function SignUpPage(props) {
     <main className="SignInUpPage">
       <div className="wrapper">
         <div className="bgi-2">
-      <form onSubmit={handleSubmit}>
+          <div className="wrapperDimm">
+      <form className="signUp" onSubmit={handleSubmit}>
         <div className="signInContainer-1">
           <label htmlFor="first_name">First Name</label>
           <input name="first_name" id="first_name" />
@@ -61,6 +62,7 @@ function SignUpPage(props) {
         <input type="submit" value="Sign Up" />
       </div>
       </form>
+    </div>
     </div>
     </div>
   </main>

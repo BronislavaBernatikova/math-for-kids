@@ -2,6 +2,7 @@ html, body {
     height: 100%;
 }
 .QuizShowPage, .RepeatQuizPage {
+  border-top: rgb(3,2,120) thin solid;
   display: flex;
   flex-direction: column;
   font-family: 'Gaegu', cursive;
@@ -15,10 +16,10 @@ html, body {
   background-position:center;
 }
 .wrapper-1, .wrapper-2 {
-  background: radial-gradient(white, rgb(255,255,255,0.30));
-  /* background-color: rgb(255,255,255,0.5); */
+  background: radial-gradient(white, rgb(161,187,255, 0.50));
+  /* background: radial-gradient(white, rgb(255,255,255,0.60)); */
   min-height: 803px;
-  margin: 20px;
+  /* margin: 20px; */
 }
 .main-container-1 {
   /* border: green thin solid; */

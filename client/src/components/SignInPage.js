@@ -34,6 +34,7 @@ class SignInPage extends Component {
       <main className="SignInUpPage">
         <div className="wrapper">
           <div className="bgi-2">
+            <div className="wrapperDimm">
             <form onSubmit={this.createToken}>
               <div className="signInContainer-1">
                 <label htmlFor='email'>Email</label> <br />
@@ -49,6 +50,7 @@ class SignInPage extends Component {
                 <input type='submit' value='Sign In'/>
               </div>
             </form>
+          </div>
           </div>
         </div>
       </main>
