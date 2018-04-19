@@ -35,7 +35,7 @@ class CorrectWrongAnswers extends Component {
 
   componentDidMount(){
     const quizId = this.props.quizId;
-    console.log('quizId in mount:', quizId);
+    console.log('quizId in correct:', quizId);
 
     Quiz
       .correct(quizId)

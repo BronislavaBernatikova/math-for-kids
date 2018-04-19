@@ -7,7 +7,7 @@ import SignUpPage from './SignUpPage';
 import NavBar from './NavBar';
 import HomePage from './HomePage';
 import UserPage from './UserPage';
-// import RepeatQuizPage from './RepeatQuizPage';
+import RepeatQuizPage from './RepeatQuizPage';
 
 class App extends Component {
   constructor(props) {
@@ -49,6 +49,10 @@ class App extends Component {
     });
   }
 
+  isSignedIn() {
+    return !!this.state.user;
+  }
+
   quizDataFromUserPage(newQuiz){
     this.setState({
       newQuiz: newQuiz
@@ -76,14 +80,14 @@ class App extends Component {
                 />
                 <Route path="/quizes/show/:id"
                        render={ props => user ? (
-                         <QuizShowPage {...props} />
+                         <RepeatQuizPage {...props} />
                        ):(
                          <Redirect to="/sign_in" />
                        )}
                 />
                 <Route path="/quizes/new"
                        render={ props => user ? (
-                         <QuizShowPage {...props} />
+                         <QuizShowPage newQuiz={this.state.newQuiz} />
                        ):(
                          <Redirect to="/sign_in" />
                        )}

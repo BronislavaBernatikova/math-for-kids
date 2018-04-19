@@ -4,7 +4,7 @@ const Quiz = {
 
   create(req,res){
     console.log('data from react; ');
-    console.log('req.currentUser:', req.currentUser);
+    // console.log('req.currentUser:', req.currentUser);
     console.log('req.body:', req.body);
     const userId = req.currentUser.id;
     const expression_count = req.body.numberOfExpressions;
@@ -13,7 +13,9 @@ const Quiz = {
     const _data = {
       user_id: userId,
       date: new Date(),
-      expression_count: expression_count
+      expression_count: expression_count,
+      repeated: 0,
+      right_answer_count: 0
     };
 
     function randomizer(arr,n){
@@ -36,15 +38,29 @@ const Quiz = {
         const quiz = quizData[0];
 
         knex
-          .select('*')
+          .select('id')
           .from('expressions')
           .where('operator',operator)
           .where('difficulty', difficulty)
           .then( expArray => {
             const expressions = randomizer(expArray,expression_count);
-            quiz.expressions = expressions;
-            console.log('randomized quiz:', quiz);
-            res.json(quiz);
+            console.log('expressions:', expressions);
+            let answer = {};
+            expressions.forEach(expression => {
+              let
+              answer = {
+                expression_id: expression.id,
+                quiz_id: quiz.id,
+                correct_answer: false
+              }
+              return knex('answers')
+                  .insert(answer)
+                  .returning('*')
+                  .then( answer => {
+                    console.log('answer from db',answer);
+                    res.json(quiz);
+                  })
+            })
           })
       })
   },
@@ -75,6 +91,7 @@ const Quiz = {
     const right_answer_count = req.body.right_answer;
     const seconds = req.body.time;
     const quiz_id = req.body.quiz_id;
+    const repeated = req.body.repeated;
 
     function formatSeconds (sec) {
       let date = new Date(1970,0,1);
@@ -87,7 +104,8 @@ const Quiz = {
       .where('id', quiz_id)
       .update({
         right_answer_count: right_answer_count,
-        time: time
+        time: time,
+        repeated: repeated
       })
       .returning('*')
       .then( quizData => {
@@ -131,6 +149,18 @@ module.exports = Quiz;
 //     expression_count: expression_count
 //   };
 //
+//   function randomizer(arr,n){
+//     let finalArr = [];
+//     let random;
+//     do{
+//       random = arr[Math.floor((Math.random()*arr.length))];
+//       if(!finalArr.includes(random)){
+//       finalArr.push(random);}
+//     }
+//     while(finalArr.length < n)
+//     return finalArr;
+//   }
+//
 //   return knex('quizes')
 //     //.into('quizes')
 //     .insert(_data)
@@ -143,10 +173,11 @@ module.exports = Quiz;
 //         .from('expressions')
 //         .where('operator',operator)
 //         .where('difficulty', difficulty)
-//         .limit(expression_count)
-//         .then( expressions => {
+//         .then( expArray => {
+//           const expressions = randomizer(expArray,expression_count);
 //           quiz.expressions = expressions;
 //           res.json(quiz);
 //         })
 //     })
 // },
+//

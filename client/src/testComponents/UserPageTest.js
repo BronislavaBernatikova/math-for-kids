@@ -19,13 +19,10 @@ class UserPage extends Component {
     Quiz
       .create(quizParams)
       .then( quiz => {
-        // console.log('quiz:', quiz);
-        // console.log('this.props.history:', this.props.history);
-        this.props.history.push({
-          pathname: `/quizes/new`,
-          state: { quiz: quiz }
-        });
 
+        const {newQuizData =()=> {} } = this.props;
+        newQuizData(quiz);
+        this.props.history.push(`/quizes/new`);
       })
   }
 
