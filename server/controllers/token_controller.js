@@ -7,9 +7,10 @@ const moment = require('moment');
 
 const Tokens = {
 
-  new(req, res){
-    res.render('signIn', {errors: {}});
-  },
+  // new(req, res){
+  //   res.render('signIn', {errors: {}});
+  // },
+
   create(req,res){
     const email = req.body.email;
     const logInPassword = req.body.password;

@@ -10,7 +10,8 @@ const Users = {
     res.render('signUp', {errors: {}});
   },
 
-  create(req, res){
+  createChildUser(req, res){
+    const parentId = req.currentUser.id;
     const first_name = req.body.first_name;
     const last_name = req.body.last_name;
     const email = req.body.email;
@@ -20,10 +21,7 @@ const Users = {
     if (password !== passConfirm) {
       res.redirect('/welcome');
     }
-    // const errors = {};
-    // errors.first_name = "must exist"
-    //res.render('users', {errors})
-    //let user
+
     bcrypt.hash(password, saltRounds)
     .then(function(hash) {
       return knex('users')
@@ -32,7 +30,46 @@ const Users = {
           first_name: first_name,
           last_name: last_name,
           email: email,
-          password_digest:hash
+          password_digest:hash,
+          role: 'child'
+        })
+        .returning('id')
+        .then( childIdArray => {
+          const childId = childIdArray[0];
+
+          knex('current_quiz_set_ups')
+           .insert({
+             parent_id: parentId,
+             child_id: childId
+           })
+        })
+    })
+    //As childUser can be created only through parent account
+    //it is not needed to sent jwt token back to front end.
+    //Current signed-in user is a parent who is creating a child.
+  },
+
+  createParentUser(req, res){
+    const first_name = req.body.first_name;
+    const last_name = req.body.last_name;
+    const email = req.body.email;
+    const password = req.body.password;
+    const passConfirm = req.body.password_confirmation;
+
+    if (password !== passConfirm) {
+      res.redirect('/welcome');
+    }
+
+    bcrypt.hash(password, saltRounds)
+    .then(function(hash) {
+      return knex('users')
+        //.into('users')
+        .insert({
+          first_name: first_name,
+          last_name: last_name,
+          email: email,
+          password_digest:hash,
+          role: 'parent'
         })
         .returning('*')
         .then( userData => {
@@ -95,59 +132,3 @@ const Users = {
 }
 
 module.exports = Users;
-
-// create(req, res){
-//   const first_name = req.body.first_name;
-//   const last_name = req.body.last_name;
-//   const email = req.body.email;
-//   const password = req.body.password;
-//   // const errors = {};
-//   // errors.first_name = "must exist"
-//   //res.render('users', {errors})
-//   bcrypt.hash(password, saltRounds)
-//   .then(function(hash) {
-//     knex
-//     .into('users')
-//     .insert({
-//       first_name: first_name,
-//       last_name: last_name,
-//       email: email,
-//       password_digest:hash
-//     })
-//     .then( () => {
-//       console.log('user: ', user);
-//       console.log('user.dataValues: ', user.dataValues);
-//       req.session.user = user.dataValues;
-//       res.redirect('/expressions/new');
-//     })
-//     // .catch(error => {
-//     //   res.redirect('welcome');
-//     // });
-//   });
-// }
-
-// .then(() => {
-//   knex
-//   .select()
-//   .from('users')
-//   .where('password_digest', hash)
-//   .then( user => {
-//     const dataValues = user[0];
-//     console.log('user: ', user);
-//     console.log('user.dataValues: ', dataValues);
-//     req.session.user = dataValues;
-//     res.redirect('/expressions/new');
-
-
-// .then( userData => {
-//   //console.log('userData:',userData)
-//   let user = userData[0];
-//   console.log('user:',user)
-//   if(user) {
-//     req.session.userId = user.id
-//     res.redirect('/expressions/new');
-//   }
-//   else {
-//     res.redirect('/users/signUp');
-//   }
-// })

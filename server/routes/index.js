@@ -29,7 +29,8 @@ router.get('/', (req, res) => {
 const userRouter = express.Router();
 router.use('/users', userRouter);
 userRouter.get('/signUp', Users.new);
-userRouter.post('/create', Users.create);
+userRouter.post('/create/parent', Users.createParentUser);
+userRouter.post('/create/child', Users.createChildUser);
 userRouter.get('/index',Users.index);
 userRouter.get('/:id', Users.show);
 
@@ -50,6 +51,8 @@ const tokenRouter = express.Router();
 router.use('/tokens', tokenRouter);
 tokenRouter.get('/new', Token.new);
 tokenRouter.post('/create', Token.create);
+
+const
 
 
 
