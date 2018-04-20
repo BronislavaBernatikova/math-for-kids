@@ -6,9 +6,9 @@ const saltRounds = 10;
 
 const Users = {
   // route for user signup
-  new(req, res){
-    res.render('signUp', {errors: {}});
-  },
+  // new(req, res){
+  //   res.render('signUp', {errors: {}});
+  // },
 
   createChildUser(req, res){
     const parentId = req.currentUser.id;
@@ -25,23 +25,24 @@ const Users = {
     bcrypt.hash(password, saltRounds)
     .then(function(hash) {
       return knex('users')
-        //.into('users')
         .insert({
           first_name: first_name,
           last_name: last_name,
           email: email,
-          password_digest:hash,
+          password_digest: hash,
           role: 'child'
         })
-        .returning('id')
-        .then( childIdArray => {
-          const childId = childIdArray[0];
+        .returning('*')
+        .then( userData => {
+          const user = userData[0];
+          const childId = user.id;
 
           knex('current_quiz_set_ups')
            .insert({
              parent_id: parentId,
              child_id: childId
            })
+           .then( res.json(user))
         })
     })
     //As childUser can be created only through parent account
@@ -50,6 +51,7 @@ const Users = {
   },
 
   createParentUser(req, res){
+    console.log('in createParentUser');
     const first_name = req.body.first_name;
     const last_name = req.body.last_name;
     const email = req.body.email;
