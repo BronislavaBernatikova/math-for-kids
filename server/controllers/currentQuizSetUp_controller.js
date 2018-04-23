@@ -5,7 +5,6 @@ const CurrentQuizSetUps = {
 
   update(req,res){
 
-
     const userId = req.currentUser.id;
     const setUpId = req.body.setUpId;
     const customQuizId = req.body.customQuizId;
@@ -78,40 +77,3 @@ const CurrentQuizSetUps = {
   }
 }
 module.exports = CurrentQuizSetUps;
-
-// update(req,res){
-//
-//
-//   const userId = req.currentUser.id;
-//   const setUpId = req.body.setUpId;
-//   const customQuizId = req.body.customQuizId;
-//   const difficulty = req.body.difficulty;
-//   const numberOfExpressions = req.body.numberOfExpressions;
-//   const operator = req.body.operator;
-//   let data = { custom_quiz_id: null,
-//                  difficulty: null,
-//                  number_of_expressions: null,
-//                  operator: null
-//                 }
-//
-//   customQuizId ? (   data = { custom_quiz_id: customQuizId,
-//                              difficulty: null,
-//                              number_of_expressions: null,
-//                              operator: null
-//                            }
-//               ) : (  data = { custom_quiz_id: null,
-//                              difficulty: difficulty,
-//                              number_of_expressions: numberOfExpressions,
-//                              operator: operator
-//                             })
-//
-//   return knex('current_quiz_set_ups')
-//           .where('id', setUpId)
-//           .update(data)
-//           .returning('*')
-//           .then( setUpData => {
-//             const currentQuizSetUp = setUpData[0];
-//             res.json(currentQuizSetUp);
-//           })
-//
-// },

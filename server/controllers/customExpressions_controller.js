@@ -23,11 +23,24 @@ const CustomExpressions = {
 
   delete(req,res){
     const customExpressionId = req.params.id;
+    const userId = req.currentUser.id;
 
     knex('custom_expressions')
-      .where('id', customExpressionId)
-      .del()
-      .then(res.status(200).send('Custom expression was successfully deleted!'))
+      .select('*')
+      .where({ id: customExpressionId })
+      .then( expressionDataArray => {
+        const expressionData = expressionDataArray[0];
+        
+        if(expressionData.user_id === req.currentUser.id){
+          knex('custom_expressions')
+            .where({ id: customExpressionId })
+            .del()
+            .then(res.status(200).send('Expression was successfully deleted!'))
+        }
+        else {
+          res.status(401).send('Authorization failed!');
+        }
+      })
   }
 }
 module.exports = CustomExpressions;

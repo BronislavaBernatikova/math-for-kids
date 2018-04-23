@@ -79,21 +79,3 @@ customExpressionRouter.post('/create', CustomExpressions.create);
 customExpressionRouter.get('/delete/:id', CustomExpressions.delete);
 
 module.exports = router;
-
-
-// middleware function to check for logged-in users
-// const authentication = (req, res, next) => {
-//   if(req.currentUser !== false){
-//     // console.log('token from auth: ', token);
-//
-//     next();
-//     }
-//     else {
-//       res.status(500).send('Authentication failed!');
-//     }
-// };
-//
-// router.get('/', (req, res) => {
-//   //console.log('req.session in routes file:', req.session);
-//   res.render('welcome');
-// });

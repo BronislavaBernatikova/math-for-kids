@@ -17,17 +17,19 @@ const CustomQuizes = {
               const customQuiz = customQuizData[0];
               res.json(customQuiz);
             })
-
   },
-
 
   update(req, res){
 
     const customQuizId = req.body.customQuizId;
     const title = req.body.title;
+    const userId = req.currentUser.id;
 
     return knex('custom_quizes')
-            .where('id', customQuizId)
+            .where({
+              id: customQuizId,
+              user_id: userId
+            })
             .update({
               title: title
             })
@@ -41,9 +43,12 @@ const CustomQuizes = {
   delete(req,res){
 
     const customQuizId = req.params.id;
+    const userId = req.currentUser.id;
 
     knex('custom_quizes')
-      .where('id', customQuizId)
+      .where({ id: customQuizId,
+               user_id: userId
+            })
       .del()
       .then(res.status(200).send('Custome quiz was successfully deleted!'))
   },
