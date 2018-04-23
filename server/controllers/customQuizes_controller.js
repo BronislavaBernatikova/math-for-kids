@@ -3,8 +3,9 @@ const knex = require('../db');
 const CustomQuizes = {
 
   create(req, res){
+    // console.log('req in create:',req);
     const title = req.body.title;
-    const userId = req.currentUser.id; //????
+    const userId = req.currentUser.id;
 
     return knex('custom_quizes')
             .insert({
@@ -21,6 +22,7 @@ const CustomQuizes = {
 
 
   update(req, res){
+
     const customQuizId = req.body.customQuizId;
     const title = req.body.title;
 
@@ -37,6 +39,7 @@ const CustomQuizes = {
   },
 
   delete(req,res){
+
     const customQuizId = req.params.id;
 
     knex('custom_quizes')
@@ -46,6 +49,7 @@ const CustomQuizes = {
   },
 
   index(req,res){
+
     const userId = req.currentUser.id;
 
     knex('custom_quizes')

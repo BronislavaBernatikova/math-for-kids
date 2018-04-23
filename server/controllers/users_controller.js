@@ -5,10 +5,6 @@ const moment = require('moment');
 const saltRounds = 10;
 
 const Users = {
-  // route for user signup
-  // new(req, res){
-  //   res.render('signUp', {errors: {}});
-  // },
 
   createChildUser(req, res){
     const parentId = req.currentUser.id;
@@ -86,9 +82,9 @@ const Users = {
                         exp: expires
                       },
                       process.env.MATH_FOR_KIDS_SECRET_KEY);
-                      console.log('token in user: ', token);
-//The res.json() method is used to return a JSON representation of the token to the
-// client.
+                      // console.log('token in user: ', token);
+                      //The res.json() method is used to return a JSON representation
+                      // of the token to the client.
           res.json({
                     token : token,
                     expires: expires,
@@ -104,10 +100,6 @@ const Users = {
     knex('users')
       .select('*')
       .then(users => res.json(users));
-    //   res.send(JSON.stringify({
-    // error: true,
-    // message
-      //.then( res.json())
   },
 
   show(req,res){
@@ -134,3 +126,12 @@ const Users = {
 }
 
 module.exports = Users;
+// route for user signup
+// new(req, res){
+//   res.render('signUp', {errors: {}});
+// },
+
+//   res.send(JSON.stringify({
+// error: true,
+// message
+  //.then( res.json())

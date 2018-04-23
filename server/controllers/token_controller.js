@@ -25,7 +25,7 @@ const Tokens = {
       //console.log('userPassword :', user.password_digest );
       bcrypt.compare(logInPassword, user.password_digest, function(err,result){
         if (result === true){
-          console.log('passed bcrypt')
+          // console.log('passed bcrypt')
           //console.log('secretToken', process.env.MATH_FOR_KIDS_SECRET_KEY)
           const expires = moment().add(7, 'days').valueOf();
           const token = jwt.encode(
