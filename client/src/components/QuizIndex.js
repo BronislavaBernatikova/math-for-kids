@@ -4,6 +4,7 @@ import '../styling/QuizIndex.css';
 
 function QuizIndex (props) {
   const { quizes = [] } = props;
+  console.log('quizes in quizIndex:', quizes );
 
      return(
       <div className="QuizIndex">

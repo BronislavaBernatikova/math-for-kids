@@ -7,6 +7,7 @@ import SignUpPage from './SignUpPage';
 import NavBar from './NavBar';
 import HomePage from './HomePage';
 import UserPage from './UserPage';
+import ParentUserPage from './ParentUserPage';
 // import RepeatQuizPage from './RepeatQuizPage';
 
 class App extends Component {
@@ -14,12 +15,12 @@ class App extends Component {
     super(props);
     this.state = {
       user: null,
-      data:"data from App"
+      // data:"data from App"
     };
 
     this.signIn = this.signIn.bind(this);
     this.signOut = this.signOut.bind(this);
-    this.quizDataFromUserPage = this.quizDataFromUserPage.bind(this);
+    // this.quizDataFromUserPage = this.quizDataFromUserPage.bind(this);
   }
 
   componentWillMount() {
@@ -35,6 +36,7 @@ class App extends Component {
     //console.log('jwt-app-signIn: ', jwt);
     if(jwt){
       const payload = jwtDecode(jwt);
+      // payload --> {id: 3, first_name: "Julie", last_name: "Bernatikova", exp: 1525192402517}
       this.setState({
         user: payload
       });
@@ -49,12 +51,12 @@ class App extends Component {
     });
   }
 
-  quizDataFromUserPage(newQuiz){
-    this.setState({
-      newQuiz: newQuiz
-    })
-    console.log('quiz data in App:', this.state.newQuiz);
-  }
+  // quizDataFromUserPage(newQuiz){
+  //   this.setState({
+  //     newQuiz: newQuiz
+  //   })
+  //   console.log('quiz data in App:', this.state.newQuiz);
+  // }
 
     render() {
       const { user } = this.state;
@@ -67,9 +69,16 @@ class App extends Component {
               <Switch>
 
                 <Route exact path="/" component={HomePage} />
-                <Route path="/users/:id"
+                <Route exact path="/users/parent"
                        render={ props => user ? (
-                         <UserPage {...props} newQuizData={this.quizDataFromUserPage} />
+                         <ParentUserPage {...props} />
+                       ):(
+                         <Redirect to="/sign_in" />
+                      )}
+                />
+                <Route exact path="/users/:id"
+                       render={ props => user ? (
+                         <UserPage {...props} />
                        ):(
                          <Redirect to="/sign_in" />
                        ) }
@@ -106,3 +115,4 @@ class App extends Component {
 }
 
 export default App;
+ // <UserPage {...props} newQuizData={this.quizDataFromUserPage} />

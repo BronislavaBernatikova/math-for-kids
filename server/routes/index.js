@@ -12,7 +12,8 @@ const CustomExpressions = require('../controllers/customExpressions_controller')
 
 
 const authorization = (req, res, next) => {
-  if(req.currentUser.role === "parent" ){
+  // console.log('req.currentUser:', req.currentUser);
+  if(!req.currentUser || req.currentUser.role === "parent" ){
     next();
   }
   else {
@@ -35,7 +36,8 @@ router.use('/users', userRouter);
 userRouter.post('/create/parent', Users.createParentUser);
 userRouter.post('/create/child', authorization, Users.createChildUser);
 userRouter.get('/index',admin, Users.index);
-userRouter.get('/:id', Users.show);
+userRouter.get('/child/:id', Users.showChild);
+userRouter.get('/parent/:id', Users.showParent);
 
 //creating token
 const tokenRouter = express.Router();

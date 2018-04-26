@@ -10,16 +10,6 @@ function getJWT (){
 
 //HTTP REQUESTS:
 
-const Expression = {
-  one(id){
-    return fetch(
-      `${BASE_URL}/expressions/${id}`,
-      { headers: {'Authorisation': getJWT()} }
-    )
-    .then(res => res.json());
-  }
-}
-
 const Answer = {
   create (params) {
     return fetch(
@@ -49,6 +39,38 @@ const Answer = {
       }
     )
     .then(res => res.json());
+  }
+}
+
+const CustomQuiz = {
+  create(params) {
+    return fetch(
+      `${BASE_URL}/customQuizes/create`,
+      {
+        headers: {
+          'Authorization': getJWT(),
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(params)
+      }
+    )
+    .then(res => res.json());
+  }
+}
+
+const CustomExpression = {
+  create(params){
+    return fetch(
+      `${BASE_URL}/customExpressions/create`,
+      {
+        headers: {
+          'Authorization': getJWT(),
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(params)
+      })
   }
 }
 
@@ -134,9 +156,17 @@ const User = {
       });
   },
 
-  one(id){
+  oneChild(id){
     return fetch(
-      `${BASE_URL}/users/${id}`,
+      `${BASE_URL}/users/child/${id}`,
+      { headers: {'Authorization': getJWT()} }
+    )
+    .then(res => res.json());
+  },
+
+  oneParent(id){
+    return fetch(
+      `${BASE_URL}/users/parent/${id}`,
       { headers: {'Authorization': getJWT()} }
     )
     .then(res => res.json());
@@ -156,4 +186,4 @@ const Token = {
   }
 }
 
-export { Expression, Quiz, Answer, User, Token };
+export { CustomExpression, CustomQuiz, Quiz, Answer, User, Token };

@@ -33,7 +33,7 @@ class UserPage extends Component {
     const userId = localStorage.userId;
     //console.log('userId:', userId);
     User
-      .one(userId)
+      .oneChild(userId)
       .then( user => {
         //console.log('user in then:', user)
         this.setState({

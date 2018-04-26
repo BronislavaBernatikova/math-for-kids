@@ -20,8 +20,11 @@ function NavBar(props) {
       {
         user? (
           [
+            <div key="0">
+              <NavLink exact to={`/users/parent`}>Parent Page</NavLink>
+            </div>, 
             <div key="1">
-            <NavLink exact to={`/users/${user.first_name}`}>User Page</NavLink>
+              <NavLink exact to={`/users/${user.first_name}`}>User Page</NavLink>
             </div>,
             <div key="2" className="hello">Hello, {user.first_name}</div>,
             <div key="3">
