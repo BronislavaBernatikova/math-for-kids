@@ -26,32 +26,16 @@ class CreateCustomQuiz extends Component {
     const formData = new FormData(event.currentTarget);
 
     const title = formData.get('title');
+    event.target.reset();
     const customExpressions = this.state.expressions;
     const customQuizData = {
                               title: title,
                               customExpressions: customExpressions
                             }
-    console.log('customExpressions:', customExpressions);
-    console.log('customQuizData:', customQuizData);
+    // console.log('customExpressions:', customExpressions);
+    // console.log('customQuizData:', customQuizData);
     this.props.sendData(customQuizData);
-    console.log('this.props:', this.props);
-
-    // CustomQuiz
-    //   .create(customQuizData)
-    //   .then( customQuiz => {
-    //     const customQuizId = customQuiz.id;
-    //
-    //     for( let expression of customExpressions){
-    //       console.log('expression:', expression);
-    //       const expressionData ={
-    //         customQuizId: customQuizId,
-    //         expression: expression.expression,
-    //         solution: expression.solution
-    //       }
-    //       CustomExpression
-    //         .create(expressionData)
-    //     }
-    //   })
+    // console.log('this.props:', this.props);
   }
 
   removeExpression(event){
@@ -64,7 +48,7 @@ class CreateCustomQuiz extends Component {
     this.setState({
       expressions: expressions
     })
-    console.log('expressions:', expressions);
+    // console.log('expressions:', expressions);
   }
 
   render(){

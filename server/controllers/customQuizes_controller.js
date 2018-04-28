@@ -23,35 +23,40 @@ const CustomQuizes = {
               const customQuizId = customQuiz.id;
               console.log('customQuizId:', customQuizId);
 
-              function returnFromDb(cqId,uId,array){
-                return new Promise((resolve, reject) => {
-                  const promiseArray = [];
+                  function returnFromDb(cqId,uId,array){
+                    return new Promise((resolve, reject) => {
+                      const promiseArray = [];
 
-                          for ( let item of array) {
-                            promiseArray.push(new Promise(function(resolve) {
-                              knex('custom_expressions')
-                                .insert({
-                                  custom_quiz_id: cqId,
-                                  user_id: uId,
-                                  expression: item.expression,
-                                  solution: item.solution
-                                })
-                                .returning('*')
-                                .then( value => {
-                                  // console.log('value in the loop:', value);
-                                  resolve(value);
-                                })
-                            }));
-                            }
-                  Promise.each(promiseArray, function(result){
-                    // console.log('value in Peomise.each:', result);
-                  })
-                  .then( value => { resolve(value);})
-                })
-              }
+                              for ( let item of array) {
+                                promiseArray.push(new Promise(function(resolve) {
+                                  knex('custom_expressions')
+                                    .insert({
+                                      custom_quiz_id: cqId,
+                                      user_id: uId,
+                                      expression: item.expression,
+                                      solution: item.solution
+                                    })
+                                    .returning('*')
+                                    .then( expressionArr => {
+                                      const expression = expressionArr[0];
+                                      // console.log('value in the loop:', value);
+                                      resolve(expression);
+                                    })
+                                }));
+                                }
+                      Promise.each(promiseArray, function(result){
+                        // console.log('value in Peomise.each:', result);
+                      })
+                      .then( value => { resolve(value);})
+                    })
+                  }
             return returnFromDb(customQuizId, userId, customExpressions);
+            res.json(customQuiz);
             })
-            .then(value => console.log('End of promis:', value));
+            // .then( value => {
+            //   res.json(value);
+            //   // console.log('End of promis:', value);
+            // })
   },
 
   update(req, res){
@@ -80,12 +85,19 @@ const CustomQuizes = {
     const customQuizId = req.params.id;
     const userId = req.currentUser.id;
 
-    knex('custom_quizes')
+    knex('custom_expressions')
       .where({ id: customQuizId,
                user_id: userId
             })
       .del()
-      .then(res.status(200).send('Custome quiz was successfully deleted!'))
+      .then(
+        knex('custom_quizes')
+          .where({ id: customQuizId,
+                   user_id: userId
+                })
+          .del()
+          .then(res.status(200).send('Custome quiz was successfully deleted!'))
+      )        
   },
 
   index(req,res){
@@ -97,11 +109,34 @@ const CustomQuizes = {
       .then( quizData => {
         res.json(quizData)
       })
+  },
+
+  show(req,res){
+    const customQuizId = req.params.id;
+    const userId = req.currentUser.id;
+
+    knex('custom_quizes')
+      .first()
+      .where({
+        id: customQuizId,
+        user_id: userId
+      })
+      .then( customQuiz => {
+
+        knex('custom_expressions')
+          .select('*')
+          .where('custom_quiz_id', customQuizId)
+          .then( customExpressions => {
+            customQuiz.customExpressions = customExpressions;
+            res.json(customQuiz);
+          })
+      })
   }
 }
 
 
 module.exports = CustomQuizes;
+// .onDelete('CASCADE');
 
 // create(req, res){
 // // console.log('req in create:',req);

@@ -4,6 +4,8 @@ import '../styling/QuizIndex.css';
 
 function CustomQuizIndex (props) {
   const { customQuizes = [] } = props;
+  const {onDeleteClick = () => {}} = props;
+
 
       return(
        <div className="CustomQuizIndex">
@@ -30,6 +32,10 @@ function CustomQuizIndex (props) {
                                state: { quiz: quiz }
                              }}>Show Quiz</Link>
                    </div>
+                   {/* <button
+                     data-id={`${index}`}
+                     onClick={this.deleteCustomeQuiz}
+                   >Remove</button> */}
                  </div>
                </li>
              )

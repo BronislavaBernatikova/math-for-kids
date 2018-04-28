@@ -58,7 +58,7 @@ router.use('/answers', answerRouter);
 answerRouter.post('/update', Answers.update);
 // answerRouter.post('/create', Answers.create); ---> we are creating answers through create quiz now.
 
-//managing current quiz set ups (update/index - only parrent)
+//managing current-quiz-set-ups (update/index - only parrent)
 const currentQuizSetUpRouter = express.Router();
 router.use('/QuizSetUp', currentQuizSetUpRouter);
 currentQuizSetUpRouter.post('/update', authorization, CurrentQuizSetUps.update);
@@ -73,6 +73,7 @@ customQuizRouter.post('/create',  CustomQuizes.create);
 customQuizRouter.post('/update', CustomQuizes.update);
 customQuizRouter.get('/delete/:id', CustomQuizes.delete);
 customQuizRouter.get('/index', CustomQuizes.index);
+customQuizRouter.get('/show/:id', CustomQuizes.show);
 
 // managing custom expressions (only parent)
 const customExpressionRouter = express.Router();

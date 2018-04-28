@@ -142,13 +142,16 @@ const Users = {
       .then( user => {
 
         knex('current_quiz_set_ups')
-          .select('*')
+          .join('users', 'current_quiz_set_ups.child_id', '=', 'users.id')
+          .select('current_quiz_set_ups.id', 'current_quiz_set_ups.child_id', 'current_quiz_set_ups.parent_id',
+                  'current_quiz_set_ups.custom_quiz_id', 'current_quiz_set_ups.difficulty', 'current_quiz_set_ups.operator',
+                  'current_quiz_set_ups.number_of_expressions', 'users.first_name', 'users.last_name'
+                )
           .where( 'parent_id', userId )
           .then( currentQuizSetUps => {
             // console.log('currentQuizSetUps:', currentQuizSetUps);
             user.currentQuizSetUps = currentQuizSetUps;
             // console.log('user.currentQuizSetUps:', user.currentQuizSetUps);
-
 
             knex('custom_quizes')
               .select('*')
@@ -175,3 +178,39 @@ module.exports = Users;
 // error: true,
 // message
   //.then( res.json())
+
+
+  // showParent(req,res){
+  //   //const userId = req.params.id;
+  //   const userId = req.currentUser.id;
+  //
+  //   knex
+  //     .first()
+  //     .from('users')
+  //     .where({
+  //       id: userId,
+  //       role: "parent"
+  //     })
+  //     .then( user => {
+  //
+  //       knex('current_quiz_set_ups')
+  //         .select('*')
+  //         .where( 'parent_id', userId )
+  //         .then( currentQuizSetUps => {
+  //           // console.log('currentQuizSetUps:', currentQuizSetUps);
+  //           user.currentQuizSetUps = currentQuizSetUps;
+  //           // console.log('user.currentQuizSetUps:', user.currentQuizSetUps);
+  //
+  //
+  //           knex('custom_quizes')
+  //             .select('*')
+  //             .where('user_id', userId)
+  //             .then( customQuizes => {
+  //               // console.log('customQuizes:', customQuizes);
+  //               user.customQuizes = customQuizes;
+  //               // console.log('user.customQuizes:', user.customQuizes);
+  //               res.json(user);
+  //             })
+  //         })
+  //     })
+  // }

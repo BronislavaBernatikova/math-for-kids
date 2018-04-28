@@ -56,6 +56,14 @@ const CustomQuiz = {
       }
     )
     .then(res => res.json());
+  },
+
+  one(id) {
+    return fetch(
+      `${BASE_URL}/customQuizes/show/${id}`,
+      { headers: {'Authorization': getJWT()} }
+    )
+    .then(res => res.json());
   }
 }
 
@@ -71,6 +79,24 @@ const CustomExpression = {
         method: 'POST',
         body: JSON.stringify(params)
       })
+  }
+}
+
+const CurrentQuizSetUp = {
+
+  update(params) {
+    return fetch(
+      `${BASE_URL}/quizSetUp/update`,
+      {
+        headers: {
+          'Authorization': getJWT(),
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(params)
+      }
+    )
+    .then(res => res.json());
   }
 }
 
@@ -186,4 +212,4 @@ const Token = {
   }
 }
 
-export { CustomExpression, CustomQuiz, Quiz, Answer, User, Token };
+export { CurrentQuizSetUp, CustomExpression, CustomQuiz, Quiz, Answer, User, Token };

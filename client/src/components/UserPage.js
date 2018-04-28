@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { User, Quiz } from '../lib/requests';
 import QuizIndex from './QuizIndex';
-import SetUpNewQuiz from './SetUpNewQuiz';
+// import SetUpNewQuiz from './SetUpNewQuiz';
 import '../styling/UserPage.css';
 
 
@@ -46,7 +46,7 @@ class UserPage extends Component {
     const quizes = this.state.user.quizes;
       return(
         <main className="UserPage">
-          <SetUpNewQuiz onSubmit={this.createNewQuiz} />
+          {/* <SetUpNewQuiz onSubmit={this.createNewQuiz} /> */}
           <QuizIndex quizes={quizes} />
         </main>
       );

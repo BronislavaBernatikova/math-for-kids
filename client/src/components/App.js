@@ -8,6 +8,7 @@ import NavBar from './NavBar';
 import HomePage from './HomePage';
 import UserPage from './UserPage';
 import ParentUserPage from './ParentUserPage';
+import ShowCustomQuiz from './ShowCustomQuiz';
 // import RepeatQuizPage from './RepeatQuizPage';
 
 class App extends Component {
@@ -75,6 +76,13 @@ class App extends Component {
                        ):(
                          <Redirect to="/sign_in" />
                       )}
+                />
+                <Route path="/customQuizes/show/:id"
+                       render={ props => user ? (
+                         <ShowCustomQuiz {...props} />
+                       ):(
+                         <Redirect to="/sign_in" />
+                       )}
                 />
                 <Route exact path="/users/:id"
                        render={ props => user ? (

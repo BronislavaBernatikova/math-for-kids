@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import CustomQuizIndex from './CustomQuizIndex';
 import CreateCustomQuiz from './CreateCustomQuiz';
-import { User, CustomQuiz } from '../lib/requests';
+import SetUpNewQuiz from './SetUpNewQuiz';
+import { User, CustomQuiz, CurrentQuizSetUp } from '../lib/requests';
 
 
 class ParentUserPage extends Component {
@@ -13,14 +14,31 @@ class ParentUserPage extends Component {
       currentQuizSetUps: []
     }
     this.createCustomQuiz = this.createCustomQuiz.bind(this);
+    this.setUpCurrentQuiz = this.setUpCurrentQuiz.bind(this);
   }
 
   createCustomQuiz(customQuizData){
     CustomQuiz
       .create(customQuizData)
-      .then( customQuiz => {
-        console.log('customQuiz:', customQuiz);
+
+
+      .then( newCustomQuiz => {
+        const {customQuizes} = this.state;
+        console.log('newCustomQuiz:', newCustomQuiz);
+        this.setState({
+          customQuizes: newCustomQuiz, ...customQuizes
+        })
+        console.log('customeQuizes in state:', this.state.customQuizes);
       })
+  }
+
+  setUpCurrentQuiz(data){
+
+    CurrentQuizSetUp
+      .update(data)
+      // .then( updatedQuiz => {
+      //   console.log('updatedQuiz:', updatedQuiz);
+      // })
   }
 
   componentDidMount(){
@@ -40,13 +58,19 @@ class ParentUserPage extends Component {
   }
 
   render(){
-    console.log('parentUser:', this.state.parentUser);
+    // const {parentUser} = this.state;
+    // console.log('parentUser in render userpage:', this.state.parentUser);
+
     return(
       <main className="ParentUserPage">
         <CreateCustomQuiz sendData={this.createCustomQuiz}/>
+        <SetUpNewQuiz parentUser={this.state.parentUser}
+                      currentQuizSetUps={this.state.currentQuizSetUps}
+                      customQuizes={this.state.customQuizes}
+                      onSubmit={this.setUpCurrentQuiz}
+        />
         <CustomQuizIndex customQuizes={this.state.customQuizes}/>
       </main>
-
     )
   }
 }
