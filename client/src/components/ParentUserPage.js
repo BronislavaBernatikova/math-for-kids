@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CustomQuizIndex from './CustomQuizIndex';
 import CreateCustomQuiz from './CreateCustomQuiz';
 import SetUpNewQuiz from './SetUpNewQuiz';
+import CreateNewChild from './CreateNewChild';
 import { User, CustomQuiz, CurrentQuizSetUp } from '../lib/requests';
 
 
@@ -15,13 +16,12 @@ class ParentUserPage extends Component {
     }
     this.createCustomQuiz = this.createCustomQuiz.bind(this);
     this.setUpCurrentQuiz = this.setUpCurrentQuiz.bind(this);
+    this.CreateNewChild = this.CreateNewChild.bind(this);
   }
 
   createCustomQuiz(customQuizData){
     CustomQuiz
       .create(customQuizData)
-
-
       .then( newCustomQuiz => {
         const {customQuizes} = this.state;
         console.log('newCustomQuiz:', newCustomQuiz);
@@ -39,6 +39,14 @@ class ParentUserPage extends Component {
       // .then( updatedQuiz => {
       //   console.log('updatedQuiz:', updatedQuiz);
       // })
+  }
+
+  CreateNewChild(newUserData){
+    User
+      .createChildUser(newUserData)
+      .then( userData => {
+        console.log('userData:', userData);
+      })
   }
 
   componentDidMount(){
@@ -69,6 +77,7 @@ class ParentUserPage extends Component {
                       customQuizes={this.state.customQuizes}
                       onSubmit={this.setUpCurrentQuiz}
         />
+        <CreateNewChild onSubmit={this.CreateNewChild}/>
         <CustomQuizIndex customQuizes={this.state.customQuizes}/>
       </main>
     )

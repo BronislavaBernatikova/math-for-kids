@@ -10,7 +10,7 @@ function SignUpPage(props) {
     const formData = new FormData(event.currentTarget);
 
     User
-      .create({
+      .createParentUser({
         first_name: formData.get('first_name'),
         last_name: formData.get('last_name'),
         email: formData.get('email'),

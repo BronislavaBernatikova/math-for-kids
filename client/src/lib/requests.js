@@ -166,9 +166,9 @@ const User = {
     .then(res => res.json());
   },
 
-  create(params){
+  createParentUser(params){
     return fetch(
-      `${BASE_URL}/users/create`,
+      `${BASE_URL}/users/create/parent`,
       { method:'POST',
         headers: {'Content-type': 'application/json'},
         body: JSON.stringify(params)
@@ -180,6 +180,20 @@ const User = {
           return {error: 'Could not create the user'};
         }
       });
+  },
+
+  createChildUser(params){
+    return fetch(
+      `${BASE_URL}/users/create/child`,
+      {
+        headers: {
+          'Authorization': getJWT(),
+          'Content-Type': 'application/json'
+        },
+        method:'POST',
+        body: JSON.stringify(params)
+      })
+      .then( res => res.json());
   },
 
   oneChild(id){

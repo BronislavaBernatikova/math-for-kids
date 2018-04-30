@@ -7,6 +7,8 @@ const saltRounds = 10;
 const Users = {
 
   createChildUser(req, res){
+    console.log('i am in createChild');
+    console.log('req.curentUser:', req.currentUser);
     const parentId = req.currentUser.id;
     const first_name = req.body.first_name;
     const last_name = req.body.last_name;
