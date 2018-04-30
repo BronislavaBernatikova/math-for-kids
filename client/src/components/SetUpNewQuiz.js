@@ -9,11 +9,11 @@ class SetUpNewQuiz extends Component {
       parentUser: {},
       currentQuizSetUps: [],
       customQuizes: [],
-      numberOfExpressions: '10',
-      arithmeticOperator: 'add',
-      difficulty: '100',
-      currentQuizId: 'null',
-      customQuizId: 'null',
+      numberOfExpressions: " ",
+      arithmeticOperator: " ",
+      difficulty: " ",
+      currentQuizId: " ",
+      customQuizId: " ",
       isEnabled: false
     }
     this.handleChangeNumberOfExpressions = this.handleChangeNumberOfExpressions.bind(this);
@@ -50,12 +50,15 @@ class SetUpNewQuiz extends Component {
   }
   handleChangeCustomQuizId(event) {
     let disable;
-    if(event.target.value === 'null'){
+    if(event.target.value === " "){
       disable = false;
     }
     else disable = true;
     this.setState({
       customQuizId: event.target.value,
+      arithmeticOperator: " ",
+      numberOfExpressions: " ",
+      difficulty: " ",
       isEnabled: disable
     })
   }
@@ -93,8 +96,10 @@ class SetUpNewQuiz extends Component {
           <label>Number of expressions</label>
           <select name="numberOfExpressions"
                   value={this.state.numberOfExpressions}
+                  placeholder="choose"
                   onChange={this.handleChangeNumberOfExpressions}
           >
+            <option value=" ">Select..</option>
             <option className="option" value="10">10</option>
             <option className="option" value="20">20</option>
             <option className="option" value="30">30</option>
@@ -107,8 +112,10 @@ class SetUpNewQuiz extends Component {
           <label>Operator</label>
           <select name="arithmeticOperator"
                   value={this.state.arithmeticOperator}
+                  placeholder="choose"
                   onChange={this.handleChangeArithmeticOperator}
           >
+            <option value=" ">Select..</option>
             <option value="add">Adding</option>
             <option value="subtract">Subtraction</option>
             <option value="multiply">Multiplication</option>
@@ -120,8 +127,10 @@ class SetUpNewQuiz extends Component {
           <label>Difficulty</label>
           <select name="difficulty"
                   value={this.state.difficulty}
+                  placeholder="choose"
                   onChange={this.handleChangeDifficulty}
             >
+            <option value=" ">Select..</option>
             <option value="10">Numbers up to 10</option>
             <option value="100">Numbers up to 100</option>
             <option value="300">Numbers up to 300</option>
@@ -138,6 +147,7 @@ class SetUpNewQuiz extends Component {
                   value={this.state.currentQuizId}
                   onChange={this.handleChangeCurrentQuizId}
             >
+              <option value=" ">Select..</option>
               {
                 currentQuizSetUps && currentQuizSetUps.map((currentQuiz, index) => {
                   return(
@@ -158,6 +168,7 @@ class SetUpNewQuiz extends Component {
                   value={this.state.customQuiz}
                   onChange={this.handleChangeCustomQuizId}
             >
+              <option value=" ">Select..</option>
               {
                 customQuizes && customQuizes.map((customQuiz, index) => {
                   return(
@@ -167,7 +178,7 @@ class SetUpNewQuiz extends Component {
                   )
                 })
               }
-              <option key="xy" value='null'>Generate Quiz</option>
+              <option key="xy" value=" ">Generate Quiz</option>
 
           </select>
         </div>

@@ -33,7 +33,7 @@ class ParentUserPage extends Component {
   }
 
   setUpCurrentQuiz(data){
-
+    console.log('setUpCurrentQuiz:', data);
     CurrentQuizSetUp
       .update(data)
       // .then( updatedQuiz => {
