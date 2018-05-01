@@ -16,21 +16,15 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null,
-      // data:"data from App"
+      user: null
     };
 
     this.signIn = this.signIn.bind(this);
-    this.signOut = this.signOut.bind(this);
-    // this.quizDataFromUserPage = this.quizDataFromUserPage.bind(this);
+    this.signOut = this.signOut.bind(this)
   }
 
   componentWillMount() {
     this.signIn();
-  }
-
-  isSignedIn(){
-
   }
 
   signIn() {
@@ -38,7 +32,7 @@ class App extends Component {
     //console.log('jwt-app-signIn: ', jwt);
     if(jwt){
       const payload = jwtDecode(jwt);
-      // payload --> {id: 3, first_name: "Julie", last_name: "Bernatikova", exp: 1525192402517}
+      // payload --> {id: 3, first_name: "Julie", last_name: "Bernatikova", exp: 1525192402517, role: child}
       this.setState({
         user: payload
       });

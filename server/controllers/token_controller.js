@@ -33,7 +33,8 @@ const Tokens = {
                         id: user.id,
                         first_name: user.first_name,
                         last_name: user.last_name,
-                        exp: expires
+                        exp: expires,
+                        role: user.role
                       },
                       process.env.MATH_FOR_KIDS_SECRET_KEY);
 //The res.json() method is used to return a JSON representation of the token to the

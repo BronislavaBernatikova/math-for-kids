@@ -81,7 +81,8 @@ const Users = {
                         id: user.id,
                         first_name: user.first_name,
                         last_name: user.last_name,
-                        exp: expires
+                        exp: expires,
+                        role: user.role
                       },
                       process.env.MATH_FOR_KIDS_SECRET_KEY);
                       // console.log('token in user: ', token);
