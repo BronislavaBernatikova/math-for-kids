@@ -70,5 +70,3 @@ class CreateNewChild extends Component {
 }
 
 export default CreateNewChild;
-
-{/* <form onSubmit={handleSubmit}> */}

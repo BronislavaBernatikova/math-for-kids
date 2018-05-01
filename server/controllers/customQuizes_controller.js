@@ -15,7 +15,8 @@ const CustomQuizes = {
         knex('custom_quizes')
             .insert({
               'title' : title,
-              'user_id': userId
+              'user_id': userId,
+              'number_of_expressions': numberOfExpressions
             })
             .returning('*')
             .then( customQuizData => {
@@ -97,7 +98,7 @@ const CustomQuizes = {
                 })
           .del()
           .then(res.status(200).send('Custome quiz was successfully deleted!'))
-      )        
+      )
   },
 
   index(req,res){

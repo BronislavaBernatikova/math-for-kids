@@ -4,7 +4,7 @@ import '../styling/QuizIndex.css';
 
 function CustomQuizIndex (props) {
   const { customQuizes = [] } = props;
-  const {onDeleteClick = () => {}} = props;
+  // const {onDeleteClick = () => {}} = props;
 
 
       return(

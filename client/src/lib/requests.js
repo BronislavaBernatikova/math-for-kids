@@ -116,13 +116,13 @@ const Quiz = {
     .then(res => res.json());
   },
 
-  // all(user_id) {
-  //   return fetch(
-  //     `${BASE_URL}/quizes/index`,
-  //     { headers: {'Authorization':getJWT()}}
-  //   )
-  //   .then(res => res.json());
-  // },
+  all(child_user_id) {
+    return fetch(
+      `${BASE_URL}/quizes/index/${child_user_id}`,
+      { headers: {'Authorization':getJWT()} }
+    )
+    .then(res => res.json());
+  },
 
   one(id) {
     return fetch(

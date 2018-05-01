@@ -46,4 +46,3 @@ function QuizIndex (props) {
 }
 
 export default QuizIndex;
-{/* <div className="7"><Link to={`/quizes/show/${quiz.id}`}>Repeat Quiz</Link></div> */}

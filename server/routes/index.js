@@ -51,6 +51,7 @@ quizRouter.post('/create',Quizes.create);
 quizRouter.post('/update', Quizes.update);
 quizRouter.get('/show/:id', Quizes.show);
 quizRouter.get('/correct/:id', Quizes.correct);
+quizRouter.get('/index/:childId', Quizes.index);
 
 //managing answers
 const answerRouter = express.Router();

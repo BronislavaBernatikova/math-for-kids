@@ -4,7 +4,7 @@ import Timer from './Timer';
 import CorrectWrongAnswers from './CorrectWrongAnswers';
 import { Image, Modal, Progress } from 'semantic-ui-react'
 import '../styling/QuizShowPage.css';
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
 
 class QuizShowPage extends Component {
   constructor(props){

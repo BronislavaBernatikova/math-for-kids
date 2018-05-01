@@ -82,7 +82,7 @@ class SetUpNewQuiz extends Component {
   // }
 
   render(){
-    const {parentUser, currentQuizSetUps, customQuizes } = this.props;
+    const {currentQuizSetUps, customQuizes } = this.props;
     const {isEnabled} = this.state;
     console.log('isEnabled:', isEnabled);
     // console.log('parentUser in quiz render:', parentUser);

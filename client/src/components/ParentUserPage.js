@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import CustomQuizIndex from './CustomQuizIndex';
 import CreateCustomQuiz from './CreateCustomQuiz';
 import SetUpNewQuiz from './SetUpNewQuiz';
@@ -24,7 +25,7 @@ class ParentUserPage extends Component {
       .create(customQuizData)
       .then( newCustomQuiz => {
         const {customQuizes} = this.state;
-        console.log('newCustomQuiz:', newCustomQuiz);
+        // console.log('newCustomQuiz:', newCustomQuiz);
         this.setState({
           customQuizes: newCustomQuiz, ...customQuizes
         })
@@ -66,11 +67,27 @@ class ParentUserPage extends Component {
   }
 
   render(){
-    // const {parentUser} = this.state;
-    // console.log('parentUser in render userpage:', this.state.parentUser);
+    const {currentQuizSetUps} = this.state;
+    const students = currentQuizSetUps.length;
+    console.log('currentQuizSetUps:',currentQuizSetUps);
 
     return(
       <main className="ParentUserPage">
+        <div>You have {students} students:</div>
+        <ul>
+        {
+          currentQuizSetUps.map((currentQuizSetUp,index) => {
+            return(
+            <li key={index} id={`{index}`}>
+              <Link to={{
+                        pathname: `/students/show/${currentQuizSetUp.id}`,
+                        state: { currentQuizSetUp: currentQuizSetUp }
+                      }}>{currentQuizSetUp.first_name}{" "}{currentQuizSetUp.last_name}</Link>
+            </li>
+          )})
+        }
+        </ul>
+
         <CreateCustomQuiz sendData={this.createCustomQuiz}/>
         <SetUpNewQuiz parentUser={this.state.parentUser}
                       currentQuizSetUps={this.state.currentQuizSetUps}
