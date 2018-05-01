@@ -10,16 +10,6 @@ function getJWT (){
 
 //HTTP REQUESTS:
 
-const Expression = {
-  one(id){
-    return fetch(
-      `${BASE_URL}/expressions/${id}`,
-      { headers: {'Authorisation': getJWT()} }
-    )
-    .then(res => res.json());
-  }
-}
-
 const Answer = {
   create (params) {
     return fetch(
@@ -52,6 +42,64 @@ const Answer = {
   }
 }
 
+const CustomQuiz = {
+  create(params) {
+    return fetch(
+      `${BASE_URL}/customQuizes/create`,
+      {
+        headers: {
+          'Authorization': getJWT(),
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(params)
+      }
+    )
+    .then(res => res.json());
+  },
+
+  one(id) {
+    return fetch(
+      `${BASE_URL}/customQuizes/show/${id}`,
+      { headers: {'Authorization': getJWT()} }
+    )
+    .then(res => res.json());
+  }
+}
+
+const CustomExpression = {
+  create(params){
+    return fetch(
+      `${BASE_URL}/customExpressions/create`,
+      {
+        headers: {
+          'Authorization': getJWT(),
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(params)
+      })
+  }
+}
+
+const CurrentQuizSetUp = {
+
+  update(params) {
+    return fetch(
+      `${BASE_URL}/quizSetUp/update`,
+      {
+        headers: {
+          'Authorization': getJWT(),
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(params)
+      }
+    )
+    .then(res => res.json());
+  }
+}
+
 const Quiz = {
   create(params) {
     return fetch(
@@ -68,13 +116,13 @@ const Quiz = {
     .then(res => res.json());
   },
 
-  // all(user_id) {
-  //   return fetch(
-  //     `${BASE_URL}/quizes/index`,
-  //     { headers: {'Authorization':getJWT()}}
-  //   )
-  //   .then(res => res.json());
-  // },
+  all(child_user_id) {
+    return fetch(
+      `${BASE_URL}/quizes/index/${child_user_id}`,
+      { headers: {'Authorization':getJWT()} }
+    )
+    .then(res => res.json());
+  },
 
   one(id) {
     return fetch(
@@ -118,9 +166,9 @@ const User = {
     .then(res => res.json());
   },
 
-  create(params){
+  createParentUser(params){
     return fetch(
-      `${BASE_URL}/users/create`,
+      `${BASE_URL}/users/create/parent`,
       { method:'POST',
         headers: {'Content-type': 'application/json'},
         body: JSON.stringify(params)
@@ -134,9 +182,31 @@ const User = {
       });
   },
 
-  one(id){
+  createChildUser(params){
     return fetch(
-      `${BASE_URL}/users/${id}`,
+      `${BASE_URL}/users/create/child`,
+      {
+        headers: {
+          'Authorization': getJWT(),
+          'Content-Type': 'application/json'
+        },
+        method:'POST',
+        body: JSON.stringify(params)
+      })
+      .then( res => res.json());
+  },
+
+  oneChild(id){
+    return fetch(
+      `${BASE_URL}/users/child/${id}`,
+      { headers: {'Authorization': getJWT()} }
+    )
+    .then(res => res.json());
+  },
+
+  oneParent(id){
+    return fetch(
+      `${BASE_URL}/users/parent/${id}`,
       { headers: {'Authorization': getJWT()} }
     )
     .then(res => res.json());
@@ -156,4 +226,4 @@ const Token = {
   }
 }
 
-export { Expression, Quiz, Answer, User, Token };
+export { CurrentQuizSetUp, CustomExpression, CustomQuiz, Quiz, Answer, User, Token };

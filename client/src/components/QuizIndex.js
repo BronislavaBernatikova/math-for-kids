@@ -4,6 +4,7 @@ import '../styling/QuizIndex.css';
 
 function QuizIndex (props) {
   const { quizes = [] } = props;
+  console.log('quizes in quizIndex:', quizes );
 
      return(
       <div className="QuizIndex">
@@ -45,4 +46,3 @@ function QuizIndex (props) {
 }
 
 export default QuizIndex;
-{/* <div className="7"><Link to={`/quizes/show/${quiz.id}`}>Repeat Quiz</Link></div> */}

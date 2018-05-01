@@ -45,7 +45,7 @@ app.use((req, res, next) => {
 app.use(function setCurrentUser (req, res, next){
   //console.log('in setCurrentUser function');
   const token = ( req.headers['authorization']);
-  //console.log('headers:', req.headers);
+  // console.log('headers:', req.headers);
 
   if(token){
 
@@ -60,6 +60,7 @@ app.use(function setCurrentUser (req, res, next){
         .where('id', userId)
         .then( user => {
           req.currentUser = user;
+          // console.log('req.currentUser:', req.currentUser);
           next();
         })
   } else {

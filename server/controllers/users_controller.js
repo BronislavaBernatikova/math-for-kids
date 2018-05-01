@@ -7,6 +7,8 @@ const saltRounds = 10;
 const Users = {
 
   createChildUser(req, res){
+    console.log('i am in createChild');
+    console.log('req.curentUser:', req.currentUser);
     const parentId = req.currentUser.id;
     const first_name = req.body.first_name;
     const last_name = req.body.last_name;
@@ -79,7 +81,8 @@ const Users = {
                         id: user.id,
                         first_name: user.first_name,
                         last_name: user.last_name,
-                        exp: expires
+                        exp: expires,
+                        role: user.role
                       },
                       process.env.MATH_FOR_KIDS_SECRET_KEY);
                       // console.log('token in user: ', token);
@@ -102,14 +105,19 @@ const Users = {
       .then(users => res.json(users));
   },
 
-  show(req,res){
-    const userId = req.params.id;
+  showChild(req,res){
+    //const userId = req.params.id;
+    const userId = req.currentUser.id;
 
     knex
       .first()
       .from('users')
-      .where('id', userId)
+      .where({
+        id: userId,
+        role: "child"
+      })
       .then( user => {
+        console.log('user in showChild:', user);
 
          knex('quizes')
           .select('*')
@@ -121,6 +129,44 @@ const Users = {
           })
       })
 
+  },
+
+  showParent(req,res){
+    //const userId = req.params.id;
+    const userId = req.currentUser.id;
+
+    knex
+      .first()
+      .from('users')
+      .where({
+        id: userId,
+        role: "parent"
+      })
+      .then( user => {
+
+        knex('current_quiz_set_ups')
+          .join('users', 'current_quiz_set_ups.child_id', '=', 'users.id')
+          .select('current_quiz_set_ups.id', 'current_quiz_set_ups.child_id', 'current_quiz_set_ups.parent_id',
+                  'current_quiz_set_ups.custom_quiz_id', 'current_quiz_set_ups.difficulty', 'current_quiz_set_ups.operator',
+                  'current_quiz_set_ups.number_of_expressions', 'users.first_name', 'users.last_name'
+                )
+          .where( 'parent_id', userId )
+          .then( currentQuizSetUps => {
+            // console.log('currentQuizSetUps:', currentQuizSetUps);
+            user.currentQuizSetUps = currentQuizSetUps;
+            // console.log('user.currentQuizSetUps:', user.currentQuizSetUps);
+
+            knex('custom_quizes')
+              .select('*')
+              .where('user_id', userId)
+              .then( customQuizes => {
+                // console.log('customQuizes:', customQuizes);
+                user.customQuizes = customQuizes;
+                // console.log('user.customQuizes:', user.customQuizes);
+                res.json(user);
+              })
+          })
+      })
   }
 
 }
@@ -135,3 +181,39 @@ module.exports = Users;
 // error: true,
 // message
   //.then( res.json())
+
+
+  // showParent(req,res){
+  //   //const userId = req.params.id;
+  //   const userId = req.currentUser.id;
+  //
+  //   knex
+  //     .first()
+  //     .from('users')
+  //     .where({
+  //       id: userId,
+  //       role: "parent"
+  //     })
+  //     .then( user => {
+  //
+  //       knex('current_quiz_set_ups')
+  //         .select('*')
+  //         .where( 'parent_id', userId )
+  //         .then( currentQuizSetUps => {
+  //           // console.log('currentQuizSetUps:', currentQuizSetUps);
+  //           user.currentQuizSetUps = currentQuizSetUps;
+  //           // console.log('user.currentQuizSetUps:', user.currentQuizSetUps);
+  //
+  //
+  //           knex('custom_quizes')
+  //             .select('*')
+  //             .where('user_id', userId)
+  //             .then( customQuizes => {
+  //               // console.log('customQuizes:', customQuizes);
+  //               user.customQuizes = customQuizes;
+  //               // console.log('user.customQuizes:', user.customQuizes);
+  //               res.json(user);
+  //             })
+  //         })
+  //     })
+  // }

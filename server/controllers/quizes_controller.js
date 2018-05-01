@@ -130,6 +130,48 @@ const Quiz = {
         console.log('expressions: ', expressions);
         res.json(expressions);
       })
+  },
+
+  index(req, res){
+    console.log('in quizes index')
+
+    const childId = req.params.childId;
+    const userId = req.currentUser.id;
+    const childInfo = {};
+
+    knex('current_quiz_set_ups')
+      .first('parent_id','custom_quiz_id')
+      .where('child_id', childId)
+      .then( quizSetUp => {
+        console.log('quizSetUp:', quizSetUp);
+        const parentId = quizSetUp.parent_id;
+        const customQuizId = quizSetUp.custom_quiz_id;
+
+        if(parentId === userId){
+          knex('quizes')
+            .select('*')
+            .where('user_id', childId)
+            .then( quizes => {
+              childInfo.quizes = quizes;
+              if(customQuizId !== null){
+                knex('custom_quizes')
+                  .first('*')
+                  .where('id', customQuizId)
+                  .then( customQuiz => {
+                    childInfo.customQuiz = customQuiz;
+                    res.json(childInfo);
+                  })
+              }
+              else {
+                childInfo.customQuiz = null;
+                res.json(childInfo);
+              }
+            })
+        }
+        else {
+          res.status(401).send('Authorization failed!');
+        }
+      })
   }
 
 }

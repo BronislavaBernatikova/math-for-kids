@@ -12,7 +12,8 @@ const CustomExpressions = require('../controllers/customExpressions_controller')
 
 
 const authorization = (req, res, next) => {
-  if(req.currentUser.role === "parent" ){
+  // console.log('req.currentUser:', req.currentUser);
+  if(!req.currentUser || req.currentUser.role === "parent" ){
     next();
   }
   else {
@@ -35,7 +36,8 @@ router.use('/users', userRouter);
 userRouter.post('/create/parent', Users.createParentUser);
 userRouter.post('/create/child', authorization, Users.createChildUser);
 userRouter.get('/index',admin, Users.index);
-userRouter.get('/:id', Users.show);
+userRouter.get('/child/:id', Users.showChild);
+userRouter.get('/parent/:id', Users.showParent);
 
 //creating token
 const tokenRouter = express.Router();
@@ -49,6 +51,7 @@ quizRouter.post('/create',Quizes.create);
 quizRouter.post('/update', Quizes.update);
 quizRouter.get('/show/:id', Quizes.show);
 quizRouter.get('/correct/:id', Quizes.correct);
+quizRouter.get('/index/:childId', Quizes.index);
 
 //managing answers
 const answerRouter = express.Router();
@@ -56,7 +59,7 @@ router.use('/answers', answerRouter);
 answerRouter.post('/update', Answers.update);
 // answerRouter.post('/create', Answers.create); ---> we are creating answers through create quiz now.
 
-//managing current quiz set ups (update/index - only parrent)
+//managing current-quiz-set-ups (update/index - only parrent)
 const currentQuizSetUpRouter = express.Router();
 router.use('/QuizSetUp', currentQuizSetUpRouter);
 currentQuizSetUpRouter.post('/update', authorization, CurrentQuizSetUps.update);
@@ -71,6 +74,7 @@ customQuizRouter.post('/create',  CustomQuizes.create);
 customQuizRouter.post('/update', CustomQuizes.update);
 customQuizRouter.get('/delete/:id', CustomQuizes.delete);
 customQuizRouter.get('/index', CustomQuizes.index);
+customQuizRouter.get('/show/:id', CustomQuizes.show);
 
 // managing custom expressions (only parent)
 const customExpressionRouter = express.Router();
