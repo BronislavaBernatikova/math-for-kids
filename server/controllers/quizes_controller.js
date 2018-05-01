@@ -2,10 +2,10 @@ const knex = require('../db');
 
 const Quiz = {
 
-  create(req,res){
-    console.log('data from react; ');
+  createGenerate(req,res){
+    // console.log('data from react; ');
     // console.log('req.currentUser:', req.currentUser);
-    console.log('req.body:', req.body);
+    // console.log('req.body:', req.body);
     const userId = req.currentUser.id;
     const expression_count = req.body.numberOfExpressions;
     const difficulty = req.body.difficulty;
@@ -13,6 +13,7 @@ const Quiz = {
     const _data = {
       user_id: userId,
       date: new Date(),
+      source: "generated"
       expression_count: expression_count,
       repeated: 0,
       right_answer_count: 0
@@ -47,7 +48,6 @@ const Quiz = {
             console.log('expressions:', expressions);
             let answer = {};
             expressions.forEach(expression => {
-              let
               answer = {
                 expression_id: expression.id,
                 quiz_id: quiz.id,
@@ -61,6 +61,55 @@ const Quiz = {
                     res.json(quiz);
                   })
             })
+          })
+      })
+  },
+
+  createFromCustomQuiz(req, res) {
+    const userId = req.currentUser.id;
+    const customQuizId = req.body.customQuizId;
+    const _data = {
+      user_id: userId,
+      date: new Date(),
+      source: "custom",
+      repeated: 0,
+      right_answer_count: 0
+    };
+
+    knex('custom_quizes')
+      .first()
+      .where('id', customQuizId)
+      .then( customQuiz => {
+        _data.expression_count = customQuiz.number_of_expressions;
+        console.log('_data:', _data);
+
+        knex('quizes')
+          .insert(_data)
+          .returning('*')
+          .then( quizData => {
+            const quiz = quizData[0];
+
+            knex
+              .select('id')
+              .from('custom_expressions')
+              .where('custom_quiz_id',customQuizId)
+              .then( customExpressions => {
+                let answer = {};
+                customExpressions.forEach(expression => {
+                  answer = {
+                    custom_expression_id: expression.id,
+                    quiz_id: quiz.id,
+                    correct_answer: false
+                  }
+                  return knex('answers')
+                      .insert(answer)
+                      .returning('*')
+                      .then( answer => {
+                        console.log('answer from db',answer);
+                        res.json(quiz);
+                      })
+                })
+              })
           })
       })
   },

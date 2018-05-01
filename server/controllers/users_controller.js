@@ -118,17 +118,23 @@ const Users = {
       })
       .then( user => {
         console.log('user in showChild:', user);
-
          knex('quizes')
           .select('*')
           .where('user_id', userId)
           .orderBy('id', 'desc')
           .then( quizes => {
+            console.log('quizes:', quizes);
             user.quizes = quizes;
-            res.json(user);
+            knex('current_quiz_set_ups')
+              .first('*')
+              .where('child_id', userId)
+              .then( currentSetUp => {
+                console.log('currentSetUp:', currentSetUp);
+                user.currentSetUp = currentSetUp;
+                res.json(user);
+              })
           })
       })
-
   },
 
   showParent(req,res){

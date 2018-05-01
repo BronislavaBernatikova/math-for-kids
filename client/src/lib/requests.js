@@ -101,9 +101,24 @@ const CurrentQuizSetUp = {
 }
 
 const Quiz = {
-  create(params) {
+  createGenerate(params) {
     return fetch(
-      `${BASE_URL}/quizes/create`,
+      `${BASE_URL}/quizes/create/generate`,
+      {
+        headers: {
+          'Authorization': getJWT(),
+          'Content-Type':'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(params)
+      }
+    )
+    .then(res => res.json());
+  },
+
+  createFromCustomQuiz(params) {
+    return fetch(
+      `${BASE_URL}/quizes/create/fromCustom`,
       {
         headers: {
           'Authorization': getJWT(),

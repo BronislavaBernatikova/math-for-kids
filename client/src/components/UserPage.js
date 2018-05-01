@@ -9,14 +9,20 @@ class UserPage extends Component {
   constructor(props){
     super(props);
     this.state = {
-      user: {}
+      user: {},
+      quizes: [],
+      currentSetUp: {}
     }
     this.createNewQuiz = this.createNewQuiz.bind(this);
   }
 
-  createNewQuiz(quizParams){
+  createNewQuiz(){
+    const {currentSetUp} = this.state;
+    const quizParams = {
+    
+    }
     Quiz
-      .create(quizParams)
+      .createGenerate(quizParams)
       .then( quiz => {
         // console.log('quiz:', quiz);
         // console.log('this.props.history:', this.props.history);
@@ -34,9 +40,11 @@ class UserPage extends Component {
     User
       .oneChild(userId)
       .then( user => {
-        //console.log('user in then:', user)
+        console.log('user in childUserPage:', user)
         this.setState({
-          user: user
+          user: user,
+          quizes: user.quizes,
+          currentSetUp: user.currentSetUp
         })
       })
   }
