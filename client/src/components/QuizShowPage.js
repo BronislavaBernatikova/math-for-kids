@@ -44,9 +44,9 @@ class QuizShowPage extends Component {
       .then( answer => {
         console.log('answer:', answer);
 
-        let right_answer_count = this.state.right_answer_count;
+        let {right_answer_count} = this.state;
         answer.correct_answer ? (right_answer_count += 1) : (right_answer_count);
-
+        console.log('this.state:', this.state);
           this.setState({
             right_answer_count: right_answer_count,
             answered_count: this.state.answered_count + 1,
@@ -84,12 +84,6 @@ class QuizShowPage extends Component {
     const {quiz} = this.props.location.state;
     const quizId = quiz.id;
 
-    // const quizData = {
-    //   quizId: quizId,
-    //   customQuizId: customQuizId
-    // }
-    // console.log('quizId:', quizId);
-    // console.log('i am in quiz show page mount');
     Quiz
       .one(quizId)
       .then( quiz => {
@@ -101,7 +95,7 @@ class QuizShowPage extends Component {
           timer:true,
           time: 0
         })
-        console.log('quiz in mount:', this.state.quiz);
+        console.log('quiz in mount:', quiz);
       })
   }
 
@@ -117,17 +111,6 @@ class QuizShowPage extends Component {
     const quizId = quiz.id;
     const percent = (answered_count / expression_count) * 100 // progress bar
 
-    const displayExpression = (quiz.source === "custom") ? (
-      <div className="square">{expression.expression}</div>
-    ):(
-      <div>
-        <div className="square">{expression.num1}</div>
-        <div className="square">{expression.operator}</div>
-        <div className="square">{expression.num2}</div>
-      </div>
-    )
-
-
     if(loading){
       return(
         <div className="QuizShowPage">
@@ -138,6 +121,17 @@ class QuizShowPage extends Component {
       )}
 
     else if(answered_count < expression_count){
+
+      const displayExpression = (quiz.source === "custom") ? (
+        <div className="square">{expression.expression}</div>
+      ):(
+        <div>
+          <div className="square">{expression.num1}</div>
+          <div className="square">{expression.operator}</div>
+          <div className="square">{expression.num2}</div>
+        </div>
+      )
+
       return(
         <div className="QuizShowPage">
           <div className="wrapper-1">

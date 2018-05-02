@@ -131,7 +131,7 @@ const Quiz = {
     //const userId = req.currentUser.id;
 
         knex('quizes')
-          .select('*')
+          .first()
           .where('id', quizId)
           .then( quiz => {
             console.log('quiz:', quiz);
@@ -193,20 +193,44 @@ const Quiz = {
   },
 
   correct(req,res){
-    const quiz_id = req.params.id;
+    const quizId = req.params.id;
 
-    knex('answers')
-      .join('expressions','expressions.id','=','answers.expression_id')
-      .select('expressions.operator','expressions.num1', 'expressions.num2',
-              'expressions.solution', 'expression_id', 'answers.id','answers.correct_answer','answers.quiz_id')
-      .where({
-        quiz_id: quiz_id,
-        correct_answer: false
+    knex('quizes')
+      .select('source')
+      .where('id', quizId)
+      .then( quizData => {
+        const quiz = quizData[0];
+
+        if(quiz.source === "generated"){
+          knex('answers')
+            .join('expressions','expressions.id','=','answers.expression_id')
+            .select('expressions.operator','expressions.num1', 'expressions.num2',
+                    'expressions.solution', 'expression_id', 'answers.id','answers.correct_answer','answers.quiz_id')
+            .where({
+              quiz_id: quizId,
+              correct_answer: false
+            })
+            .then( expressions => {
+              // console.log('expressions: ', expressions);
+              res.json(expressions);
+            })
+        }
+        else {
+          knex('answers')
+            .join('custom_expressions','custom_expressions.id','=','answers.custom_expression_id')
+            .select('custom_expressions.expression','custom_expressions.solution',
+                    'custom_expression_id', 'answers.id','answers.correct_answer','answers.quiz_id')
+            .where({
+              quiz_id: quizId,
+              correct_answer: false
+            })
+            .then( expressions => {
+              console.log('expressions: ', expressions);
+              res.json(expressions);
+            })
+        }
       })
-      .then( expressions => {
-        // console.log('expressions: ', expressions);
-        res.json(expressions);
-      })
+
   },
 
   index(req, res){

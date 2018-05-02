@@ -67,6 +67,17 @@ class CorrectWrongAnswers extends Component {
       )}
 
     if (expressions){
+
+      // const displayExpression = (quiz.source === "custom") ? (
+      //   <div className="square">{expression.expression}</div>
+      // ):(
+      //   <div>
+      //     <div className="square">{expression.num1}</div>
+      //     <div className="square">{expression.operator}</div>
+      //     <div className="square">{expression.num2}</div>
+      //   </div>
+      // )
+
       return(
         <form className="CorrectWrongAnswers"
               onSubmit={this.handleSubmit}
