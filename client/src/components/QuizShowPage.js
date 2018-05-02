@@ -203,7 +203,7 @@ class QuizShowPage extends Component {
               </Modal.Content>
             </Modal>
 
-            <CorrectWrongAnswers quizId={quizId}/>
+            <CorrectWrongAnswers quiz={quiz}/>
 
           </div>
         </div>
@@ -241,7 +241,7 @@ class QuizShowPage extends Component {
                 </Modal.Content>
               </Modal>
 
-              <CorrectWrongAnswers quizId={quizId}/>
+              <CorrectWrongAnswers quiz={quiz}/>
 
             </div>
            </div>
