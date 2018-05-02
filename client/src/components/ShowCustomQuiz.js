@@ -26,7 +26,7 @@ class ShowCustomQuiz extends Component {
   render(){
     const { customQuiz } = this.state;
     const { customExpressions } = customQuiz;
-  
+
     return(
       <main className="ShowCustomQuiz">
         <div>{customQuiz.title}</div>
@@ -34,7 +34,7 @@ class ShowCustomQuiz extends Component {
         {
           customExpressions && customExpressions.map((expression, index) => {
             return(
-              <div>
+              <div key="index">
                 <div>custom expression:</div>
                 <div>{expression.expression}</div>
                 <div>{expression.solution}</div>

@@ -7,8 +7,8 @@ const saltRounds = 10;
 const Users = {
 
   createChildUser(req, res){
-    console.log('i am in createChild');
-    console.log('req.curentUser:', req.currentUser);
+    // console.log('i am in createChild');
+    // console.log('req.curentUser:', req.currentUser);
     const parentId = req.currentUser.id;
     const first_name = req.body.first_name;
     const last_name = req.body.last_name;
@@ -49,7 +49,7 @@ const Users = {
   },
 
   createParentUser(req, res){
-    console.log('in createParentUser');
+    // console.log('in createParentUser');
     const first_name = req.body.first_name;
     const last_name = req.body.last_name;
     const email = req.body.email;
@@ -117,19 +117,19 @@ const Users = {
         role: "child"
       })
       .then( user => {
-        console.log('user in showChild:', user);
+        // console.log('user in showChild:', user);
          knex('quizes')
           .select('*')
           .where('user_id', userId)
           .orderBy('id', 'desc')
           .then( quizes => {
-            console.log('quizes:', quizes);
+            // console.log('quizes:', quizes);
             user.quizes = quizes;
             knex('current_quiz_set_ups')
               .first('*')
               .where('child_id', userId)
               .then( currentSetUp => {
-                console.log('currentSetUp:', currentSetUp);
+                // console.log('currentSetUp:', currentSetUp);
                 user.currentSetUp = currentSetUp;
                 res.json(user);
               })

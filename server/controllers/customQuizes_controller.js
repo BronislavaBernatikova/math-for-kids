@@ -1,5 +1,5 @@
 const knex = require('../db');
-var Promise = require("bluebird");
+const Promise = require('bluebird');
 
 
 const CustomQuizes = {
