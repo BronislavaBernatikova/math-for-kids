@@ -5,6 +5,7 @@ import CreateCustomQuiz from './CreateCustomQuiz';
 import SetUpNewQuiz from './SetUpNewQuiz';
 import CreateNewChild from './CreateNewChild';
 import { User, CustomQuiz, CurrentQuizSetUp } from '../lib/requests';
+import '../styling/ParentUserPage.css';
 
 
 class ParentUserPage extends Component {
@@ -73,29 +74,37 @@ class ParentUserPage extends Component {
 
     return(
       <main className="ParentUserPage">
-        <div>You have {students} students:</div>
-        <ul>
-        {
-          currentQuizSetUps.map((currentQuizSetUp,index) => {
-            return(
-            <li key={index} id={`{index}`}>
-              <Link to={{
-                        pathname: `/students/show/${currentQuizSetUp.id}`,
-                        state: { currentQuizSetUp: currentQuizSetUp }
-                      }}>{currentQuizSetUp.first_name}{" "}{currentQuizSetUp.last_name}</Link>
-            </li>
-          )})
-        }
-        </ul>
+        <div className="students">
+          <div className="text2">
+              <div>Your students:</div>
+          </div>
+
+          <div className="students-list">
+              <ul>
+              {
+                currentQuizSetUps.map((currentQuizSetUp,index) => {
+                  return(
+                  <li key={index} id={`{index}`}>
+                    <Link to={{
+                              pathname: `/students/show/${currentQuizSetUp.id}`,
+                              state: { currentQuizSetUp: currentQuizSetUp }
+                            }}>{currentQuizSetUp.first_name}{" "}{currentQuizSetUp.last_name}</Link>
+                  </li>
+                )})
+              }
+              </ul>
+          </div>
+        </div>
+
 
         <CreateCustomQuiz sendData={this.createCustomQuiz}/>
+        <CustomQuizIndex customQuizes={this.state.customQuizes}/>
         <SetUpNewQuiz parentUser={this.state.parentUser}
                       currentQuizSetUps={this.state.currentQuizSetUps}
                       customQuizes={this.state.customQuizes}
                       onSubmit={this.setUpCurrentQuiz}
         />
         <CreateNewChild onSubmit={this.CreateNewChild}/>
-        <CustomQuizIndex customQuizes={this.state.customQuizes}/>
       </main>
     )
   }

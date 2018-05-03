@@ -1,0 +1,77 @@
+.ParentUserPage {
+  background: linear-gradient( white,rgb(161,187,255), white);
+  font-family: 'Gaegu', cursive;
+  margin: 1.5vw;
+}
+/* STUDENTS */
+.students {
+  /* border: red solid thin; */
+  margin: 1vw;
+  margin-top: 5vw;
+  font-size: 2vw;
+  display: flex;
+}
+.text2 {
+  /* border: black solid thin; */
+  text-shadow: 1px 1px rgb(100,116,158);
+}
+.students-list {
+  /* border: black solid thin; */
+}
+.students-list > ul {
+  padding: 0;
+  margin: 0;
+}
+.students-list > ul li {
+  /* border: black solid thin; */
+  list-style-type: none;
+  margin-left: 1vw;
+}
+/* CREATE CUSTOM QUIZ */
+.CreateCustomQuiz{
+  /* border: red solid thick; */
+  margin: 1vw;
+  margin-top: 2vw;
+}
+.field input {
+  /* border: black solid thick; */
+  font-family: 'Gaegu', cursive;
+  font-size: 1.5vw;
+  width: 20vw;
+  box-shadow: 5px 5px 3px grey;
+  padding: 0.5vw;
+  border-radius: 5px;
+  margin: 0.5vh;
+}
+.container-customQuiz {
+  /* border: green thick solid; */
+  display: flex;
+  margin: 0;
+}
+.container-quiz2.customQuiz {
+  padding: 1vh;
+}
+.addExpressions {
+  /* border: solid yellow thick; */
+  background-color: white;
+  border-radius: 5px;
+  /* margin-right: 1vw; */
+  flex-grow: 1;
+}
+.addExpressions > ol {
+  padding: 0;
+}
+.addExpressions li > div {
+  display: flex;
+}
+.addExpressions button {
+  margin-left: 1vw;
+  color: red;
+}
+.mainContainer {
+  display: flex;
+}
+/* CREATE CUSTOM EXPRESSION */
+.container-quiz2.customExpression {
+  padding: 1vh;
+}

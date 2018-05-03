@@ -55,42 +55,47 @@ class CreateCustomQuiz extends Component {
     const { expressions } = this.state;
     return(
       <main className="CreateCustomQuiz">
-        <form onSubmit={this.createCustomQuiz}
-                style={{marginTop: '0 3rem'}}
-        >
+        <div className="text2">Create custom quiz</div>
+        <div className="mainContainer">
+        <div className="customQuizForm">
+          <form onSubmit={this.createCustomQuiz}>
+            <div className="container-customQuiz">
+              <div className="container-quiz1">
+                <div className="field">
+                  <label htmlFor="title">Title</label>
+                  <input type="text" name="title" id="title" />
+                </div>
+              </div>
+              <div className="container-quiz2 customQuiz">
+                <div>
+                  <input type="submit" value="Create Quiz" />
+                </div>
+              </div>
+            </div>
+          </form>
+          <CreateCustomExpression onSubmit={this.addExpression}/>
+        </div>
 
-          <div>
-            <label htmlFor="title">Title</label>
-            <input type="text" name="title" id="title" />
-          </div>
-
-          <ul>
+        <div className="addExpressions">
+          <ol>
           {
             expressions.map((expression, index) => {
               return(
                 <li key={index} id={`${index}`}>
-                  <div>
-                    <div>Expression {index + 1}:</div>
-                    <div>{expression.expression} => {expression.solution}</div>
+                  <div className="added">
+                    <div>{expression.expression} = {expression.solution}</div>
                     <button
                       data-id={`${index}`}
                       onClick={this.removeExpression}
-                    >Remove</button>
+                    >x</button>
                   </div>
                 </li>
               )
             })
           }
-          </ul>
-          {/* <CreateCustomExpression onSubmit={this.addExpression}/> */}
-
-          <div>
-            <input type="submit" value="Create Quiz" />
-          </div>
-
-        </form>
-        <div>Create Expression:</div>
-        <CreateCustomExpression onSubmit={this.addExpression}/>
+        </ol>
+        </div>
+      </div>
       </main>
     )
   }
@@ -98,3 +103,4 @@ class CreateCustomQuiz extends Component {
 }
 
 export default CreateCustomQuiz;
+// style={{marginTop: '0 3rem'}}

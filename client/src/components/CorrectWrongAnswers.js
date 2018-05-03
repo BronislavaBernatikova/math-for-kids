@@ -77,8 +77,8 @@ class CorrectWrongAnswers extends Component {
         >
           <div className="text">Correct your wrong answers:</div>
           <div className="container">
-            {expressions.map( expression => (
-            <div className={expression.id}>
+            {expressions.map( (expression, index) => (
+            <div key={`${index}`} className={expression.id}>
               <div>{expression.num1}</div>
               <div>{expression.operator}</div>
               <div>{expression.num2}</div>
@@ -103,8 +103,8 @@ class CorrectWrongAnswers extends Component {
           >
             <div className="text">Correct your wrong answers:</div>
             <div className="container">
-              {expressions.map( expression => (
-              <div className={expression.id}>
+              {expressions.map( (expression, index) => (
+              <div key={`${index}`} className={expression.id}>
                 <div>{expression.expression}</div>
                 <input name={`answer-${expression.id}`}
                        id={`answer-${expression.id}`}

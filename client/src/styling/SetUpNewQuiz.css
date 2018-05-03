@@ -1,7 +1,7 @@
 .SetUpNewQuiz {
   /* border: blue solid thick; */
   display: flex;
-  padding: 5vw 5vh;
+  padding: 1vw;
 }
 .container-quiz1 {
   /* border: red thick solid; */
@@ -38,11 +38,16 @@ label {
   justify-content: center;
   padding: 8vh 0vh;
 }
+fieldset {
+  border: none;
+  padding: 0 !important;
+  margin: 0;
+}
 
 .container-quiz2 input {
   background: radial-gradient(white, rgb(161,187,255));
   box-shadow: 5px 5px 3px grey;
-  border: grey solid thin;
+  /* border: grey solid thin; */
   font-family: 'Gaegu', cursive;
   font-size: 1.5vw;
   text-align: center;

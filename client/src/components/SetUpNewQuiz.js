@@ -73,7 +73,7 @@ class SetUpNewQuiz extends Component {
       currentQuizId: this.state.currentQuizId,
       customQuizId: this.state.customQuizId
     };
-    console.log('newQuiz:', newQuiz);
+    // console.log('newQuiz:', newQuiz);
     this.props.onSubmit(newQuiz);
   }
 
@@ -84,13 +84,33 @@ class SetUpNewQuiz extends Component {
   render(){
     const {currentQuizSetUps, customQuizes } = this.props;
     const {isEnabled} = this.state;
-    console.log('isEnabled:', isEnabled);
+    // console.log('isEnabled:', isEnabled);
     // console.log('parentUser in quiz render:', parentUser);
     return (
       <form className="SetUpNewQuiz"
             onSubmit={this.handleSubmit}
       >
         <div className="container-quiz1">
+          <div className="field">
+            <label>Select Student</label>
+            <select name="currentQuizId"
+                    value={this.state.currentQuizId}
+                    onChange={this.handleChangeCurrentQuizId}
+              >
+                <option value=" ">Select..</option>
+                {
+                  currentQuizSetUps && currentQuizSetUps.map((currentQuiz, index) => {
+                    return(
+
+                      <option key={index}
+                              value={`${currentQuiz.id}`}>{currentQuiz.first_name}{}{currentQuiz.last_name}
+                      </option>
+                    )
+                  })
+                }
+
+            </select>
+          </div>
         <fieldset disabled={isEnabled}>
         <div className="field">
           <label>Number of expressions</label>
@@ -141,26 +161,6 @@ class SetUpNewQuiz extends Component {
         </div>
       </fieldset>
 
-        <div className="field">
-          <label>Select Student</label>
-          <select name="currentQuizId"
-                  value={this.state.currentQuizId}
-                  onChange={this.handleChangeCurrentQuizId}
-            >
-              <option value=" ">Select..</option>
-              {
-                currentQuizSetUps && currentQuizSetUps.map((currentQuiz, index) => {
-                  return(
-
-                    <option key={index}
-                            value={`${currentQuiz.id}`}>{currentQuiz.first_name}{}{currentQuiz.last_name}
-                    </option>
-                  )
-                })
-              }
-
-          </select>
-        </div>
         <fieldset>
         <div className="field">
           <label>Select Custom Quiz</label>
@@ -187,8 +187,8 @@ class SetUpNewQuiz extends Component {
       </div>
         <div className="container-quiz2">
           <div>
-          <input type="submit" value="Start New Quiz"/>
-        </div>
+            <input type="submit" value="Set Up Quiz"/>
+          </div>
         </div>
       </form>
     )}
