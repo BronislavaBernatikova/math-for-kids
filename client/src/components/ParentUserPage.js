@@ -19,6 +19,8 @@ class ParentUserPage extends Component {
     this.createCustomQuiz = this.createCustomQuiz.bind(this);
     this.setUpCurrentQuiz = this.setUpCurrentQuiz.bind(this);
     this.CreateNewChild = this.CreateNewChild.bind(this);
+    this.triggerModal = this.triggerModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   createCustomQuiz(customQuizData){
@@ -50,7 +52,18 @@ class ParentUserPage extends Component {
         console.log('userData:', userData);
       })
   }
-
+  triggerModal(event){
+    event.preventDefault();
+    this.setState({
+      modalState: true
+    })
+  }
+  closeModal(event){
+    event.preventDefault();
+    this.setState({
+      modalState: false
+    })
+  }
   componentDidMount(){
     const userId = localStorage.userId;
 
@@ -61,14 +74,15 @@ class ParentUserPage extends Component {
         this.setState({
           parentUser: user,
           customQuizes: user.customQuizes,
-          currentQuizSetUps: user.currentQuizSetUps
+          currentQuizSetUps: user.currentQuizSetUps,
+          modalState: false
         })
       })
 
   }
 
   render(){
-    const {currentQuizSetUps} = this.state;
+    const {currentQuizSetUps, modalState} = this.state;
     const students = currentQuizSetUps.length;
     console.log('currentQuizSetUps:',currentQuizSetUps);
 
@@ -96,6 +110,27 @@ class ParentUserPage extends Component {
           </div>
         </div>
 
+        <button
+          className="modal-triger"
+          onClick={this.triggerModal}
+        >Trigger modal</button>
+
+        <div className="modal" id="modal" style={{display: this.state.modalState ? 'table' : 'none' }}>
+          <div className="modal__dialog">
+            <section className="modal__content">
+              <header className="modal__header">
+                <h2 className="modal__title">This is simple modal title.</h2>
+                <button className="modal__close"
+                        onClick={this.closeModal}
+                >x</button>
+              </header>
+              <div className="modal__body">
+                  <CreateNewChild onSubmit={this.CreateNewChild}/>
+              </div>
+              <footer className="modal__footer"></footer>
+            </section>
+          </div>
+        </div>
 
         <CreateCustomQuiz sendData={this.createCustomQuiz}/>
         <CustomQuizIndex customQuizes={this.state.customQuizes}/>
@@ -104,7 +139,7 @@ class ParentUserPage extends Component {
                       customQuizes={this.state.customQuizes}
                       onSubmit={this.setUpCurrentQuiz}
         />
-        <CreateNewChild onSubmit={this.CreateNewChild}/>
+        {/* <CreateNewChild onSubmit={this.CreateNewChild}/> */}
       </main>
     )
   }

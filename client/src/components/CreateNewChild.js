@@ -28,6 +28,7 @@ class CreateNewChild extends Component {
     return(
       <main className="CreateNewChild">
 
+
               <form onSubmit={this.handleSubmit}>
 
                 <div className="signInContainer-1">
@@ -63,7 +64,7 @@ class CreateNewChild extends Component {
                   <input type="submit" value="Add Student" />
                 </div>
               </form>
-
+          
       </main>
     )
   }
