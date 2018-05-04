@@ -108,26 +108,29 @@ class ParentUserPage extends Component {
               }
               </ul>
           </div>
+          <div className="students-button">
+            <button
+              className="modal-triger"
+              onClick={this.triggerModal}
+            >Add Student</button>
+          </div>
         </div>
-
-        <button
-          className="modal-triger"
-          onClick={this.triggerModal}
-        >Trigger modal</button>
 
         <div className="modal" id="modal" style={{display: this.state.modalState ? 'table' : 'none' }}>
           <div className="modal__dialog">
             <section className="modal__content">
               <header className="modal__header">
-                <h2 className="modal__title">This is simple modal title.</h2>
+                <div className="modal__title">Add a new student</div>
                 <button className="modal__close"
                         onClick={this.closeModal}
                 >x</button>
               </header>
               <div className="modal__body">
+                <div >
                   <CreateNewChild onSubmit={this.CreateNewChild}/>
+                </div>
               </div>
-              <footer className="modal__footer"></footer>
+
             </section>
           </div>
         </div>
@@ -139,7 +142,7 @@ class ParentUserPage extends Component {
                       customQuizes={this.state.customQuizes}
                       onSubmit={this.setUpCurrentQuiz}
         />
-        {/* <CreateNewChild onSubmit={this.CreateNewChild}/> */}
+        
       </main>
     )
   }
