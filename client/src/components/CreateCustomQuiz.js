@@ -35,6 +35,9 @@ class CreateCustomQuiz extends Component {
     // console.log('customExpressions:', customExpressions);
     // console.log('customQuizData:', customQuizData);
     this.props.sendData(customQuizData);
+    this.setState({
+      expressions: []
+    })
     // console.log('this.props:', this.props);
   }
 
@@ -77,6 +80,7 @@ class CreateCustomQuiz extends Component {
         </div>
 
         <div className="addExpressions">
+          <div>What's in your quiz..</div>
           <ol>
           {
             expressions.map((expression, index) => {

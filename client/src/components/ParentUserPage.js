@@ -21,6 +21,8 @@ class ParentUserPage extends Component {
     this.CreateNewChild = this.CreateNewChild.bind(this);
     this.triggerModal = this.triggerModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.triggerQuizModal = this.triggerQuizModal.bind(this);
+    this.closeQuizModal = this.closeQuizModal.bind(this);
   }
 
   createCustomQuiz(customQuizData){
@@ -64,6 +66,18 @@ class ParentUserPage extends Component {
       modalState: false
     })
   }
+  triggerQuizModal(event){
+    event.preventDefault();
+    this.setState({
+      modalQuizState: true
+    })
+  }
+  closeQuizModal(event){
+    event.preventDefault();
+    this.setState({
+      modalQuizState: false
+    })
+  }
   componentDidMount(){
     const userId = localStorage.userId;
 
@@ -75,10 +89,10 @@ class ParentUserPage extends Component {
           parentUser: user,
           customQuizes: user.customQuizes,
           currentQuizSetUps: user.currentQuizSetUps,
-          modalState: false
+          modalState: false,
+          modalQuizState: false
         })
       })
-
   }
 
   render(){
@@ -88,11 +102,10 @@ class ParentUserPage extends Component {
 
     return(
       <main className="ParentUserPage">
-        <div className="students">
-          <div className="text2">
-              <div>Your students:</div>
-          </div>
 
+        <div className="text2">Your students</div>
+        <div className="students">
+    
           <div className="students-list">
               <ul>
               {
@@ -109,11 +122,20 @@ class ParentUserPage extends Component {
               </ul>
           </div>
           <div className="students-button">
+          <div >
             <button
               className="modal-triger"
               onClick={this.triggerModal}
             >Add Student</button>
           </div>
+
+          <div >
+            <button
+              className="modal-triger"
+              onClick={this.triggerQuizModal}
+            >Set Up Quiz</button>
+          </div>
+        </div>
         </div>
 
         <div className="modal" id="modal" style={{display: this.state.modalState ? 'table' : 'none' }}>
@@ -135,14 +157,33 @@ class ParentUserPage extends Component {
           </div>
         </div>
 
+        <div className="modal" id="modal" style={{display: this.state.modalQuizState ? 'table' : 'none' }}>
+          <div className="modal__dialog">
+            <section className="modalQuiz__content">
+              <header className="modal__header">
+                <div className="modal__title">Set us quiz for student</div>
+                <button className="modal__close"
+                        onClick={this.closeQuizModal}
+                >x</button>
+              </header>
+              <div className="modal__body">
+                <div >
+                  <SetUpNewQuiz parentUser={this.state.parentUser}
+                                currentQuizSetUps={this.state.currentQuizSetUps}
+                                customQuizes={this.state.customQuizes}
+                                onSubmit={this.setUpCurrentQuiz}
+                  />
+                </div>
+              </div>
+
+            </section>
+          </div>
+        </div>
+
         <CreateCustomQuiz sendData={this.createCustomQuiz}/>
         <CustomQuizIndex customQuizes={this.state.customQuizes}/>
-        <SetUpNewQuiz parentUser={this.state.parentUser}
-                      currentQuizSetUps={this.state.currentQuizSetUps}
-                      customQuizes={this.state.customQuizes}
-                      onSubmit={this.setUpCurrentQuiz}
-        />
-        
+
+
       </main>
     )
   }

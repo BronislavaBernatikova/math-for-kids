@@ -10,33 +10,15 @@
 .container-list {
   display: flex;
   justify-content: space-between;
-  padding-top: 3vh;
+  padding-top: 1.5vh;
   text-align: center;
-
-}
-
-.top-row {
-  font-weight: bolder;
-  text-shadow: 1px 1px rgb(100,116,158);
 }
 .container-list > div {
   /* border: red solid thin; */
-  width: 9vw;
+  width: 15vw;
   padding: 0.5vh 0vh;
   font-family: 'Gaegu', cursive;
 }
 .container-list.border {
   border-bottom: grey solid thin;
 }
-
-
-/* .top-row {
-  background: radial-gradient(white, rgb(161,187,255));
-  box-shadow: 5px 5px 3px grey;
-  border: grey solid thin;
-  font-family: 'Gaegu', cursive;
-  font-size: 1.5vw;
-  text-align: center;
-  max-width: 150px;
-  border-radius: 5px;
-} */

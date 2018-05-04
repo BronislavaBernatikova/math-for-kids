@@ -11,7 +11,7 @@
 }
 .field {
   /* border: black solid thin; */
-  width: 40vw;
+  width: 37vw;
   font-size: 1.5vw;
   display: flex;
   justify-content: space-between;
@@ -19,8 +19,6 @@
 label {
   /* border: black thin solid; */
   padding-top: 2vh;
-  text-shadow: 1px 1px rgb(100,116,158);
-  /* font-weight: bold; */
 }
 .field select {
   /* -webkit-appearance: none; */
