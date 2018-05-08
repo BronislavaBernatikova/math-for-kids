@@ -16,7 +16,7 @@
   display: flex;
   justify-content: space-between;
 }
-label {
+.SetUpNewQuiz label {
   /* border: black thin solid; */
   padding-top: 2vh;
 }
@@ -28,6 +28,9 @@ label {
   width: 20vw;
   box-shadow: 5px 5px 3px grey;
   margin: 5px;
+}
+.field > input {
+  width: 10vw;
 }
 .container-quiz2 {
   /* border: black thin solid; */

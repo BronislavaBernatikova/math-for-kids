@@ -113,6 +113,10 @@ html, body {
   font-family: 'Gaegu', cursive;
   border-radius: 5px;
 }
+.expression .button {
+  margin-top: 5vw;
+  margin-bottom: 0;
+}
 .expression > div {
   padding: 20px;
   /* border: red thin solid; */

@@ -131,7 +131,14 @@ const Users = {
               .then( currentSetUp => {
                 // console.log('currentSetUp:', currentSetUp);
                 user.currentSetUp = currentSetUp;
-                res.json(user);
+                const customQuizId = currentSetUp.custom_quiz_id;
+                knex('custom_quizes')
+                  .first()
+                  .where('id', customQuizId)
+                  .then( customQuiz => {
+                    user.customQuiz = customQuiz;
+                    res.json(user);
+                  })
               })
           })
       })

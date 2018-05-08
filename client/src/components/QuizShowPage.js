@@ -158,7 +158,7 @@ class QuizShowPage extends Component {
                   <div>
                     <input name="user_answer" id="user_answer" />
                   </div>
-                  <div>
+                  <div className="button">
                     <input type="submit" value="Next"/>
                   </div>
                 </form>

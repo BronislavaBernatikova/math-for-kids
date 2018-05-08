@@ -244,7 +244,7 @@ const Quiz = {
       .first('parent_id','custom_quiz_id')
       .where('child_id', childId)
       .then( quizSetUp => {
-        // console.log('quizSetUp:', quizSetUp);
+        console.log('quizSetUp:', quizSetUp);
         const parentId = quizSetUp.parent_id;
         const customQuizId = quizSetUp.custom_quiz_id;
 
@@ -265,6 +265,7 @@ const Quiz = {
               }
               else {
                 childInfo.customQuiz = null;
+                console.log('childInfo:', childInfo);
                 res.json(childInfo);
               }
             })

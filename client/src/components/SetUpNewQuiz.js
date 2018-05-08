@@ -9,11 +9,11 @@ class SetUpNewQuiz extends Component {
       parentUser: {},
       currentQuizSetUps: [],
       customQuizes: [],
-      numberOfExpressions: " ",
-      arithmeticOperator: " ",
-      difficulty: " ",
-      currentQuizId: " ",
-      customQuizId: " ",
+      numberOfExpressions: null,
+      arithmeticOperator: null,
+      difficulty: null,
+      currentQuizId: null,
+      customQuizId: null,
       isEnabled: false
     }
     this.handleChangeNumberOfExpressions = this.handleChangeNumberOfExpressions.bind(this);
@@ -25,46 +25,48 @@ class SetUpNewQuiz extends Component {
   }
 
   handleChangeNumberOfExpressions(event) {
-    // event.preventDefault();
       this.setState({
         numberOfExpressions: event.target.value
       })
+      console.log('this.state:', this.state);
     }
   handleChangeArithmeticOperator(event) {
-    // event.preventDefault();
     this.setState({
       arithmeticOperator: event.target.value
     })
+    console.log('this.state:', this.state);
   }
   handleChangeDifficulty(event) {
-    // event.preventDefault();
     this.setState({
       difficulty: event.target.value
     })
+    console.log('this.state:', this.state);
   }
   handleChangeCurrentQuizId(event) {
-    // event.preventDefault();
     this.setState({
       currentQuizId: event.target.value
     })
+    console.log('this.state:', this.state);
   }
   handleChangeCustomQuizId(event) {
     let disable;
-    if(event.target.value === " "){
+    if(event.target.value === null || " "){
       disable = false;
     }
     else disable = true;
+
     this.setState({
       customQuizId: event.target.value,
-      arithmeticOperator: " ",
-      numberOfExpressions: " ",
-      difficulty: " ",
+      arithmeticOperator: null,
+      numberOfExpressions: null,
+      difficulty: null,
       isEnabled: disable
     })
+    console.log('this.state:', this.state);
   }
 
   handleSubmit (event) {
-    event.preventDefault();
+    // event.preventDefault();
 
     const newQuiz = {
       numberOfExpressions: this.state.numberOfExpressions,
@@ -75,11 +77,8 @@ class SetUpNewQuiz extends Component {
     };
     // console.log('newQuiz:', newQuiz);
     this.props.onSubmit(newQuiz);
+    event.target.reset();
   }
-
-  // componentWillReceiveProps(nextProps) {
-  // this.setState({ parentUser: nextProps.parentUser });
-  // }
 
   render(){
     const {currentQuizSetUps, customQuizes } = this.props;

@@ -6,7 +6,7 @@ import SetUpNewQuiz from './SetUpNewQuiz';
 import CreateNewChild from './CreateNewChild';
 import { User, CustomQuiz, CurrentQuizSetUp } from '../lib/requests';
 import '../styling/ParentUserPage.css';
-
+// import Chart from './Chart';
 
 class ParentUserPage extends Component {
   constructor(props){
@@ -42,9 +42,9 @@ class ParentUserPage extends Component {
     console.log('setUpCurrentQuiz:', data);
     CurrentQuizSetUp
       .update(data)
-      // .then( updatedQuiz => {
-      //   console.log('updatedQuiz:', updatedQuiz);
-      // })
+      .then( updatedQuiz => {
+        console.log('updatedQuiz:', updatedQuiz);
+      })
   }
 
   CreateNewChild(newUserData){
@@ -97,7 +97,8 @@ class ParentUserPage extends Component {
 
   render(){
     const {currentQuizSetUps, modalState} = this.state;
-    const students = currentQuizSetUps.length;
+    // const students = currentQuizSetUps.length;
+
     console.log('currentQuizSetUps:',currentQuizSetUps);
 
     return(
@@ -105,7 +106,7 @@ class ParentUserPage extends Component {
 
         <div className="text2">Your students</div>
         <div className="students">
-    
+
           <div className="students-list">
               <ul>
               {
@@ -182,7 +183,7 @@ class ParentUserPage extends Component {
 
         <CreateCustomQuiz sendData={this.createCustomQuiz}/>
         <CustomQuizIndex customQuizes={this.state.customQuizes}/>
-
+        {/* <Chart /> */}
 
       </main>
     )

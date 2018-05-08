@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { CustomQuiz } from '../lib/requests';
+import '../styling/ShowCustomQuiz.css';
 
 class ShowCustomQuiz extends Component {
   constructor(props) {
@@ -29,23 +30,28 @@ class ShowCustomQuiz extends Component {
 
     return(
       <main className="ShowCustomQuiz">
-        <div>{customQuiz.title}</div>
-        <div>{customQuiz.number_of_expressions}</div>
-        {
-          customExpressions && customExpressions.map((expression, index) => {
-            return(
-              <div key="index">
-                <div>custom expression:</div>
-                <div>{expression.expression}</div>
-                <div>{expression.solution}</div>
-                <button
-                      data-id={expression.id}
-                      onClick={this.deleteExpression}
-                    >Delete</button>
-              </div>
-            )
-          })
-        }
+        <div className="wrapper">
+          <div className="flex">
+            <div className="description">Quiz title:</div>
+            <div className="data">{customQuiz.title}</div>
+          </div>
+          <div className="flex">
+            <div className="description">Number of expressions:</div>
+            <div className="data">{customQuiz.number_of_expressions}</div>
+          </div>
+          <div className="container">
+          {
+            customExpressions && customExpressions.map((expression, index) => {
+              return(
+                <div key="index">
+                  <div className="border">{expression.expression}</div>
+                  <div>{expression.solution}</div>
+                </div>
+              )
+            })
+          }
+          </div>
+        </div>
       </main>
     )
   }
