@@ -14,11 +14,11 @@
   z-index:100;
 }
 
-.SignInUpPage form  div {
+.SignInUpPage form  div, .CreateNewChild form div {
   margin: 1vw;
 }
 
-.SignInUpPage form {
+.SignInUpPage form{
   /* border: black thin solid; */
   width: 28vw;
   padding: 2vw;
@@ -52,5 +52,4 @@
   font-family: 'Gaegu', cursive;
   font-size: 1.5vw;
   padding-top: 2vh;
-  text-shadow: 1px 1px rgb(100,116,158);
 }

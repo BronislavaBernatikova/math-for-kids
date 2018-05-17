@@ -6,55 +6,119 @@ class SetUpNewQuiz extends Component {
   constructor(props){
     super(props);
     this.state = {
-      numberOfExpressions: '10',
-      arithmeticOperator: 'add',
-      difficulty: '100'
+      parentUser: {},
+      currentQuizSetUps: [],
+      customQuizes: [],
+      numberOfExpressions: null,
+      arithmeticOperator: null,
+      difficulty: null,
+      currentQuizId: null,
+      customQuizId: " ",
+      isEnabled: false
     }
     this.handleChangeNumberOfExpressions = this.handleChangeNumberOfExpressions.bind(this);
     this.handleChangeArithmeticOperator = this.handleChangeArithmeticOperator.bind(this);
     this.handleChangeDifficulty = this.handleChangeDifficulty.bind(this);
+    this.handleChangeCurrentQuizId = this.handleChangeCurrentQuizId.bind(this);
+    this.handleChangeCustomQuizId = this.handleChangeCustomQuizId.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChangeNumberOfExpressions(event) {
       this.setState({
-        numberOfExpressions: event.target.value
+        numberOfExpressions: event.target.value,
+        customQuizId: null
       })
+      console.log('this.state:', this.state);
     }
   handleChangeArithmeticOperator(event) {
     this.setState({
-      arithmeticOperator: event.target.value
+      arithmeticOperator: event.target.value,
+      customQuizId: null
     })
+    console.log('this.state:', this.state);
   }
   handleChangeDifficulty(event) {
     this.setState({
-      difficulty: event.target.value
+      difficulty: event.target.value,
+      customQuizId: null
     })
+    console.log('this.state:', this.state);
+  }
+  handleChangeCurrentQuizId(event) {
+    this.setState({
+      currentQuizId: event.target.value,
+      customQuizId: null
+    })
+  }
+  handleChangeCustomQuizId(event) {
+    let disable;
+    if(event.target.value === null || event.target.value === " "){
+      disable = false;
+    }
+    else {
+      disable = true;
+    }
+    this.setState({
+        customQuizId: event.target.value,
+        arithmeticOperator: null,
+        numberOfExpressions: null,
+        difficulty: null,
+        isEnabled: disable
+      })
+
   }
 
   handleSubmit (event) {
-    event.preventDefault();
-
     const newQuiz = {
       numberOfExpressions: this.state.numberOfExpressions,
       arithmeticOperator: this.state.arithmeticOperator,
-      difficulty: this.state.difficulty
+      difficulty: this.state.difficulty,
+      currentQuizId: this.state.currentQuizId,
+      customQuizId: this.state.customQuizId
     };
     this.props.onSubmit(newQuiz);
+    event.target.reset();
   }
 
   render(){
+    const {currentQuizSetUps, customQuizes } = this.props;
+    const {isEnabled} = this.state;
+
     return (
       <form className="SetUpNewQuiz"
             onSubmit={this.handleSubmit}
       >
         <div className="container-quiz1">
+          <div className="field">
+            <label>Select Student</label>
+            <select name="currentQuizId"
+                    value={this.state.currentQuizId}
+                    onChange={this.handleChangeCurrentQuizId}
+              >
+                <option value=" ">Select..</option>
+                {
+                  currentQuizSetUps && currentQuizSetUps.map((currentQuiz, index) => {
+                    return(
+
+                      <option key={index}
+                              value={`${currentQuiz.id}`}>{currentQuiz.first_name}{}{currentQuiz.last_name}
+                      </option>
+                    )
+                  })
+                }
+
+            </select>
+          </div>
+        <fieldset disabled={isEnabled}>
         <div className="field">
           <label>Number of expressions</label>
           <select name="numberOfExpressions"
                   value={this.state.numberOfExpressions}
+                  placeholder="choose"
                   onChange={this.handleChangeNumberOfExpressions}
           >
+            <option value=" ">Select..</option>
             <option className="option" value="10">10</option>
             <option className="option" value="20">20</option>
             <option className="option" value="30">30</option>
@@ -67,8 +131,10 @@ class SetUpNewQuiz extends Component {
           <label>Operator</label>
           <select name="arithmeticOperator"
                   value={this.state.arithmeticOperator}
+                  placeholder="choose"
                   onChange={this.handleChangeArithmeticOperator}
           >
+            <option value=" ">Select..</option>
             <option value="add">Adding</option>
             <option value="subtract">Subtraction</option>
             <option value="multiply">Multiplication</option>
@@ -80,8 +146,10 @@ class SetUpNewQuiz extends Component {
           <label>Difficulty</label>
           <select name="difficulty"
                   value={this.state.difficulty}
+                  placeholder="choose"
                   onChange={this.handleChangeDifficulty}
             >
+            <option value=" ">Select..</option>
             <option value="10">Numbers up to 10</option>
             <option value="100">Numbers up to 100</option>
             <option value="300">Numbers up to 300</option>
@@ -90,11 +158,36 @@ class SetUpNewQuiz extends Component {
             <option value="1000">Numbers up to 1000</option>
           </select>
         </div>
+      </fieldset>
+
+        <fieldset>
+        <div className="field">
+          <label>Select Custom Quiz</label>
+          <select name="customQuiz"
+                  value={this.state.customQuiz}
+                  onChange={this.handleChangeCustomQuizId}
+            >
+              <option value=" ">Select..</option>
+              {
+                customQuizes && customQuizes.map((customQuiz, index) => {
+                  return(
+                    <option key={index}
+                            value={`${customQuiz.id}`}>{customQuiz.title}
+                    </option>
+                  )
+                })
+              }
+              <option key="xy" value=" ">Generate Quiz</option>
+
+          </select>
+        </div>
+      </fieldset>
+
       </div>
         <div className="container-quiz2">
           <div>
-          <input type="submit" value="Start New Quiz"/>
-        </div>
+            <input type="submit" value="Set Up Quiz"/>
+          </div>
         </div>
       </form>
     )}

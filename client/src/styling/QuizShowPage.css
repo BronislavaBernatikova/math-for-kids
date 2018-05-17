@@ -1,7 +1,7 @@
 html, body {
     height: 100%;
 }
-.QuizShowPage, .RepeatQuizPage {
+.QuizShowPage {
   border-top: rgb(3,2,120) thin solid;
   display: flex;
   flex-direction: column;
@@ -112,6 +112,10 @@ html, body {
   max-width: 150px;
   font-family: 'Gaegu', cursive;
   border-radius: 5px;
+}
+.expression .button {
+  margin-top: 5vw;
+  margin-bottom: 0;
 }
 .expression > div {
   padding: 20px;

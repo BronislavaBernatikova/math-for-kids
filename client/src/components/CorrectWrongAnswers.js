@@ -34,8 +34,9 @@ class CorrectWrongAnswers extends Component {
   }
 
   componentDidMount(){
-    const quizId = this.props.quizId;
-    console.log('quizId in mount:', quizId);
+    const {quiz} = this.props;
+    const quizId = quiz.id;
+    console.log('quizId in correct:', quizId);
 
     Quiz
       .correct(quizId)
@@ -51,6 +52,8 @@ class CorrectWrongAnswers extends Component {
   }
   render(){
     const { expressions, loading } = this.state;
+    const {quiz} = this.props;
+    console.log('quiz.source', quiz.source);
 
     // console.log('expressions in render: ', expressions);
     if (loading){
@@ -59,6 +62,7 @@ class CorrectWrongAnswers extends Component {
           Loading expressions..
         </div>
       )}
+
     if(expressions.length === 0){
       return(
         <div className="CorrectWrongAnswers">
@@ -66,22 +70,21 @@ class CorrectWrongAnswers extends Component {
         </div>
       )}
 
-    if (expressions){
+    if (expressions && quiz.source === "generated"){
       return(
         <form className="CorrectWrongAnswers"
               onSubmit={this.handleSubmit}
         >
           <div className="text">Correct your wrong answers:</div>
           <div className="container">
-            {expressions.map( expression => (
-            <div className={expression.id}>
+            {expressions.map( (expression, index) => (
+            <div key={`${index}`} className={expression.id}>
               <div>{expression.num1}</div>
               <div>{expression.operator}</div>
               <div>{expression.num2}</div>
               <input name={`answer-${expression.id}`}
                      id={`answer-${expression.id}`}
               />
-
           </div>
           ))}
           </div>
@@ -91,6 +94,30 @@ class CorrectWrongAnswers extends Component {
             />
           </div>
         </form>
+      )}
+
+      if(expressions && quiz.source === "custom") {
+        return(
+          <form className="CorrectWrongAnswers"
+                onSubmit={this.handleSubmit}
+          >
+            <div className="text">Correct your wrong answers:</div>
+            <div className="container">
+              {expressions.map( (expression, index) => (
+              <div key={`${index}`} className={expression.id}>
+                <div>{expression.expression}</div>
+                <input name={`answer-${expression.id}`}
+                       id={`answer-${expression.id}`}
+                />
+            </div>
+            ))}
+            </div>
+            <div className="button">
+              <input type="submit"
+                     value="Done"
+              />
+            </div>
+          </form>
       )}
 
   }

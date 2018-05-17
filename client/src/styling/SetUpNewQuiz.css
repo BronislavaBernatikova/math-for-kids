@@ -1,7 +1,7 @@
 .SetUpNewQuiz {
   /* border: blue solid thick; */
   display: flex;
-  padding: 5vw 5vh;
+  padding: 1vw;
 }
 .container-quiz1 {
   /* border: red thick solid; */
@@ -11,16 +11,14 @@
 }
 .field {
   /* border: black solid thin; */
-  width: 40vw;
+  width: 37vw;
   font-size: 1.5vw;
   display: flex;
   justify-content: space-between;
 }
-label {
+.SetUpNewQuiz label {
   /* border: black thin solid; */
   padding-top: 2vh;
-  text-shadow: 1px 1px rgb(100,116,158);
-  /* font-weight: bold; */
 }
 .field select {
   /* -webkit-appearance: none; */
@@ -31,6 +29,9 @@ label {
   box-shadow: 5px 5px 3px grey;
   margin: 5px;
 }
+.field > input {
+  width: 10vw;
+}
 .container-quiz2 {
   /* border: black thin solid; */
   width: 20vw;
@@ -38,11 +39,16 @@ label {
   justify-content: center;
   padding: 8vh 0vh;
 }
+fieldset {
+  border: none;
+  padding: 0 !important;
+  margin: 0;
+}
 
 .container-quiz2 input {
   background: radial-gradient(white, rgb(161,187,255));
   box-shadow: 5px 5px 3px grey;
-  border: grey solid thin;
+  /* border: grey solid thin; */
   font-family: 'Gaegu', cursive;
   font-size: 1.5vw;
   text-align: center;

@@ -1,0 +1,237 @@
+.ParentUserPage {
+  /* background: linear-gradient( white,rgb(161,187,255), white); */
+  font-family: 'Gaegu', cursive;
+  margin: 5vw 1vw;
+}
+
+/* STUDENTS */
+.students {
+  /* border: red solid thin; */
+  background-color: rgb(161,187,255, 0.5);
+  border-radius: 5px;
+  margin: 1vw;
+  /* margin-top: 5vw; */
+  padding: 2vw;
+  font-size: 2vw;
+  /* display: flex; */
+}
+.text2 {
+  /* border: black solid thin; */
+  text-align: center;
+  font-size: 2vw;
+}
+.students-list {
+  /* border: black solid thin; */
+  padding: 0 7vw;
+  line-height: 1.1;
+}
+.students-list > ul {
+  padding: 0;
+  margin: 0;
+}
+.students-list > ul li {
+  /* border: black solid thin; */
+  list-style-type: none;
+  margin-left: 1vw;
+}
+.students-button {
+  /* border: black solid thin; */
+  display: flex;
+  padding: 1vh 0;
+}
+.students-button button {
+  background: radial-gradient(white, rgb(161,187,255));
+  box-shadow: 5px 5px 3px grey;
+  border: grey solid thin;
+  font-family: 'Gaegu', cursive;
+  font-size: 1.5vw;
+  text-align: center;
+  max-width: 150px;
+  border-radius: 5px;
+  outline: none;
+  width: 10vw;
+}
+/* CREATE CUSTOM QUIZ */
+.CreateCustomQuiz > .mainContainer {
+  /* border: black solid thin; */
+  background-color: rgb(161,187,255, 0.5);
+  border-radius: 5px;
+  margin: 1vw;
+  padding: 2vw;
+}
+.CreateCustomQuiz, .CustomQuizIndex {
+  margin-top: 3vw;
+}
+.CreateCustomQuiz .field {
+  width: 30vw;
+}
+.field input {
+  /* border: black solid thick; */
+  font-family: 'Gaegu', cursive;
+  font-size: 1.5vw;
+  width: 20vw;
+  box-shadow: 5px 5px 3px grey;
+  padding: 0.5vw;
+  border-radius: 5px;
+  margin: 0.5vh;
+}
+.container-customQuiz {
+  /* border: green thick solid; */
+  display: flex;
+  margin: 0;
+}
+.container-quiz2.customQuiz {
+  padding: 1vh;
+}
+.ParentUserPage input {
+  outline: none;
+  width: 12vw;
+  border: grey thin solid;
+}
+.addExpressions {
+  border: solid grey thin;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 5px 5px 3px grey;
+  flex-grow: 1;
+}
+.addExpressions > ol {
+  padding: 0;
+  /* border: black thin solid; */
+  margin-left: 3vw;
+  margin-top: 0;
+}
+.addExpressions > div {
+  color: grey;
+  padding-left: 1vw;
+  padding-top: 1vw;
+}
+.addExpressions li > div {
+  display: flex;
+  /* border: solid thin red; */
+}
+.addExpressions button {
+  margin-left: 1vw;
+  border: none;
+  color: red;
+}
+.mainContainer {
+  display: flex;
+}
+
+/* CREATE CUSTOM EXPRESSION */
+.container-quiz2.customExpression {
+  padding: 1vh;
+}
+.container-quiz2.customExpression > input {
+  outline: none;
+}
+/* CREATE CUSTOM QUIZ */
+.CreateCustomQuiz .field > input {
+  width: 17vw;
+}
+
+/* CUSTOM QUIZ INDEX */
+.CustomQuizIndex > .mainContainer {
+  /* border: black solid thin; */
+  background-color: rgb(161,187,255,0.5);
+  border-radius: 5px;
+  margin: 1vw;
+  padding: 2vw;
+  display: flex;
+  justify-content: center;
+}
+.CustomQuizIndex .list {
+  margin: 0 3vw;
+}
+
+/* CREATE NEW CHILD */
+.CreateNewChild {
+  background-color: white !important;
+  display: flex;
+  border-radius: 5px;
+}
+.CreateNewChild form {
+  /* border: black thin solid; */
+  width: 28vw;
+  padding: 2vw;
+  background: linear-gradient(to top right,white, rgb(161,187,255));
+  border: rgb(3,2,120) solid thin;
+  border-left: rgb(3,2,120) solid thin;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.CreateNewChild .signInContainer-1 input {
+  font-family: 'Gaegu', cursive;
+  font-size: 1.5vw;
+  width: 20vw;
+  box-shadow: 5px 5px 3px grey;
+  padding: 0.5vw;
+  border-radius: 5px;
+}
+.CreateNewChild .signInContainer-1 label {
+  font-family: 'Gaegu', cursive;
+  font-size: 1.5vw;
+  padding-top: 2vh;
+}
+/* SET UP NEW QUIZ */
+.SetUpNewQuiz {
+  background: linear-gradient(to top right,white, rgb(161,187,255));
+}
+/* MODAL */
+.ParentUserPage .modal {
+  background: rgba(0,0,0, .8);
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.modal-trigger {
+  text-decoration: none;
+  padding: 1rem;
+  background: yellow;
+  display: inline-block;
+  border-radius: 5px;
+  margin-top: 50px;
+  color: white;
+}
+.modal__dialog {
+  display: table-cell;
+  vertical-align: middle;
+}
+.modal__content {
+  background: rgba(255,255,255);
+  width: 28vw;
+  margin: auto;
+  border-radius: 5px;
+}
+.modalQuiz__content {
+  background: rgba(255,255,255);
+  width: 55vw;
+  margin: auto;
+  border-radius: 5px;
+}
+.modal__header {
+  background: rgb(3,2,120);
+  color: rgba(255,255,255,0.8);
+  padding: 1rem;
+  position:relative;
+}
+.modal__title {
+  margin: 0;
+  font-family: 'Gaegu', cursive;
+  font-size: 2vw;
+}
+.modal__close {
+  color: rgb(3,2,120);
+  text-decoration: none;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+.modal__text{
+  padding: 0 1rem;
+  line-height: 1.5;
+}

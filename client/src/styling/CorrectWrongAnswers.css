@@ -41,12 +41,12 @@
   padding-bottom: 5vh;
   text-align: center;
 }
-.button {
+.CorrectWrongAnswers .button {
   margin: 70px;
   display: flex;
   justify-content: center;
 }
-.button > input {
+ .CorrectWrongAnswers .button > input {
   /* background-color: rgb(161,187,255); */
   background: radial-gradient(white, rgb(161,187,255));
   box-shadow: 5px 5px 3px grey;

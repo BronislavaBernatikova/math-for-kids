@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import '../styling/QuizIndex.css';
 
 function QuizIndex (props) {
-  const { quizes = [] } = props;
-
+  const { quizes = [], parent } = props;
+  console.log('quizes in quizIndex:', quizes );
+  console.log('props', props );
      return(
       <div className="QuizIndex">
         <ul className="list">
@@ -28,7 +29,18 @@ function QuizIndex (props) {
                   <div className="3">{quiz.expression_count}</div>
                   <div className="4">{quiz.right_answer_count}</div>
                   <div className="5">{quiz.time}</div>
-                  <div className="7"><Link to={`/quizes/show/${quiz.id}`}>Repeat Quiz</Link></div>
+                  {
+                    parent ? (
+                      <div></div>
+                    ):(
+                      <div className="6">
+                        <Link to={{
+                                  pathname: `/quizes/show/${quiz.id}`,
+                                  state: { quiz: quiz }
+                                }}>Repeat Quiz</Link>
+                      </div>
+                    )
+                  }
                 </div>
               </li>
             )
@@ -40,30 +52,3 @@ function QuizIndex (props) {
 }
 
 export default QuizIndex;
-
-{/* <table id="quizes-table">
-  <tbody>
-    <tr>
-      <th></th>
-      <th>Date</th>
-      <th>No Of Expressions</th>
-      <th>Right Answers</th>
-      <th>Time</th>
-    </tr>
-    {
-      quizes.map((quiz,index) => {
-      return(
-        <tr key={index} id={`row${index}`}>
-            <td>{index + 1}</td>
-            <td>{(quiz.date).slice(0,10)}</td>
-            <td>{quiz.expression_count}</td>
-            <td>{quiz.right_answer_count}</td>
-            <td>{quiz.time}</td>
-            <td>
-              <Link to={`/quizes/show/${quiz.id}`}>Repeat Quiz</Link>
-            </td>
-        </tr>
-      )
-    })}
-  </tbody>
-</table> */}

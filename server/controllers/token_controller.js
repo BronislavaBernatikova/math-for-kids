@@ -7,9 +7,10 @@ const moment = require('moment');
 
 const Tokens = {
 
-  new(req, res){
-    res.render('signIn', {errors: {}});
-  },
+  // new(req, res){
+  //   res.render('signIn', {errors: {}});
+  // },
+
   create(req,res){
     const email = req.body.email;
     const logInPassword = req.body.password;
@@ -24,7 +25,7 @@ const Tokens = {
       //console.log('userPassword :', user.password_digest );
       bcrypt.compare(logInPassword, user.password_digest, function(err,result){
         if (result === true){
-          console.log('passed bcrypt')
+          // console.log('passed bcrypt')
           //console.log('secretToken', process.env.MATH_FOR_KIDS_SECRET_KEY)
           const expires = moment().add(7, 'days').valueOf();
           const token = jwt.encode(
@@ -32,7 +33,8 @@ const Tokens = {
                         id: user.id,
                         first_name: user.first_name,
                         last_name: user.last_name,
-                        exp: expires
+                        exp: expires,
+                        role: user.role
                       },
                       process.env.MATH_FOR_KIDS_SECRET_KEY);
 //The res.json() method is used to return a JSON representation of the token to the

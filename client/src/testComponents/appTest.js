@@ -7,24 +7,27 @@ import SignUpPage from './SignUpPage';
 import NavBar from './NavBar';
 import HomePage from './HomePage';
 import UserPage from './UserPage';
-import ParentUserPage from './ParentUserPage';
-import ShowCustomQuiz from './ShowCustomQuiz';
-import ChildShowPage from './ChildShowPage';
-// import RepeatQuizPage from './RepeatQuizPage';
+import RepeatQuizPage from './RepeatQuizPage';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null
+      user: null,
+      data:"data from App"
     };
 
     this.signIn = this.signIn.bind(this);
-    this.signOut = this.signOut.bind(this)
+    this.signOut = this.signOut.bind(this);
+    this.quizDataFromUserPage = this.quizDataFromUserPage.bind(this);
   }
 
   componentWillMount() {
     this.signIn();
+  }
+
+  isSignedIn(){
+
   }
 
   signIn() {
@@ -32,7 +35,6 @@ class App extends Component {
     //console.log('jwt-app-signIn: ', jwt);
     if(jwt){
       const payload = jwtDecode(jwt);
-      // payload --> {id: 3, first_name: "Julie", last_name: "Bernatikova", exp: 1525192402517, role: child}
       this.setState({
         user: payload
       });
@@ -47,12 +49,16 @@ class App extends Component {
     });
   }
 
-  // quizDataFromUserPage(newQuiz){
-  //   this.setState({
-  //     newQuiz: newQuiz
-  //   })
-  //   console.log('quiz data in App:', this.state.newQuiz);
-  // }
+  isSignedIn() {
+    return !!this.state.user;
+  }
+
+  quizDataFromUserPage(newQuiz){
+    this.setState({
+      newQuiz: newQuiz
+    })
+    console.log('quiz data in App:', this.state.newQuiz);
+  }
 
     render() {
       const { user } = this.state;
@@ -65,44 +71,23 @@ class App extends Component {
               <Switch>
 
                 <Route exact path="/" component={HomePage} />
-                <Route exact path="/users/parent"
+                <Route path="/users/:id"
                        render={ props => user ? (
-                         <ParentUserPage {...props} />
-                       ):(
-                         <Redirect to="/sign_in" />
-                      )}
-                />
-                <Route path="/customQuizes/show/:id"
-                       render={ props => user ? (
-                         <ShowCustomQuiz {...props} />
-                       ):(
-                         <Redirect to="/sign_in" />
-                       )}
-                />
-                <Route path="/students/show/:id"
-                       render={props => user ? (
-                         <ChildShowPage {...props} />
-                       ):(
-                         <Redirect to="/sign_in" />
-                       )}
-                />
-                <Route exact path="/users/:id"
-                       render={ props => user ? (
-                         <UserPage {...props} />
+                         <UserPage {...props} newQuizData={this.quizDataFromUserPage} />
                        ):(
                          <Redirect to="/sign_in" />
                        ) }
                 />
                 <Route path="/quizes/show/:id"
                        render={ props => user ? (
-                         <QuizShowPage {...props} />
+                         <RepeatQuizPage {...props} />
                        ):(
                          <Redirect to="/sign_in" />
                        )}
                 />
                 <Route path="/quizes/new"
                        render={ props => user ? (
-                         <QuizShowPage {...props} />
+                         <QuizShowPage newQuiz={this.state.newQuiz} />
                        ):(
                          <Redirect to="/sign_in" />
                        )}
@@ -125,4 +110,3 @@ class App extends Component {
 }
 
 export default App;
- // <UserPage {...props} newQuizData={this.quizDataFromUserPage} />
