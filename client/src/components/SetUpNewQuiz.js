@@ -9,10 +9,10 @@ class SetUpNewQuiz extends Component {
       parentUser: {},
       currentQuizSetUps: [],
       customQuizes: [],
-      numberOfExpressions: " ",
-      arithmeticOperator: " ",
-      difficulty: " ",
-      currentQuizId: " ",
+      numberOfExpressions: null,
+      arithmeticOperator: null,
+      difficulty: null,
+      currentQuizId: null,
       customQuizId: " ",
       isEnabled: false
     }
@@ -25,47 +25,51 @@ class SetUpNewQuiz extends Component {
   }
 
   handleChangeNumberOfExpressions(event) {
-    // event.preventDefault();
       this.setState({
-        numberOfExpressions: event.target.value
+        numberOfExpressions: event.target.value,
+        customQuizId: null
       })
+      console.log('this.state:', this.state);
     }
   handleChangeArithmeticOperator(event) {
-    // event.preventDefault();
     this.setState({
-      arithmeticOperator: event.target.value
+      arithmeticOperator: event.target.value,
+      customQuizId: null
     })
+    console.log('this.state:', this.state);
   }
   handleChangeDifficulty(event) {
-    // event.preventDefault();
     this.setState({
-      difficulty: event.target.value
+      difficulty: event.target.value,
+      customQuizId: null
     })
+    console.log('this.state:', this.state);
   }
   handleChangeCurrentQuizId(event) {
-    // event.preventDefault();
     this.setState({
-      currentQuizId: event.target.value
+      currentQuizId: event.target.value,
+      customQuizId: null
     })
   }
   handleChangeCustomQuizId(event) {
     let disable;
-    if(event.target.value === " "){
+    if(event.target.value === null || event.target.value === " "){
       disable = false;
     }
-    else disable = true;
+    else {
+      disable = true;
+    }
     this.setState({
-      customQuizId: event.target.value,
-      arithmeticOperator: " ",
-      numberOfExpressions: " ",
-      difficulty: " ",
-      isEnabled: disable
-    })
+        customQuizId: event.target.value,
+        arithmeticOperator: null,
+        numberOfExpressions: null,
+        difficulty: null,
+        isEnabled: disable
+      })
+
   }
 
   handleSubmit (event) {
-    event.preventDefault();
-
     const newQuiz = {
       numberOfExpressions: this.state.numberOfExpressions,
       arithmeticOperator: this.state.arithmeticOperator,
@@ -73,24 +77,39 @@ class SetUpNewQuiz extends Component {
       currentQuizId: this.state.currentQuizId,
       customQuizId: this.state.customQuizId
     };
-    console.log('newQuiz:', newQuiz);
     this.props.onSubmit(newQuiz);
+    event.target.reset();
   }
-
-  // componentWillReceiveProps(nextProps) {
-  // this.setState({ parentUser: nextProps.parentUser });
-  // }
 
   render(){
     const {currentQuizSetUps, customQuizes } = this.props;
     const {isEnabled} = this.state;
-    console.log('isEnabled:', isEnabled);
-    // console.log('parentUser in quiz render:', parentUser);
+
     return (
       <form className="SetUpNewQuiz"
             onSubmit={this.handleSubmit}
       >
         <div className="container-quiz1">
+          <div className="field">
+            <label>Select Student</label>
+            <select name="currentQuizId"
+                    value={this.state.currentQuizId}
+                    onChange={this.handleChangeCurrentQuizId}
+              >
+                <option value=" ">Select..</option>
+                {
+                  currentQuizSetUps && currentQuizSetUps.map((currentQuiz, index) => {
+                    return(
+
+                      <option key={index}
+                              value={`${currentQuiz.id}`}>{currentQuiz.first_name}{}{currentQuiz.last_name}
+                      </option>
+                    )
+                  })
+                }
+
+            </select>
+          </div>
         <fieldset disabled={isEnabled}>
         <div className="field">
           <label>Number of expressions</label>
@@ -141,26 +160,6 @@ class SetUpNewQuiz extends Component {
         </div>
       </fieldset>
 
-        <div className="field">
-          <label>Select Student</label>
-          <select name="currentQuizId"
-                  value={this.state.currentQuizId}
-                  onChange={this.handleChangeCurrentQuizId}
-            >
-              <option value=" ">Select..</option>
-              {
-                currentQuizSetUps && currentQuizSetUps.map((currentQuiz, index) => {
-                  return(
-
-                    <option key={index}
-                            value={`${currentQuiz.id}`}>{currentQuiz.first_name}{}{currentQuiz.last_name}
-                    </option>
-                  )
-                })
-              }
-
-          </select>
-        </div>
         <fieldset>
         <div className="field">
           <label>Select Custom Quiz</label>
@@ -187,8 +186,8 @@ class SetUpNewQuiz extends Component {
       </div>
         <div className="container-quiz2">
           <div>
-          <input type="submit" value="Start New Quiz"/>
-        </div>
+            <input type="submit" value="Set Up Quiz"/>
+          </div>
         </div>
       </form>
     )}

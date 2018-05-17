@@ -43,8 +43,8 @@ class NavBar extends Component {
             ]
           ) : (
             [
-              <div><NavLink exact to="/sign_in">Sign In</NavLink></div>,
-              <div><NavLink exact to="/sign_up">Sign Up</NavLink></div>
+              <div key="1"><NavLink exact to="/sign_in">Sign In</NavLink></div>,
+              <div key="2"><NavLink exact to="/sign_up">Sign Up</NavLink></div>
             ]
           )}
         </div>

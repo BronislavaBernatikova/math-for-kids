@@ -1,3 +1,22 @@
 .UserPage {
   background: linear-gradient( white,rgb(161,187,255), white);
 }
+
+.UserPage button {
+  background: radial-gradient(white, rgb(161,187,255));
+  box-shadow: 5px 5px 3px grey;
+  border: grey solid thin;
+  font-family: 'Gaegu', cursive;
+  font-size: 1.5vw;
+  text-align: center;
+  /* max-width: 150px; */
+  border-radius: 5px;
+  outline: none;
+  width: 15vw;
+  margin-top: 2vh;
+}
+.UserPage .wrapper{
+  margin: 5vh 2vw;
+  font-family: 'Gaegu', cursive;
+  line-height: 1.5;
+}

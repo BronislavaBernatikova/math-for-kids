@@ -18,7 +18,6 @@ class QuizShowPage extends Component {
 
       expression: {},
       loading: true,
-      // timer: false,
       newQuiz: {}
     }
     this.updateAnswer = this.updateAnswer.bind(this);
@@ -45,9 +44,9 @@ class QuizShowPage extends Component {
       .then( answer => {
         console.log('answer:', answer);
 
-        let right_answer_count = this.state.right_answer_count;
+        let {right_answer_count} = this.state;
         answer.correct_answer ? (right_answer_count += 1) : (right_answer_count);
-
+        console.log('this.state:', this.state);
           this.setState({
             right_answer_count: right_answer_count,
             answered_count: this.state.answered_count + 1,
@@ -82,8 +81,8 @@ class QuizShowPage extends Component {
   }
 
   componentDidMount(){
-    const quizId = this.props.location.state.quiz.id;
-    console.log('quizId:', quizId);
+    const {quiz} = this.props.location.state;
+    const quizId = quiz.id;
 
     Quiz
       .one(quizId)
@@ -96,7 +95,7 @@ class QuizShowPage extends Component {
           timer:true,
           time: 0
         })
-        console.log('quiz in repeat:', quiz);
+        console.log('quiz in mount:', quiz);
       })
   }
 
@@ -107,12 +106,10 @@ class QuizShowPage extends Component {
   }
 
   render(){
-    const { quiz, expression, answered_count, loading, right_answer_count } = this.state
-    console.log('quiz in render repeat:', quiz);
+    const { quiz, expression, answered_count, loading, right_answer_count } = this.state;
     const expression_count = this.state.expressions.length;
     const quizId = quiz.id;
     const percent = (answered_count / expression_count) * 100 // progress bar
-
 
     if(loading){
       return(
@@ -124,6 +121,17 @@ class QuizShowPage extends Component {
       )}
 
     else if(answered_count < expression_count){
+
+      const displayExpression = (quiz.source === "custom") ? (
+        <div className="square">{expression.expression}</div>
+      ):(
+        <div>
+          <div className="square">{expression.num1}</div>
+          <div className="square">{expression.operator}</div>
+          <div className="square">{expression.num2}</div>
+        </div>
+      )
+
       return(
         <div className="QuizShowPage">
           <div className="wrapper-1">
@@ -145,14 +153,12 @@ class QuizShowPage extends Component {
 
             <div className="main-container-2">
               <div className="expression">
-                <div className="square">{expression.num1}</div>
-                <div className="square">{expression.operator}</div>
-                <div className="square">{expression.num2}</div>
+                {displayExpression}
                 <form id="answerForm" onSubmit={this.updateAnswer}>
                   <div>
                     <input name="user_answer" id="user_answer" />
                   </div>
-                  <div>
+                  <div className="button">
                     <input type="submit" value="Next"/>
                   </div>
                 </form>
@@ -197,7 +203,7 @@ class QuizShowPage extends Component {
               </Modal.Content>
             </Modal>
 
-            <CorrectWrongAnswers quizId={quizId}/>
+            <CorrectWrongAnswers quiz={quiz}/>
 
           </div>
         </div>
@@ -235,7 +241,7 @@ class QuizShowPage extends Component {
                 </Modal.Content>
               </Modal>
 
-              <CorrectWrongAnswers quizId={quizId}/>
+              <CorrectWrongAnswers quiz={quiz}/>
 
             </div>
            </div>

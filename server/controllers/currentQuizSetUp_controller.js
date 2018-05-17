@@ -8,17 +8,14 @@ const CurrentQuizSetUps = {
     const userId = req.currentUser.id;
     const setUpId = req.body.currentQuizId;
     const customQuizId = req.body.customQuizId;
+    console.log('customQuizId:', customQuizId);
     const difficulty = req.body.difficulty;
     const numberOfExpressions = req.body.numberOfExpressions;
     const operator = req.body.arithmeticOperator;
-    let data = {   custom_quiz_id: null,
-                   difficulty: null,
-                   number_of_expressions: null,
-                   operator: null
-                }
+    let data = {}
                 // console.log('data:',data)
                 // console.log('setUpId:', setUpId);
-    if(customQuizId === " "){
+    if(customQuizId === null ){
         data = { custom_quiz_id: null,
                  difficulty: difficulty,
                  number_of_expressions: numberOfExpressions,

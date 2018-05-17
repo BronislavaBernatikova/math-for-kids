@@ -1,0 +1,24 @@
+.ChildShowPage {
+  background: linear-gradient( white,rgb(161,187,255), white);
+}
+.ChildShowPage .wrapper{
+  margin: 5vh 2vw;
+  font-family: 'Gaegu', cursive;
+  line-height: 1.5;
+}
+.childsName {
+  font-size: 2vw;
+  margin-left: 2vw;
+  font-family: 'Sacramento', cursive;
+}
+.flex {
+  display: flex;
+  width: 30vw;
+  justify-content: space-between;
+}
+.description {
+  font-size: 1.5vw;
+}
+.data {
+  font-size: 1.5vw;
+}

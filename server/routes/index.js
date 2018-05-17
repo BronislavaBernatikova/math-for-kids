@@ -47,7 +47,8 @@ tokenRouter.post('/create', Token.create);
 //managing quizes
 const quizRouter = express.Router();
 router.use('/quizes', quizRouter);
-quizRouter.post('/create',Quizes.create);
+quizRouter.post('/create/generate',Quizes.createGenerate);
+quizRouter.post('/create/fromCustom',Quizes.createFromCustomQuiz);
 quizRouter.post('/update', Quizes.update);
 quizRouter.get('/show/:id', Quizes.show);
 quizRouter.get('/correct/:id', Quizes.correct);

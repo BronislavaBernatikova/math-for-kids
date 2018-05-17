@@ -1,0 +1,23 @@
+.ShowCustomQuiz {
+  background: linear-gradient( white,rgb(161,187,255), white);
+  margin-top: 5vw;
+}
+.ShowCustomQuiz .wrapper {
+  margin: 5vh 2vw;
+  font-family: 'Gaegu', cursive;
+  line-height: 1.5;
+}
+.ShowCustomQuiz .flex {
+  display: flex;
+  width: 30vw;
+  justify-content: space-between;
+}
+.ShowCustomQuiz .description {
+  font-size: 1.5vw;
+}
+.ShowCustomQuiz .data {
+  font-size: 1.5vw;
+}
+.ShowCustomQuiz .border {
+  border-bottom: thin black solid;
+}

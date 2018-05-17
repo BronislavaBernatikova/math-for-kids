@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import '../styling/QuizIndex.css';
 
 function QuizIndex (props) {
-  const { quizes = [] } = props;
+  const { quizes = [], parent } = props;
   console.log('quizes in quizIndex:', quizes );
-
+  console.log('props', props );
      return(
       <div className="QuizIndex">
         <ul className="list">
@@ -29,12 +29,18 @@ function QuizIndex (props) {
                   <div className="3">{quiz.expression_count}</div>
                   <div className="4">{quiz.right_answer_count}</div>
                   <div className="5">{quiz.time}</div>
-                  <div className="7">
-                    <Link to={{
-                              pathname: `/quizes/show/${quiz.id}`,
-                              state: { quiz: quiz }
-                            }}>Repeat Quiz</Link>
-                  </div>
+                  {
+                    parent ? (
+                      <div></div>
+                    ):(
+                      <div className="6">
+                        <Link to={{
+                                  pathname: `/quizes/show/${quiz.id}`,
+                                  state: { quiz: quiz }
+                                }}>Repeat Quiz</Link>
+                      </div>
+                    )
+                  }
                 </div>
               </li>
             )
