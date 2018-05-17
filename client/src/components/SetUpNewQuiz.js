@@ -13,7 +13,7 @@ class SetUpNewQuiz extends Component {
       arithmeticOperator: null,
       difficulty: null,
       currentQuizId: null,
-      customQuizId: null,
+      customQuizId: " ",
       isEnabled: false
     }
     this.handleChangeNumberOfExpressions = this.handleChangeNumberOfExpressions.bind(this);
@@ -26,48 +26,50 @@ class SetUpNewQuiz extends Component {
 
   handleChangeNumberOfExpressions(event) {
       this.setState({
-        numberOfExpressions: event.target.value
+        numberOfExpressions: event.target.value,
+        customQuizId: null
       })
       console.log('this.state:', this.state);
     }
   handleChangeArithmeticOperator(event) {
     this.setState({
-      arithmeticOperator: event.target.value
+      arithmeticOperator: event.target.value,
+      customQuizId: null
     })
     console.log('this.state:', this.state);
   }
   handleChangeDifficulty(event) {
     this.setState({
-      difficulty: event.target.value
+      difficulty: event.target.value,
+      customQuizId: null
     })
     console.log('this.state:', this.state);
   }
   handleChangeCurrentQuizId(event) {
     this.setState({
-      currentQuizId: event.target.value
+      currentQuizId: event.target.value,
+      customQuizId: null
     })
-    console.log('this.state:', this.state);
   }
   handleChangeCustomQuizId(event) {
     let disable;
-    if(event.target.value === null || " "){
+    if(event.target.value === null || event.target.value === " "){
       disable = false;
     }
-    else disable = true;
-
+    else {
+      disable = true;
+    }
     this.setState({
-      customQuizId: event.target.value,
-      arithmeticOperator: null,
-      numberOfExpressions: null,
-      difficulty: null,
-      isEnabled: disable
-    })
-    console.log('this.state:', this.state);
+        customQuizId: event.target.value,
+        arithmeticOperator: null,
+        numberOfExpressions: null,
+        difficulty: null,
+        isEnabled: disable
+      })
+
   }
 
   handleSubmit (event) {
-    // event.preventDefault();
-
     const newQuiz = {
       numberOfExpressions: this.state.numberOfExpressions,
       arithmeticOperator: this.state.arithmeticOperator,
@@ -75,7 +77,6 @@ class SetUpNewQuiz extends Component {
       currentQuizId: this.state.currentQuizId,
       customQuizId: this.state.customQuizId
     };
-    // console.log('newQuiz:', newQuiz);
     this.props.onSubmit(newQuiz);
     event.target.reset();
   }
@@ -83,8 +84,7 @@ class SetUpNewQuiz extends Component {
   render(){
     const {currentQuizSetUps, customQuizes } = this.props;
     const {isEnabled} = this.state;
-    // console.log('isEnabled:', isEnabled);
-    // console.log('parentUser in quiz render:', parentUser);
+
     return (
       <form className="SetUpNewQuiz"
             onSubmit={this.handleSubmit}

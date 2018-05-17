@@ -57,12 +57,12 @@ class UserPage extends Component {
 
   componentDidMount(){
     const userId = localStorage.userId;
-    // console.log('this.props:', this.props);
+    console.log('this.props:', this.props);
 
     User
       .oneChild(userId)
       .then( user => {
-        // console.log('user in childUserPage:', user)
+        console.log('user in childUserPage:', user)
         this.setState({
           user: user,
           quizes: user.quizes,
@@ -104,7 +104,7 @@ class UserPage extends Component {
       </div>
     );
 
-      if(custom_quiz_id === null || ( difficuty === null && number_of_expressions === null && operator === null)) {
+      if((difficuty === null || number_of_expressions === null || operator === null) && custom_quiz_id === null) {
         return(
           <main className="UserPage">
             <div className="errorMessage">Ups, your quiz was not set up yet..</div>

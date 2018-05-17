@@ -72,7 +72,9 @@ class ChildShowPage extends Component {
           <div className="childsName">{currentQuizSetUp.first_name}{' '}{currentQuizSetUp.last_name}</div>
         </div>
         {quizSetUp}
-        <QuizIndex quizes={quizes} />
+        <QuizIndex quizes={quizes}
+                   parent='true'
+        />
       </div>
       </main>
 
