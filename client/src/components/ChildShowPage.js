@@ -15,26 +15,26 @@ class ChildShowPage extends Component {
   componentDidMount(){
     const currentQuizSetUp = this.props.location.state.currentQuizSetUp;
     const child_id = currentQuizSetUp.child_id;
-    console.log('currentQuizSetUp:', currentQuizSetUp);
+    // console.log('currentQuizSetUp:', currentQuizSetUp);
 
     Quiz
       .all(child_id)
       .then( childInfo => {
-        console.log('childInfo:', childInfo);
+        // console.log('childInfo:', childInfo);
         this.setState({
           currentQuizSetUp: currentQuizSetUp,
           quizes: childInfo.quizes,
           customQuiz:childInfo.customQuiz
         })
       })
-      console.log('this.state:', this.state);
+      // console.log('this.state:', this.state);
   }
 
   render(){
     const {currentQuizSetUp, quizes, customQuiz} = this.state;
     const {custom_quiz_id} = currentQuizSetUp;
-    console.log("custom_quiz_id:", custom_quiz_id);
-    console.log('customQuiz:', customQuiz);
+    // console.log("custom_quiz_id:", custom_quiz_id);
+    // console.log('customQuiz:', customQuiz);
 
     const quizSetUp = custom_quiz_id !== null  ? (
       <div>

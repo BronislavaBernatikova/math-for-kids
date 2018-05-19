@@ -57,10 +57,3 @@ class ShowCustomQuiz extends Component {
   }
 }
 export default ShowCustomQuiz;
-
-// this.setState({
-//   customQuiz: {
-//     customExpressions: [],
-//     ...customQuiz
-//   }
-// })

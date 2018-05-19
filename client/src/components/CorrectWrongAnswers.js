@@ -10,7 +10,7 @@ class CorrectWrongAnswers extends Component {
       loading: true
     }
     this.handleSubmit = this.handleSubmit.bind(this);
-    console.log('in correct answers component');
+    // console.log('in correct answers component');
   }
 
   handleSubmit(event){
@@ -53,7 +53,7 @@ class CorrectWrongAnswers extends Component {
   render(){
     const { expressions, loading } = this.state;
     const {quiz} = this.props;
-    console.log('quiz.source', quiz.source);
+    // console.log('quiz.source', quiz.source);
 
     // console.log('expressions in render: ', expressions);
     if (loading){

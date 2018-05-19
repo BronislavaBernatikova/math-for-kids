@@ -3,8 +3,6 @@ import { User, Quiz } from '../lib/requests';
 import QuizIndex from './QuizIndex';
 import '../styling/UserPage.css';
 
-
-
 class UserPage extends Component {
   constructor(props){
     super(props);
@@ -18,7 +16,6 @@ class UserPage extends Component {
   }
 
   createNewQuiz(){
-    // event.preventDefault();
     console.log('i am in create new quiz');
     const {currentQuizSetUp} = this.state;
     let quizParams;
@@ -57,12 +54,12 @@ class UserPage extends Component {
 
   componentDidMount(){
     const userId = localStorage.userId;
-    console.log('this.props:', this.props);
+    // console.log('this.props:', this.props);
 
     User
       .oneChild(userId)
       .then( user => {
-        console.log('user in childUserPage:', user)
+        // console.log('user in childUserPage:', user)
         this.setState({
           user: user,
           quizes: user.quizes,

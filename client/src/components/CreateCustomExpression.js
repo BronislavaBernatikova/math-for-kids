@@ -11,7 +11,7 @@ function CreateCustomExpression(props){
       expression: formData.get('expression'),
       solution: formData.get('solution')
     }
-    console.log('expression:', expression);
+    // console.log('expression:', expression);
     onSubmit(expression);
     event.target.reset();
   }

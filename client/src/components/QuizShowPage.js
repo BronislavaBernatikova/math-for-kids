@@ -42,11 +42,11 @@ class QuizShowPage extends Component {
     Answer
       .update(dataToUpdate)
       .then( answer => {
-        console.log('answer:', answer);
+        // console.log('answer:', answer);
 
         let {right_answer_count} = this.state;
         answer.correct_answer ? (right_answer_count += 1) : (right_answer_count);
-        console.log('this.state:', this.state);
+        // console.log('this.state:', this.state);
           this.setState({
             right_answer_count: right_answer_count,
             answered_count: this.state.answered_count + 1,
@@ -56,7 +56,7 @@ class QuizShowPage extends Component {
   }
 
   updateQuiz(timeData){
-    console.log('Updating quizData')
+    // console.log('Updating quizData')
     let quizDataToUpdate = {
       time: timeData,
       quiz_id: this.state.quiz.id,
@@ -108,7 +108,7 @@ class QuizShowPage extends Component {
   render(){
     const { quiz, expression, answered_count, loading, right_answer_count } = this.state;
     const expression_count = this.state.expressions.length;
-    const quizId = quiz.id;
+    // const quizId = quiz.id;
     const percent = (answered_count / expression_count) * 100 // progress bar
 
     if(loading){
@@ -172,8 +172,8 @@ class QuizShowPage extends Component {
     else if(answered_count === expression_count && quiz.repeated !== 0){
       const wrong_answer = expression_count - right_answer_count;
       const last_right_answers = this.state.quiz.right_answer_count;
-      console.log('answered_count in repeat:', answered_count);
-      console.log('expression_count in repeat:', expression_count);
+      // console.log('answered_count in repeat:', answered_count);
+      // console.log('expression_count in repeat:', expression_count);
 
       this.triggerStopTimer()
 
@@ -214,11 +214,11 @@ class QuizShowPage extends Component {
         // console.log('right_answer:', right_answer);
         const wrong_answer = expression_count - right_answer;
 
-        const quizDataToUpdate = {
-          right_answer: right_answer,
-          time: this.state.seconds,
-          quiz_id: quizId
-        }
+        // const quizDataToUpdate = {
+        //   right_answer: right_answer,
+        //   time: this.state.seconds,
+        //   quiz_id: quizId
+        // }
         this.triggerStopTimer()
         // this.updateQuizData(quizDataToUpdate)
         return(

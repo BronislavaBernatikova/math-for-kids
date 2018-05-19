@@ -47,7 +47,7 @@ class CreateCustomQuiz extends Component {
     const expressionIndex = parseInt(currentTarget.dataset.id, 10);
     const { expressions } = this.state;
     const removed = expressions.splice(expressionIndex,1);
-    console.log('removed:', removed);
+    // console.log('removed:', removed);
     this.setState({
       expressions: expressions
     })

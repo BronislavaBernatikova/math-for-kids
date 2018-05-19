@@ -34,16 +34,16 @@ class ParentUserPage extends Component {
         this.setState({
           customQuizes: newCustomQuiz, ...customQuizes
         })
-        console.log('customeQuizes in state:', this.state.customQuizes);
+        // console.log('customeQuizes in state:', this.state.customQuizes);
       })
   }
 
   setUpCurrentQuiz(data){
-    console.log('setUpCurrentQuiz:', data);
+    // console.log('setUpCurrentQuiz:', data);
     CurrentQuizSetUp
       .update(data)
       .then( updatedQuiz => {
-        console.log('updatedQuiz:', updatedQuiz);
+        // console.log('updatedQuiz:', updatedQuiz);
       })
   }
 
@@ -51,7 +51,7 @@ class ParentUserPage extends Component {
     User
       .createChildUser(newUserData)
       .then( userData => {
-        console.log('userData:', userData);
+        // console.log('userData:', userData);
       })
   }
   triggerModal(event){
@@ -84,7 +84,7 @@ class ParentUserPage extends Component {
     User
       .oneParent(userId)
       .then( user => {
-        console.log('user:', user);
+        // console.log('user:', user);
         this.setState({
           parentUser: user,
           customQuizes: user.customQuizes,
@@ -99,7 +99,7 @@ class ParentUserPage extends Component {
     const {currentQuizSetUps, modalState} = this.state;
     // const students = currentQuizSetUps.length;
 
-    console.log('currentQuizSetUps:',currentQuizSetUps);
+    // console.log('currentQuizSetUps:',currentQuizSetUps);
 
     return(
       <main className="ParentUserPage">
