@@ -10,7 +10,7 @@ class CreateNewChild extends Component {
   }
 
   handleSubmit(event){
-    // event.preventDefault();
+    event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
     const newUserData = {

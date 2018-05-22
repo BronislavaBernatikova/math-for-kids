@@ -157,6 +157,9 @@ html, body {
   padding: 40vh 0;
   color: rgb(3,2,120);
 }
+.expression .square {
+  padding-top: 2vw;
+}
 
 /* MODAL */
 div.ui.modal.transition.visible.active.mainModal {
