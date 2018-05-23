@@ -3,9 +3,6 @@ import React, {Component} from 'react';
 class CreateNewChild extends Component {
   constructor(props){
     super(props)
-    this.state = {
-
-    }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 

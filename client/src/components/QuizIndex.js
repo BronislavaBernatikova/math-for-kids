@@ -4,8 +4,7 @@ import '../styling/QuizIndex.css';
 
 function QuizIndex (props) {
   const { quizes = [], parent } = props;
-  // console.log('quizes in quizIndex:', quizes );
-  // console.log('props', props );
+  
      return(
       <div className="QuizIndex">
         <ul className="list">

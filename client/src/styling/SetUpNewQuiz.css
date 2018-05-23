@@ -21,7 +21,6 @@
   padding-top: 2vh;
 }
 .field select {
-  /* -webkit-appearance: none; */
   /* border: black solid thick; */
   font-family: 'Gaegu', cursive;
   font-size: 1.5vw;
@@ -55,4 +54,3 @@ fieldset {
   max-width: 150px;
   border-radius: 5px;
 }
-/* rgb(3,2,120) */

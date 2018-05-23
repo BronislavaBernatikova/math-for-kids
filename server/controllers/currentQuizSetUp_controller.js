@@ -33,7 +33,6 @@ const CurrentQuizSetUps = {
                    operator: null
                  }
       }
-      console.log('datax:',data);
 
       knex('current_quiz_set_ups')
         .where({

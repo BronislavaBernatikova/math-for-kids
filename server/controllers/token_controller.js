@@ -9,7 +9,7 @@ const Tokens = {
   create(req,res){
     const email = req.body.email;
     const logInPassword = req.body.password;
-     // console.log('logInPassword :', logInPassword );
+
     knex
     .select()
     .from('users')
@@ -21,7 +21,6 @@ const Tokens = {
 
         bcrypt.compare(logInPassword, user.password_digest, function(err,result){
           if (result === true){
-            //console.log('secretToken', process.env.MATH_FOR_KIDS_SECRET_KEY)
             const expires = moment().add(7, 'days').valueOf();
             const token = jwt.encode(
                         {

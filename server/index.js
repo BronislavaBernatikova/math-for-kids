@@ -43,16 +43,13 @@ app.use((req, res, next) => {
 
 //creating current user with the token:
 app.use(function setCurrentUser (req, res, next){
-  //console.log('in setCurrentUser function');
   const token = ( req.headers['authorization']);
-  // console.log('headers:', req.headers);
 
   if(token){
 
       const payload = jwt.decode(token, process.env.MATH_FOR_KIDS_SECRET_KEY); //app.get('jwtTokenSecret')
       const userId = parseInt(payload['id']);
       req.currentUser = false;
-      //console.log('currentUser: ', req.currentUser);
 
       knex
         .first()
@@ -60,7 +57,6 @@ app.use(function setCurrentUser (req, res, next){
         .where('id', userId)
         .then( user => {
           req.currentUser = user;
-          // console.log('req.currentUser:', req.currentUser);
           next();
         })
   } else {

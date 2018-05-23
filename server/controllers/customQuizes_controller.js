@@ -36,7 +36,6 @@ const CustomQuizes = {
     }
     // custom quiz doesn't have any expressions
     else if( hasEmptyObject(customExpressions)){
-      console.log('no custom expressions');
       res.json({
         error: "Invalid data"
       })
@@ -53,7 +52,6 @@ const CustomQuizes = {
             .then( customQuizData => {
               const customQuiz = customQuizData[0];
               const customQuizId = customQuiz.id;
-              console.log('customQuizId:', customQuizId);
 
                   function returnFromDb(cqId,uId,array){
                     return new Promise((resolve, reject) => {
@@ -71,13 +69,11 @@ const CustomQuizes = {
                                     .returning('*')
                                     .then( expressionArr => {
                                       const expression = expressionArr[0];
-                                      // console.log('value in the loop:', value);
                                       resolve(expression);
                                     })
                                 }));
                                 }
                       Promise.each(promiseArray, function(result){
-                        // console.log('value in Peomise.each:', result);
                       })
                       .then( value => { resolve(value);})
                     })
@@ -86,10 +82,6 @@ const CustomQuizes = {
             res.json(customQuiz);
             })
     }
-            // .then( value => {
-            //   res.json(value);
-            //   // console.log('End of promis:', value);
-            // })
   },
 
   update(req, res){
@@ -169,56 +161,3 @@ const CustomQuizes = {
 
 
 module.exports = CustomQuizes;
-// .onDelete('CASCADE');
-
-// create(req, res){
-// // console.log('req in create:',req);
-// const title = req.body.title;
-// const customExpressions = req.body.customExpressions;
-// const numberOfExpressions = customExpressions.length;
-// console.log('numberOfExpressions:', numberOfExpressions);
-// const userId = req.currentUser.id;
-//
-//     knex('custom_quizes')
-//         .insert({
-//           'title' : title,
-//           'user_id': userId
-//         })
-//         .returning('*')
-//         .then( customQuizData => {
-//           const customQuiz = customQuizData[0];
-//           const customQuizId = customQuiz.id;
-//           console.log('customQuizId:', customQuizId);
-//
-//           // const returnArray = (cqId,uId,array) => {
-//           function returnArray (cqId, uId, aaray){
-//             return new Promise((resolve, reject) => {
-//               let valueArray = [];
-//                   for ( let item of customExpressions) {
-//
-//                       knex('custom_expressions')
-//                         .insert({
-//                           custom_quiz_id: cqId,
-//                           user_id: uId,
-//                           expression: item.expression,
-//                           solution: item.solution
-//                         })
-//                         .returning('*')
-//                         .then( value => {
-//                           // console.log('exp.value: ',value);
-//                           valueArray.push(value);
-//                           console.log('valueArrayX:', valueArray);
-//                           if(valueArray.length === numberOfExpressions){
-//                             console.log('valueArrayY:', valueArray);
-//                               resolve(valueArray);
-//                           }
-//                         })
-//                     }
-//                     console.log('valueArrayZ:', valueArray);
-//             })
-//           }
-//            return returnArray(customQuizId,userId,customExpressions);
-//           })
-//           .then(value => console.log('vse v db:', value));
-// },
-//

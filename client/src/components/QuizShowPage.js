@@ -4,7 +4,6 @@ import Timer from './Timer';
 import CorrectWrongAnswers from './CorrectWrongAnswers';
 import { Image, Modal, Progress } from 'semantic-ui-react'
 import '../styling/QuizShowPage.css';
-// import { withRouter } from 'react-router-dom';
 
 class QuizShowPage extends Component {
   constructor(props){
@@ -42,11 +41,10 @@ class QuizShowPage extends Component {
     Answer
       .update(dataToUpdate)
       .then( answer => {
-        // console.log('answer:', answer);
 
         let {right_answer_count} = this.state;
         answer.correct_answer ? (right_answer_count += 1) : (right_answer_count);
-        // console.log('this.state:', this.state);
+
           this.setState({
             right_answer_count: right_answer_count,
             answered_count: this.state.answered_count + 1,
@@ -56,7 +54,6 @@ class QuizShowPage extends Component {
   }
 
   updateQuiz(timeData){
-    // console.log('Updating quizData')
     let quizDataToUpdate = {
       time: timeData,
       quiz_id: this.state.quiz.id,
@@ -172,8 +169,6 @@ class QuizShowPage extends Component {
     else if(answered_count === expression_count && quiz.repeated !== 0){
       const wrong_answer = expression_count - right_answer_count;
       const last_right_answers = this.state.quiz.right_answer_count;
-      // console.log('answered_count in repeat:', answered_count);
-      // console.log('expression_count in repeat:', expression_count);
 
       this.triggerStopTimer()
 
@@ -211,16 +206,9 @@ class QuizShowPage extends Component {
 
       else if(answered_count === expression_count && quiz.repeated === 0){
         const right_answer = this.state.right_answer_count;
-        // console.log('right_answer:', right_answer);
         const wrong_answer = expression_count - right_answer;
+        this.triggerStopTimer();
 
-        // const quizDataToUpdate = {
-        //   right_answer: right_answer,
-        //   time: this.state.seconds,
-        //   quiz_id: quizId
-        // }
-        this.triggerStopTimer()
-        // this.updateQuizData(quizDataToUpdate)
         return(
           <div className="QuizShowPage">
             <div className="wrapper-2">
@@ -246,7 +234,6 @@ class QuizShowPage extends Component {
             </div>
            </div>
       )}
-
   }
 }
 export default QuizShowPage;

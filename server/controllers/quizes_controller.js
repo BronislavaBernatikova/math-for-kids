@@ -4,9 +4,6 @@ const Promise = require('bluebird');
 const Quiz = {
 
   createGenerate(req,res){
-    // console.log('data from react; ');
-    // console.log('req.currentUser:', req.currentUser);
-    // console.log('req.body:', req.body);
     const userId = req.currentUser.id;
     const expression_count = req.body.numberOfExpressions;
     const difficulty = req.body.difficulty;
@@ -33,7 +30,6 @@ const Quiz = {
     }
 
     return knex('quizes')
-      //.into('quizes')
       .insert(_data)
       .returning('*')
       .then( quizData => {
@@ -46,7 +42,7 @@ const Quiz = {
           .where('difficulty', difficulty)
           .then( expArray => {
             const expressions = randomizer(expArray,expression_count);
-            // console.log('expressions:', expressions);
+
             let answer = {};
             expressions.forEach(expression => {
               answer = {
@@ -58,7 +54,6 @@ const Quiz = {
                   .insert(answer)
                   .returning('*')
                   .then( answer => {
-                    // console.log('answer from db',answer);
                     res.json(quiz);
                   })
             })
@@ -69,7 +64,7 @@ const Quiz = {
   createFromCustomQuiz(req, res) {
     const userId = req.currentUser.id;
     const customQuizId = req.body.customQuizId;
-    // console.log('req.body:', req.body);
+
     const _data = {
       user_id: userId,
       date: new Date(),
@@ -82,21 +77,18 @@ const Quiz = {
       .first()
       .where('id', customQuizId)
       .then( customQuiz => {
-        console.log('customQuiz:', customQuiz);
         _data.expression_count = customQuiz.number_of_expressions;
-        console.log('_data:', _data);
 
         knex('quizes')
           .insert(_data)
           .returning('*')
           .then( quizData => {
             const quiz = quizData[0];
-            // console.log('quiz:', quiz);
+
             knex('custom_expressions')
               .select('id')
               .where('custom_quiz_id',customQuizId)
               .then( customExpressions => {
-                console.log('customExpresions:', customExpressions);
                 const promiseArray = [];
                 let answer = {};
 
@@ -116,7 +108,6 @@ const Quiz = {
                   }))
                 }
                 Promise.each(promiseArray, function(result){
-                  console.log('value in Peomise.each:', result);
                 })
                 .then( () => { res.json(quiz)});
               })
@@ -126,9 +117,6 @@ const Quiz = {
 
   show(req,res){
     const quizId = req.params.id;
-    console.log('req.params:', req.params);
-    console.log('quizId', quizId);
-    //const userId = req.currentUser.id;
 
         knex('quizes')
           .first()
@@ -156,8 +144,6 @@ const Quiz = {
                 .where('quiz_id', quizId)
                 .then( customExpressions => {
                   quiz.expressions = customExpressions;
-                  // console.log('customExpressions:', customExpressions);
-                  console.log('quiz', quiz);
                   res.json(quiz);
                 })
             }
@@ -187,7 +173,6 @@ const Quiz = {
       .returning('*')
       .then( quizData => {
         const quiz = quizData[0];
-        //console.log('right answer count updated!', quiz);
         res.json(quiz);
        })
   },
@@ -211,7 +196,6 @@ const Quiz = {
               correct_answer: false
             })
             .then( expressions => {
-              // console.log('expressions: ', expressions);
               res.json(expressions);
             })
         }
@@ -225,7 +209,6 @@ const Quiz = {
               correct_answer: false
             })
             .then( expressions => {
-              console.log('expressions: ', expressions);
               res.json(expressions);
             })
         }
@@ -234,7 +217,6 @@ const Quiz = {
   },
 
   index(req, res){
-    // console.log('in quizes index')
 
     const childId = req.params.childId;
     const userId = req.currentUser.id;
@@ -244,7 +226,6 @@ const Quiz = {
       .first('parent_id','custom_quiz_id')
       .where('child_id', childId)
       .then( quizSetUp => {
-        console.log('quizSetUp:', quizSetUp);
         const parentId = quizSetUp.parent_id;
         const customQuizId = quizSetUp.custom_quiz_id;
 
@@ -265,7 +246,6 @@ const Quiz = {
               }
               else {
                 childInfo.customQuiz = null;
-                console.log('childInfo:', childInfo);
                 res.json(childInfo);
               }
             })
@@ -278,55 +258,3 @@ const Quiz = {
 
 }
 module.exports = Quiz;
-
-// createFromCustomQuiz(req, res) {
-//   const userId = req.currentUser.id;
-//   const customQuizId = req.body.customQuizId;
-//   // console.log('req.body:', req.body);
-//   const _data = {
-//     user_id: userId,
-//     date: new Date(),
-//     source: "custom",
-//     repeated: 0,
-//     right_answer_count: 0
-//   };
-//
-//   knex('custom_quizes')
-//     .first()
-//     .where('id', customQuizId)
-//     .then( customQuiz => {
-//       console.log('customQuiz:', customQuiz);
-//       _data.expression_count = customQuiz.number_of_expressions;
-//       // console.log('_data:', _data);
-//
-//       knex('quizes')
-//         .insert(_data)
-//         .returning('*')
-//         .then( quizData => {
-//           const quiz = quizData[0];
-//
-//           knex
-//             .select('id')
-//             .from('custom_expressions')
-//             .where('custom_quiz_id',customQuizId)
-//             .then( customExpressions => {
-//               let answer = {};
-//               customExpressions.forEach(expression => {
-//                 answer = {
-//                   custom_expression_id: expression.id,
-//                   quiz_id: quiz.id,
-//                   correct_answer: false
-//                 }
-//                  knex('answers')
-//                     .insert(answer)
-//                     .returning('*')
-//                     .then( answer => {
-//                       // console.log('answer from db',answer);
-//                       console.log('quiz to react:', quiz);
-//                       res.json(quiz);
-//                     })
-//               })
-//             })
-//         })
-//     })
-// },

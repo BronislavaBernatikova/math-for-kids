@@ -19,14 +19,13 @@ class UserPage extends Component {
     console.log('i am in create new quiz');
     const {currentQuizSetUp} = this.state;
     let quizParams;
-    // console.log('custom_quiz_id:',currentSetUp.custom_quiz_id );
+
     if(currentQuizSetUp.custom_quiz_id === null){
       quizParams = {
                     difficulty: currentQuizSetUp.difficulty,
                     arithmeticOperator: currentQuizSetUp.operator,
                     numberOfExpressions: currentQuizSetUp.number_of_expressions
                   }
-      // console.log('quizParams:', quizParams);
       Quiz
         .createGenerate(quizParams)
         .then( quiz => {
@@ -38,12 +37,12 @@ class UserPage extends Component {
     }
     else {
       quizParams = { customQuizId: currentQuizSetUp.custom_quiz_id };
-      // console.log('quizParams:', quizParams);
+
       Quiz
         .createFromCustomQuiz(quizParams)
         .then(quiz => {
           console.log('quizxy:', quiz);
-          // console.log('this.props.history:', this.props.history);
+
           this.props.history.push({
                                   pathname: `/quizes/new`,
                                   state: { quiz: quiz }
@@ -54,12 +53,11 @@ class UserPage extends Component {
 
   componentDidMount(){
     const userId = localStorage.userId;
-    // console.log('this.props:', this.props);
 
     User
       .oneChild(userId)
       .then( user => {
-        // console.log('user in childUserPage:', user)
+
         this.setState({
           user: user,
           quizes: user.quizes,

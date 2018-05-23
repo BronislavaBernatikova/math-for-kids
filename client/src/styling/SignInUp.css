@@ -62,8 +62,6 @@
   top: 45vh;
   border: rgb(102, 0, 0) solid thin;
   border-radius: 5px;
-  /* height: 100%;
-  width: 100%; */
 }
 .modal-trigger {
   text-decoration: none;

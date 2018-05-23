@@ -12,7 +12,6 @@ const CustomExpressions = require('../controllers/customExpressions_controller')
 
 
 const authorization = (req, res, next) => {
-  // console.log('req.currentUser:', req.currentUser);
   if(!req.currentUser || req.currentUser.role === "parent" ){
     next();
   }

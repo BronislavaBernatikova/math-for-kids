@@ -11,7 +11,6 @@ function CreateCustomExpression(props){
       expression: formData.get('expression'),
       solution: formData.get('solution')
     }
-    // console.log('expression:', expression);
     onSubmit(expression);
     event.target.reset();
   }
@@ -43,4 +42,3 @@ function CreateCustomExpression(props){
 }
 
 export default CreateCustomExpression;
-// style={{margin: '0 2rem'}}

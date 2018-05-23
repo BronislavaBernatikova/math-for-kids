@@ -16,7 +16,7 @@ class ShowCustomQuiz extends Component {
     CustomQuiz
       .one(customQuizId)
       .then( customQuiz => {
-        // console.log('customQuiz:', customQuiz);
+    
         this.setState({
           customQuiz: customQuiz
         })

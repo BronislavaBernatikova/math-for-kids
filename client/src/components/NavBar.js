@@ -16,8 +16,8 @@ class NavBar extends Component {
 
   render(){
     const {user} = this.props;
-    // console.log('user in navBar render:',user);
     let parentUser;
+
     if (user) {
     parentUser = ( user.role === 'parent' ) ? (
         <NavLink exact to={`/users/parent`}>Parent Page</NavLink>
@@ -25,7 +25,7 @@ class NavBar extends Component {
         <NavLink exact to={`/users/${user.first_name}`}>User Page</NavLink>
     )
     }
-     // console.log('parentUser:', parentUser);
+     
     return (
       <nav className="NavBar">
         <div className="textNav">Math For Kids</div>

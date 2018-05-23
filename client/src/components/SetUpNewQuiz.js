@@ -29,21 +29,18 @@ class SetUpNewQuiz extends Component {
         numberOfExpressions: event.target.value,
         customQuizId: null
       })
-      // console.log('this.state:', this.state);
     }
   handleChangeArithmeticOperator(event) {
     this.setState({
       arithmeticOperator: event.target.value,
       customQuizId: null
     })
-    // console.log('this.state:', this.state);
   }
   handleChangeDifficulty(event) {
     this.setState({
       difficulty: event.target.value,
       customQuizId: null
     })
-    // console.log('this.state:', this.state);
   }
   handleChangeCurrentQuizId(event) {
     this.setState({
