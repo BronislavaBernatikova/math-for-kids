@@ -236,11 +236,11 @@
   line-height: 1.5;
 }
 
-#modal-child {
+.modal.error {
   background: rgba(0,0,0, .01);
 }
 
- #modal-child .modal__content {
+ .modal.error .modal__content {
   background: rgba(255,255,255);
   width: 35vw;
   height: 45vw;
@@ -248,20 +248,20 @@
   border-radius: 5px;
 }
 
-#modal-child .modal__dialog {
+.modal.error .modal__dialog {
   display: table-cell;
   vertical-align: middle;
   border-radius: 5px;
 }
 
-#modal-child .modal__content {
+.modal.error .modal__content {
   background: rgba(255,255,255);
   width: 50vw;
   margin: auto;
   border-radius: 5px;
 }
 
-#modal-child .modal__header {
+.modal.error .modal__header {
   background: rgb(255, 77, 77);
   color: rgba(255,255,255,0.8);
   padding: 2rem;
@@ -270,14 +270,14 @@
   border-radius: 5px;
 }
 
-#modal-child .modal__title {
+.modal.error .modal__title {
   margin: 2vw;
   font-family: 'Gaegu', cursive;
   font-size: 2.5vw;
   text-align: center;
   line-height: 1.5;
 }
-#modal-child .modal__info {
+.modal.error .modal__info {
   margin: 6vw 2vw;
   text-align: center;
   font-size: 2vw;

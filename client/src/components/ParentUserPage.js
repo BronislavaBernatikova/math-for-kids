@@ -17,7 +17,8 @@ class ParentUserPage extends Component {
       modalState: false,
       modalQuizState: false,
       modalChildInfoState: false,
-      modalQuizErrorState: false
+      modalQuizErrorState: false,
+      modalSetUpErrorState: false
     }
     this.createCustomQuiz = this.createCustomQuiz.bind(this);
     this.setUpCurrentQuiz = this.setUpCurrentQuiz.bind(this);
@@ -28,6 +29,22 @@ class ParentUserPage extends Component {
     this.closeQuizModal = this.closeQuizModal.bind(this);
     this.closeChildInfoModal = this.closeChildInfoModal.bind(this);
     this.closeQuizErrorModal = this.closeQuizErrorModal.bind(this);
+    this.closeSetUpErrorModal = this.closeSetUpErrorModal.bind(this);
+  }
+
+  componentDidMount(){
+    const userId = localStorage.userId;
+
+    User
+      .oneParent(userId)
+      .then( user => {
+        console.log('user:', user);
+        this.setState({
+          parentUser: user,
+          customQuizes: user.customQuizes,
+          currentQuizSetUps: user.currentQuizSetUps
+        })
+      })
   }
 
   createCustomQuiz(customQuizData){
@@ -49,10 +66,21 @@ class ParentUserPage extends Component {
       })
   }
 
-  setUpCurrentQuiz(data){
+  setUpCurrentQuiz(newSetUpData){
     CurrentQuizSetUp
-      .update(data)
-      .then( updatedQuiz => {
+      .update(newSetUpData)
+      .then( data => {
+        if(!data.error){
+          this.setState({
+            modalSetUpErrorState: false
+          })
+          window.location.reload(true);
+        }
+        else {
+          this.setState({
+            modalSetUpErrorState: true
+          })
+        }
       })
   }
 
@@ -111,23 +139,15 @@ class ParentUserPage extends Component {
       modalQuizErrorState: false
     })
   }
-
-  componentDidMount(){
-    const userId = localStorage.userId;
-
-    User
-      .oneParent(userId)
-      .then( user => {
-        this.setState({
-          parentUser: user,
-          customQuizes: user.customQuizes,
-          currentQuizSetUps: user.currentQuizSetUps
-        })
-      })
+  closeSetUpErrorModal(event){
+    event.preventDefault();
+    this.setState({
+      modalSetUpErrorState: false
+    })
   }
 
   render(){
-    const {currentQuizSetUps, modalState, modalQuizState, modalChildInfoState, modalQuizErrorState } = this.state;
+    const {currentQuizSetUps} = this.state;
 
     return(
       <main className="ParentUserPage">
@@ -212,7 +232,7 @@ class ParentUserPage extends Component {
         <CreateCustomQuiz sendData={this.createCustomQuiz}/>
         <CustomQuizIndex customQuizes={this.state.customQuizes}/>
 
-        <div className="modal" id="modal-child" style={{display: this.state.modalChildInfoState ? 'table' : 'none' }}>
+        <div className="modal error"  style={{display: this.state.modalChildInfoState ? 'table' : 'none' }}>
           <div className="modal__dialog">
             <section className="modal__content">
               <header className="modal__header">
@@ -231,7 +251,7 @@ class ParentUserPage extends Component {
           </div>
         </div>
 
-        <div className="modal" id="modal-child" style={{display: this.state.modalQuizErrorState ? 'table' : 'none' }}>
+        <div className="modal error"  style={{display: this.state.modalQuizErrorState ? 'table' : 'none' }}>
           <div className="modal__dialog">
             <section className="modal__content">
               <header className="modal__header">
@@ -244,6 +264,24 @@ class ParentUserPage extends Component {
                 </div>
                 <button className="modal__close"
                         onClick={this.closeQuizErrorModal}
+                >x</button>
+              </header>
+            </section>
+          </div>
+        </div>
+
+        <div className="modal error"  style={{display: this.state.modalSetUpErrorState ? 'table' : 'none' }}>
+          <div className="modal__dialog">
+            <section className="modal__content">
+              <header className="modal__header">
+                <div className="modal__title">Ups, invalid data! Please, try again..
+                  <div className="modal__info">
+                  <br/>1. you forgot to choose student
+                  <br/>2. you have to choose either difficulty, number of expression and operator or custom quiz
+                  </div>
+                </div>
+                <button className="modal__close"
+                        onClick={this.closeSetUpErrorModal}
                 >x</button>
               </header>
             </section>

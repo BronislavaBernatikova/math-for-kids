@@ -47,8 +47,7 @@ class SetUpNewQuiz extends Component {
   }
   handleChangeCurrentQuizId(event) {
     this.setState({
-      currentQuizId: event.target.value,
-      customQuizId: null
+      currentQuizId: event.target.value
     })
   }
   handleChangeCustomQuizId(event) {
@@ -70,6 +69,7 @@ class SetUpNewQuiz extends Component {
   }
 
   handleSubmit (event) {
+    event.preventDefault();
     const newQuiz = {
       numberOfExpressions: this.state.numberOfExpressions,
       arithmeticOperator: this.state.arithmeticOperator,
