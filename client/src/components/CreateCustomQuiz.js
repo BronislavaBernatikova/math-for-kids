@@ -22,7 +22,7 @@ class CreateCustomQuiz extends Component {
   }
 
   createCustomQuiz(event){
-    // event.preventDefault();
+    event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
     const title = formData.get('title');

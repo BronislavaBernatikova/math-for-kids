@@ -1,16 +1,47 @@
 const knex = require('../db');
 const Promise = require('bluebird');
 
+function hasEmptyProp (object){
+  for(let property in object){
+    if(!object[property]) {
+      return true;
+    }
+  }
+  return false;
+}
+function hasEmptyObject (array){
+  for(let item of array){
+    if(hasEmptyProp(item)) {
+      return true;
+    }
+  }
+  return false;
+}
+
 
 const CustomQuizes = {
 
     create(req, res){
-    // console.log('req in create:',req);
+
     const title = req.body.title;
     const customExpressions = req.body.customExpressions;
     const numberOfExpressions = customExpressions.length;
-    console.log('numberOfExpressions:', numberOfExpressions);
     const userId = req.currentUser.id;
+
+    // title of custom quiz is missing or there is no expression in the quiz
+    if(!title || numberOfExpressions === 0){
+      res.json({
+        error: "Invalid data"
+      })
+    }
+    // custom quiz doesn't have any expressions
+    else if( hasEmptyObject(customExpressions)){
+      console.log('no custom expressions');
+      res.json({
+        error: "Invalid data"
+      })
+    }
+    else {
 
         knex('custom_quizes')
             .insert({
@@ -54,6 +85,7 @@ const CustomQuizes = {
             return returnFromDb(customQuizId, userId, customExpressions);
             res.json(customQuiz);
             })
+    }
             // .then( value => {
             //   res.json(value);
             //   // console.log('End of promis:', value);

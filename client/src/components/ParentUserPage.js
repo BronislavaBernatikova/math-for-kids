@@ -16,7 +16,8 @@ class ParentUserPage extends Component {
       currentQuizSetUps: [],
       modalState: false,
       modalQuizState: false,
-      modalChildInfoState: false
+      modalChildInfoState: false,
+      modalQuizErrorState: false
     }
     this.createCustomQuiz = this.createCustomQuiz.bind(this);
     this.setUpCurrentQuiz = this.setUpCurrentQuiz.bind(this);
@@ -26,16 +27,25 @@ class ParentUserPage extends Component {
     this.triggerQuizModal = this.triggerQuizModal.bind(this);
     this.closeQuizModal = this.closeQuizModal.bind(this);
     this.closeChildInfoModal = this.closeChildInfoModal.bind(this);
+    this.closeQuizErrorModal = this.closeQuizErrorModal.bind(this);
   }
 
   createCustomQuiz(customQuizData){
     CustomQuiz
       .create(customQuizData)
-      .then( newCustomQuiz => {
-        const {customQuizes} = this.state;
-        this.setState({
-          customQuizes: [newCustomQuiz, ...customQuizes]
-        })
+      .then( data => {
+        if(!data.error){
+          const {customQuizes} = this.state;
+          this.setState({
+            customQuizes: [data, ...customQuizes],
+            modalQuizErrorState: false
+          })
+        }
+        else{
+          this.setState({
+            modalQuizErrorState: true
+          })
+        }
       })
   }
 
@@ -95,6 +105,13 @@ class ParentUserPage extends Component {
       modalChildInfoState: false
     })
   }
+  closeQuizErrorModal(event){
+    event.preventDefault();
+    this.setState({
+      modalQuizErrorState: false
+    })
+  }
+
   componentDidMount(){
     const userId = localStorage.userId;
 
@@ -110,8 +127,8 @@ class ParentUserPage extends Component {
   }
 
   render(){
-    const {currentQuizSetUps, modalState, modalQuizState, modalChildInfoState } = this.state;
-    
+    const {currentQuizSetUps, modalState, modalQuizState, modalChildInfoState, modalQuizErrorState } = this.state;
+
     return(
       <main className="ParentUserPage">
 
@@ -208,6 +225,25 @@ class ParentUserPage extends Component {
                 </div>
                 <button className="modal__close"
                         onClick={this.closeChildInfoModal}
+                >x</button>
+              </header>
+            </section>
+          </div>
+        </div>
+
+        <div className="modal" id="modal-child" style={{display: this.state.modalQuizErrorState ? 'table' : 'none' }}>
+          <div className="modal__dialog">
+            <section className="modal__content">
+              <header className="modal__header">
+                <div className="modal__title">Ups, invalid data! Please, try again..
+                  <div className="modal__info">
+                  <br/>1. you forgot to fill up title
+                  <br/>2. or your custom quiz does'n have any expressions
+                  <br/>3. or one of the expressions doesn't have a solution
+                  </div>
+                </div>
+                <button className="modal__close"
+                        onClick={this.closeQuizErrorModal}
                 >x</button>
               </header>
             </section>
