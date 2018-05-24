@@ -47,7 +47,7 @@ class CorrectWrongAnswers extends Component {
   render(){
     const { expressions, loading } = this.state;
     const {quiz} = this.props;
-    
+
     if (loading){
       return(
         <div className="CorrectWrongAnswers">
@@ -70,7 +70,7 @@ class CorrectWrongAnswers extends Component {
           <div className="text">Correct your wrong answers:</div>
           <div className="container">
             {expressions.map( (expression, index) => (
-            <div key={`${index}`} className={expression.id}>
+            <div key={`${index}`} className="square" id={expression.id}>
               <div>{expression.num1}</div>
               <div>{expression.operator}</div>
               <div>{expression.num2}</div>

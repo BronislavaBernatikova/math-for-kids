@@ -64,7 +64,6 @@ class QuizShowPage extends Component {
     Quiz
       .update(quizDataToUpdate)
       .then( quiz => {
-        console.log('quiz:', quiz);
           this.setState({
             newQuiz: quiz
           })
@@ -92,7 +91,6 @@ class QuizShowPage extends Component {
           timer:true,
           time: 0
         })
-        console.log('quiz in mount:', quiz);
       })
   }
 
@@ -156,7 +154,7 @@ class QuizShowPage extends Component {
                     <input name="user_answer" id="user_answer" />
                   </div>
                   <div className="button">
-                    <input type="submit" value="Next"/>
+                    <input id="submit" type="submit" value="Next"/>
                   </div>
                 </form>
               </div>

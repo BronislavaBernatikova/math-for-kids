@@ -132,10 +132,10 @@ class SetUpNewQuiz extends Component {
                   onChange={this.handleChangeArithmeticOperator}
           >
             <option value=" ">Select..</option>
-            <option value="add">Adding</option>
-            <option value="subtract">Subtraction</option>
-            <option value="multiply">Multiplication</option>
-            <option value="divide">Division</option>
+            <option value="+">Adding</option>
+            <option value="-">Subtraction</option>
+            <option value="x">Multiplication</option>
+            <option value="/">Division</option>
           </select>
         </div>
 

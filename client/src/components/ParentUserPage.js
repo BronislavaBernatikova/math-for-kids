@@ -38,7 +38,6 @@ class ParentUserPage extends Component {
     User
       .oneParent(userId)
       .then( user => {
-        console.log('user:', user);
         this.setState({
           parentUser: user,
           customQuizes: user.customQuizes,

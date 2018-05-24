@@ -34,7 +34,6 @@ class SignInPage extends Component {
       })
       .then( data => {
         if(!data.error) {
-          console.log('ok');
           localStorage.setItem('jwt', data.token);
           localStorage.setItem('userId', data.user_id);
           onSignIn()

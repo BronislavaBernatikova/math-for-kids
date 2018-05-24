@@ -16,7 +16,6 @@ class UserPage extends Component {
   }
 
   createNewQuiz(){
-    console.log('i am in create new quiz');
     const {currentQuizSetUp} = this.state;
     let quizParams;
 

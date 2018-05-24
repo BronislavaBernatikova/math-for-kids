@@ -7,7 +7,7 @@ html, body {
   flex-direction: column;
   font-family: 'Gaegu', cursive;
   background: linear-gradient(to bottom right,rgb(161,187,255), rgb(100,116,158));
-  background-image: url("https://image.shutterstock.com/z/stock-vector-background-illustration-of-math-symbols-and-formulas-730379383.jpg");
+  background-image: url("../images/quiz_show_page_background.jpg");
   /* background-repeat:no-repeat; */
   -webkit-background-size:cover;
   -moz-background-size:cover;
@@ -97,8 +97,8 @@ html, body {
   flex-direction: column;
   align-content: center;
   text-align: center;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   width: 400px;
   border-radius: 5px;
   background: radial-gradient(white, rgb(161,187,255));
@@ -113,6 +113,12 @@ html, body {
   font-family: 'Gaegu', cursive;
   border-radius: 5px;
 }
+.expression #submit {
+  /* background-color: rgb(161,187,255); */
+  background: radial-gradient(white, rgb(161,187,255));
+  box-shadow: 5px 5px 3px grey;
+  border: rgb(3,2,120) solid thin;
+}
 .expression .button {
   margin-top: 5vw;
   margin-bottom: 0;
@@ -121,6 +127,9 @@ html, body {
   padding: 20px;
   /* border: red thin solid; */
   font-size: 40px;
+}
+.expression .square {
+  padding:  1vw;
 }
 .wrapper-2 > div {
   font-size: 30px;
@@ -156,9 +165,6 @@ html, body {
   text-align: center;
   padding: 40vh 0;
   color: rgb(3,2,120);
-}
-.expression .square {
-  padding-top: 2vw;
 }
 
 /* MODAL */

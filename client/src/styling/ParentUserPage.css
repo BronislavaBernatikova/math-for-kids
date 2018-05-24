@@ -22,7 +22,7 @@
 }
 .students-list {
   /* border: black solid thin; */
-  padding: 0 7vw;
+  /* padding: 0 7vw; */
   line-height: 1.1;
 }
 .students-list > ul {
@@ -50,6 +50,9 @@
   border-radius: 5px;
   outline: none;
   width: 10vw;
+}
+.students-button div {
+  margin-right: 1.5vw;
 }
 /* CREATE CUSTOM QUIZ */
 .CreateCustomQuiz > .mainContainer {
