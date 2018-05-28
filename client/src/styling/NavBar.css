@@ -1,9 +1,6 @@
 .NavBar {
   display: flex;
-  /* width: 80%; */
-  /* background-color: rgb(3,2,120); rgb(161,187,255)*/
   background-color: white;
-  /* color: white; */
   justify-content: center;
   /* border: thin red solid; */
   height: 12vh;
@@ -11,10 +8,8 @@
 .wrapperNav {
   /* border: thin red solid; */
   width: 95%;
-
   display: flex;
   justify-content: flex-end;
-  /* color: black; */
 }
 .keys {
   display: flex;
@@ -25,14 +20,9 @@
   display: flex;
   align-items:  flex-end;
   padding-bottom: 0.4vw;
-  /* padding: 0.90em 0.5em; */
-  /* font-family: 'Gaegu', cursive; */
-  /* font-size: 2vw; */
 }
 .keys > div > * {
   /* border: thin black solid; */
-  /* margin-left:  1vw; */
-  /* padding: 0.90em 0.5em; */
   font-family: 'Gaegu', cursive;
   font-size: 1.5vw;
 }
@@ -46,29 +36,10 @@
   font-family: 'Sacramento', cursive;
   font-size: 9vw;
   text-shadow: 3px 3px rgb(100,116,158);
-  /* margin-bottom: -5vh; */
-}
-/* .NavBar > div {
-  border: thin black solid;
-  margin-left:  1vw;
-  padding: 0.90em 0.5em;
-  font-family: 'Gaegu', cursive;
-  font-size: 20px;
-  color: rgb(161,187,255);
-} */
-
-.NavBar > .active {
-  /* border-bottom: 5px solid white; */
-  /* background-color: rgb(161,187,255); */
-  /* background: radial-gradient(white, rgb(161,187,255));
-  color: rgb(3,2,120);
-  border-radius: 5px; */
 }
 
 .keys > div > *:hover {
-  /* background: radial-gradient(white, rgb(161,187,255)); */
   color: rgb(3,2,120);
-  /* border-radius: 5px; */
 }
 .hello {
   color: rgb(3,2,120);

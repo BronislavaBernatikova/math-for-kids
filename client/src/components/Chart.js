@@ -1,3 +1,5 @@
+//this component is not used yet as it is not supported in Server
+ 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import FusionCharts from 'fusioncharts';

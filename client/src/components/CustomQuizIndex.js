@@ -4,9 +4,7 @@ import '../styling/QuizIndex.css';
 
 function CustomQuizIndex (props) {
   const { customQuizes = [] } = props;
-  // const {onDeleteClick = () => {}} = props;
-
-
+  
       return(
        <div className="CustomQuizIndex">
          <div className="text2">Quizes you alredy created</div>

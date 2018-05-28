@@ -10,7 +10,6 @@ class CreateCustomQuiz extends Component {
     this.addExpression = this.addExpression.bind(this);
     this.createCustomQuiz = this.createCustomQuiz.bind(this);
     this.removeExpression = this.removeExpression.bind(this);
-
   }
 
   addExpression(expression){
@@ -22,7 +21,7 @@ class CreateCustomQuiz extends Component {
   }
 
   createCustomQuiz(event){
-    // event.preventDefault();
+    event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
     const title = formData.get('title');
@@ -32,13 +31,10 @@ class CreateCustomQuiz extends Component {
                               title: title,
                               customExpressions: customExpressions
                             }
-    // console.log('customExpressions:', customExpressions);
-    // console.log('customQuizData:', customQuizData);
     this.props.sendData(customQuizData);
     this.setState({
       expressions: []
     })
-    // console.log('this.props:', this.props);
   }
 
   removeExpression(event){
@@ -47,11 +43,10 @@ class CreateCustomQuiz extends Component {
     const expressionIndex = parseInt(currentTarget.dataset.id, 10);
     const { expressions } = this.state;
     const removed = expressions.splice(expressionIndex,1);
-    console.log('removed:', removed);
+
     this.setState({
       expressions: expressions
     })
-    // console.log('expressions:', expressions);
   }
 
   render(){
@@ -107,4 +102,3 @@ class CreateCustomQuiz extends Component {
 }
 
 export default CreateCustomQuiz;
-// style={{marginTop: '0 3rem'}}

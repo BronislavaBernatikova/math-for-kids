@@ -3,11 +3,11 @@ let createRecord = (knex, operator, difficulty) => {
   const expression = makeExpression(difficulty);
   // Inserts seed entries
   return knex('expressions').insert({
-    operator,
+    operator: operator[Object.keys(operator)],
     difficulty,
     num1: expression.randNum1,
     num2: expression.randNum2,
-    solution: expression[operator]()
+    solution: expression[Object.keys(operator)]()
   });
   return true;
 };
@@ -16,7 +16,7 @@ let createRecord = (knex, operator, difficulty) => {
 
     //try never delete:
     let records = [];
-    const operators = ["add", "subtract", "multiply", "divide"];
+    const operators = [{"add":"+"}, {"subtract":"-"}, {"multiply":"x"},{"divide":"/"}];
     const difficulties = [10, 100, 300, 500, 700, 1000];
     operators.forEach( operator => {
       difficulties.forEach( difficulty => {
@@ -56,22 +56,3 @@ let createRecord = (knex, operator, difficulty) => {
     while(num1 <= num2);
     return expression = new ArithmeticExpression(num1,num2);
   }
-
-  // Deletes ALL existing entries
-  // return knex('answers').del()
-  // .then(()=> {
-  //   return knex('expressions').del()
-  //     .then(() => {
-  //       let records = [];
-  //       const types = ["add", "subtract", "multiply", "divide"];
-  //       const difficulties = [10, 100, 300, 500, 700, 1000];
-  //       types.forEach( type => {
-  //         difficulties.forEach( difficulty => {
-  //           for (let i = 1; i < 2; i += 1) {
-  //             records.push(createRecord(knex, type, difficulty));
-  //           }
-  //         });
-  //       });
-  //       return Promise.all(records);
-  //     });
-  // })

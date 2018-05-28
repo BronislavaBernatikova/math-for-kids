@@ -10,7 +10,6 @@ class CorrectWrongAnswers extends Component {
       loading: true
     }
     this.handleSubmit = this.handleSubmit.bind(this);
-    console.log('in correct answers component');
   }
 
   handleSubmit(event){
@@ -25,7 +24,6 @@ class CorrectWrongAnswers extends Component {
         wrongAnswered.push(expression);
       }
     }
-    //console.log('wrongAnswered:', wrongAnswered);
 
     this.setState({
       expressions: wrongAnswered
@@ -36,26 +34,20 @@ class CorrectWrongAnswers extends Component {
   componentDidMount(){
     const {quiz} = this.props;
     const quizId = quiz.id;
-    console.log('quizId in correct:', quizId);
 
     Quiz
       .correct(quizId)
       .then( expressions => {
-        // console.log('expressions:', expressions);
-
         this.setState({
           expressions: expressions,
           loading: false
         })
       })
-
   }
   render(){
     const { expressions, loading } = this.state;
     const {quiz} = this.props;
-    console.log('quiz.source', quiz.source);
 
-    // console.log('expressions in render: ', expressions);
     if (loading){
       return(
         <div className="CorrectWrongAnswers">
@@ -78,7 +70,7 @@ class CorrectWrongAnswers extends Component {
           <div className="text">Correct your wrong answers:</div>
           <div className="container">
             {expressions.map( (expression, index) => (
-            <div key={`${index}`} className={expression.id}>
+            <div key={`${index}`} className="square" id={expression.id}>
               <div>{expression.num1}</div>
               <div>{expression.operator}</div>
               <div>{expression.num2}</div>

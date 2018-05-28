@@ -16,7 +16,7 @@ class ShowCustomQuiz extends Component {
     CustomQuiz
       .one(customQuizId)
       .then( customQuiz => {
-        // console.log('customQuiz:', customQuiz);
+    
         this.setState({
           customQuiz: customQuiz
         })
@@ -57,10 +57,3 @@ class ShowCustomQuiz extends Component {
   }
 }
 export default ShowCustomQuiz;
-
-// this.setState({
-//   customQuiz: {
-//     customExpressions: [],
-//     ...customQuiz
-//   }
-// })

@@ -22,7 +22,7 @@
 }
 .students-list {
   /* border: black solid thin; */
-  padding: 0 7vw;
+  /* padding: 0 7vw; */
   line-height: 1.1;
 }
 .students-list > ul {
@@ -50,6 +50,9 @@
   border-radius: 5px;
   outline: none;
   width: 10vw;
+}
+.students-button div {
+  margin-right: 1.5vw;
 }
 /* CREATE CUSTOM QUIZ */
 .CreateCustomQuiz > .mainContainer {
@@ -234,4 +237,52 @@
 .modal__text{
   padding: 0 1rem;
   line-height: 1.5;
+}
+
+.modal.error {
+  background: rgba(0,0,0, .01);
+}
+
+ .modal.error .modal__content {
+  background: rgba(255,255,255);
+  width: 35vw;
+  height: 45vw;
+  margin: auto;
+  border-radius: 5px;
+}
+
+.modal.error .modal__dialog {
+  display: table-cell;
+  vertical-align: middle;
+  border-radius: 5px;
+}
+
+.modal.error .modal__content {
+  background: rgba(255,255,255);
+  width: 50vw;
+  margin: auto;
+  border-radius: 5px;
+}
+
+.modal.error .modal__header {
+  background: rgb(255, 77, 77);
+  color: rgba(255,255,255,0.8);
+  padding: 2rem;
+  height: 100%;
+  position:relative;
+  border-radius: 5px;
+}
+
+.modal.error .modal__title {
+  margin: 2vw;
+  font-family: 'Gaegu', cursive;
+  font-size: 2.5vw;
+  text-align: center;
+  line-height: 1.5;
+}
+.modal.error .modal__info {
+  margin: 6vw 2vw;
+  text-align: center;
+  font-size: 2vw;
+  line-height: 1.8;
 }

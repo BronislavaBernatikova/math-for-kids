@@ -10,7 +10,6 @@ import UserPage from './UserPage';
 import ParentUserPage from './ParentUserPage';
 import ShowCustomQuiz from './ShowCustomQuiz';
 import ChildShowPage from './ChildShowPage';
-// import RepeatQuizPage from './RepeatQuizPage';
 
 class App extends Component {
   constructor(props) {
@@ -18,7 +17,6 @@ class App extends Component {
     this.state = {
       user: null
     };
-
     this.signIn = this.signIn.bind(this);
     this.signOut = this.signOut.bind(this)
   }
@@ -29,7 +27,7 @@ class App extends Component {
 
   signIn() {
     const jwt =  localStorage.getItem('jwt');
-    //console.log('jwt-app-signIn: ', jwt);
+
     if(jwt){
       const payload = jwtDecode(jwt);
       // payload --> {id: 3, first_name: "Julie", last_name: "Bernatikova", exp: 1525192402517, role: child}
@@ -46,13 +44,6 @@ class App extends Component {
       user: null
     });
   }
-
-  // quizDataFromUserPage(newQuiz){
-  //   this.setState({
-  //     newQuiz: newQuiz
-  //   })
-  //   console.log('quiz data in App:', this.state.newQuiz);
-  // }
 
     render() {
       const { user } = this.state;
@@ -125,4 +116,4 @@ class App extends Component {
 }
 
 export default App;
- // <UserPage {...props} newQuizData={this.quizDataFromUserPage} />
+ 

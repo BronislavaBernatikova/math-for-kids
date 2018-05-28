@@ -29,26 +29,22 @@ class SetUpNewQuiz extends Component {
         numberOfExpressions: event.target.value,
         customQuizId: null
       })
-      console.log('this.state:', this.state);
     }
   handleChangeArithmeticOperator(event) {
     this.setState({
       arithmeticOperator: event.target.value,
       customQuizId: null
     })
-    console.log('this.state:', this.state);
   }
   handleChangeDifficulty(event) {
     this.setState({
       difficulty: event.target.value,
       customQuizId: null
     })
-    console.log('this.state:', this.state);
   }
   handleChangeCurrentQuizId(event) {
     this.setState({
-      currentQuizId: event.target.value,
-      customQuizId: null
+      currentQuizId: event.target.value
     })
   }
   handleChangeCustomQuizId(event) {
@@ -70,6 +66,7 @@ class SetUpNewQuiz extends Component {
   }
 
   handleSubmit (event) {
+    event.preventDefault();
     const newQuiz = {
       numberOfExpressions: this.state.numberOfExpressions,
       arithmeticOperator: this.state.arithmeticOperator,
@@ -135,10 +132,10 @@ class SetUpNewQuiz extends Component {
                   onChange={this.handleChangeArithmeticOperator}
           >
             <option value=" ">Select..</option>
-            <option value="add">Adding</option>
-            <option value="subtract">Subtraction</option>
-            <option value="multiply">Multiplication</option>
-            <option value="divide">Division</option>
+            <option value="+">Adding</option>
+            <option value="-">Subtraction</option>
+            <option value="x">Multiplication</option>
+            <option value="/">Division</option>
           </select>
         </div>
 

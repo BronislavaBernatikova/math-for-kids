@@ -7,42 +7,51 @@ const CurrentQuizSetUps = {
 
     const userId = req.currentUser.id;
     const setUpId = req.body.currentQuizId;
-    const customQuizId = req.body.customQuizId;
-    console.log('customQuizId:', customQuizId);
-    const difficulty = req.body.difficulty;
-    const numberOfExpressions = req.body.numberOfExpressions;
+    const {customQuizId, difficulty, numberOfExpressions} = req.body;
     const operator = req.body.arithmeticOperator;
-    let data = {}
-                // console.log('data:',data)
-                // console.log('setUpId:', setUpId);
-    if(customQuizId === null ){
-        data = { custom_quiz_id: null,
-                 difficulty: difficulty,
-                 number_of_expressions: numberOfExpressions,
-                 operator: operator
-                }
+
+    if(!setUpId){
+      res.json({
+        error: "Invalid data" // 'id' for which quiz (child) we want to set up new settings is missing
+      })
+    }
+    else if((operator && difficulty && numberOfExpressions) || customQuizId) {
+
+      let data = {}
+
+      if(customQuizId === null ){
+          data = { custom_quiz_id: null,
+                   difficulty: difficulty,
+                   number_of_expressions: numberOfExpressions,
+                   operator: operator
+                  }
+      }
+      else {
+          data = { custom_quiz_id: customQuizId,
+                   difficulty: null,
+                   number_of_expressions: null,
+                   operator: null
+                 }
+      }
+
+      knex('current_quiz_set_ups')
+        .where({
+          id: setUpId,
+          parent_id: userId
+        })
+        .update(data)
+        .returning('*')
+        .then( updatedData => {
+          const updatedQuizSetUp = updatedData[0];
+
+          res.json(updatedQuizSetUp);
+        })
     }
     else {
-        data = { custom_quiz_id: customQuizId,
-                 difficulty: null,
-                 number_of_expressions: null,
-                 operator: null
-               }
+      res.json({
+        error: "Invalid data" // settings for generated quiz are invalid of 'id' of custom quiz is missing
+      })
     }
-    console.log('datax:',data);
-
-    knex('current_quiz_set_ups')
-      .where({
-        id: setUpId,
-        parent_id: userId
-      })
-      .update(data)
-      .returning('*')
-      .then( updatedData => {
-        const updatedQuizSetUp = updatedData[0];
-        console.log('updatedQuizSetUp:', updatedQuizSetUp);
-        res.json(updatedQuizSetUp);
-      })
   },
 
   index(req,res){

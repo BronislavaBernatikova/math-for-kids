@@ -5,7 +5,20 @@ import '../styling/SignInUp.css'
 class SignInPage extends Component {
   constructor (props) {
     super(props);
+    this.state = {
+      modalState: false,
+      canSeeTheForm: true
+    }
     this.createToken = this.createToken.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  closeModal(event){
+    event.preventDefault();
+    this.setState({
+      modalState: false,
+      canSeeTheForm: true
+    })
   }
 
   createToken(event) {
@@ -26,6 +39,12 @@ class SignInPage extends Component {
           onSignIn()
           this.props.history.push('/');
         }
+        else {
+          this.setState({
+            modalState: true,
+            canSeeTheForm: false
+          })
+        }
       })
   }
 
@@ -35,7 +54,9 @@ class SignInPage extends Component {
         <div className="wrapper">
           <div className="bgi-2">
             <div className="wrapperDimm">
-            <form onSubmit={this.createToken}>
+
+            <form onSubmit={this.createToken}
+                  style={{display: this.state.canSeeTheForm ? 'block' : 'none' }}>
               <div className="signInContainer-1">
                 <label htmlFor='email'>Email</label> <br />
                 <input type='email' id='email' name='email'/>
@@ -50,6 +71,19 @@ class SignInPage extends Component {
                 <input type='submit' value='Sign In'/>
               </div>
             </form>
+
+            <div className="modal" id="modal" style={{display: this.state.modalState ? 'table' : 'none' }}>
+              <div className="modal__dialog">
+                <section className="modal__content">
+                  <header className="modal__header">
+                    <div className="modal__title">Ups, invalid login! Please, try again..</div>
+                    <button className="modal__close"
+                            onClick={this.closeModal}
+                    >x</button>
+                  </header>
+                </section>
+              </div>
+            </div>
           </div>
           </div>
         </div>

@@ -53,3 +53,47 @@
   font-size: 1.5vw;
   padding-top: 2vh;
 }
+/* MODAL */
+.SignInUpPage .modal {
+  /* modal dimmer: */
+  background: rgba(0,0,0, .8);
+  position: fixed;
+  left:25vw;
+  top: 45vh;
+  border: rgb(102, 0, 0) solid thin;
+  border-radius: 5px;
+}
+.modal-trigger {
+  text-decoration: none;
+  padding: 1rem;
+  background: yellow;
+  display: inline-block;
+  border-radius: 5px;
+  margin-top: 50px;
+  color: white;
+}
+.SignInUpPage .modal__dialog {
+  display: table-cell;
+  vertical-align: middle;
+  /* border-radius: 5px; */
+}
+.SignInUpPage .modal__content {
+  background: rgba(255,255,255);
+  width: 50vw;
+  margin: auto;
+  /* border-radius: 5px; */
+}
+.SignInUpPage .modal__header {
+  background: rgb(255, 77, 77);
+  color: rgba(255,255,255,0.8);
+  padding: 2rem;
+  position:relative;
+  border-radius: 5px;
+}
+.SignInUpPage .modal__title {
+  margin: 0;
+  font-family: 'Gaegu', cursive;
+  font-size: 2vw;
+  text-align: center;
+  line-height: 1.5;
+}
