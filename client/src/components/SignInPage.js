@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Token } from '../lib/requests';
+import SignInWithGoogle from './SignInWithGoogle';
 import '../styling/SignInUp.css'
 
 class SignInPage extends Component {
@@ -11,6 +12,13 @@ class SignInPage extends Component {
     }
     this.createToken = this.createToken.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.triggerSignIn = this.triggerSignIn.bind(this);
+  }
+
+  triggerSignIn(){
+    const { onSignIn = () => {} } = this.props;
+    onSignIn();
+    this.props.history.push('/');
   }
 
   closeModal(event){
@@ -71,6 +79,8 @@ class SignInPage extends Component {
                 <input type='submit' value='Sign In'/>
               </div>
             </form>
+
+            <SignInWithGoogle onGoogleSignIn={this.triggerSignIn}/>
 
             <div className="modal" id="modal" style={{display: this.state.modalState ? 'table' : 'none' }}>
               <div className="modal__dialog">

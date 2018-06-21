@@ -1,15 +1,11 @@
 const DOMAIN = 'localhost:4646';
-//const API_PREFIX =
 const BASE_URL = `http://${DOMAIN}`;
-//const JWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MzQxLCJmaXJzdF9uYW1lIjoiSW5leiIsImxhc3RfbmFtZSI6IkdhcmNpYSIsImV4cCI6MTUyMjYwNzk5NTA4Mn0.pLF97CePyWnjVvtccuuVotnCbWE9gZM_EUwT4bnEGhQ";
 
 function getJWT (){
-  return localStorage.getItem('jwt');
-  //return JWT;
+  return localStorage.getItem('jwt'); //return JWT;
 }
 
 //HTTP REQUESTS:
-
 const Answer = {
   create (params) {
     return fetch(
@@ -241,4 +237,21 @@ const Token = {
   }
 }
 
-export { CurrentQuizSetUp, CustomExpression, CustomQuiz, Quiz, Answer, User, Token };
+const Google = {
+
+  verify(params){
+    return fetch(
+      `${BASE_URL}/signInWithGoogle/verify`,
+      {
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'Content-Type':'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(params)
+      })
+      .then( res => res.json());
+  }
+}
+
+export { CurrentQuizSetUp, CustomExpression, CustomQuiz, Quiz, Answer, User, Token, Google };
