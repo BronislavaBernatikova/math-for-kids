@@ -9,6 +9,7 @@ const Answers = require('../controllers/answers_controller');
 const CurrentQuizSetUps = require('../controllers/currentQuizSetUp_controller');
 const CustomQuizes = require('../controllers/customQuizes_controller');
 const CustomExpressions = require('../controllers/customExpressions_controller');
+const SignInWithGoogle = require('../controllers/signInWithGoogle_controller');
 
 
 const authorization = (req, res, next) => {
@@ -81,5 +82,10 @@ const customExpressionRouter = express.Router();
 router.use('/customExpressions', authorization, customExpressionRouter);
 customExpressionRouter.post('/create', CustomExpressions.create);
 customExpressionRouter.get('/delete/:id', CustomExpressions.delete);
+
+// managing users signed in with Google
+const signInWithGoogleRouter = express.Router();
+router.use('/signInWithGoogle', signInWithGoogleRouter);
+signInWithGoogleRouter.post('/verify', SignInWithGoogle.verifyIdToken);
 
 module.exports = router;
