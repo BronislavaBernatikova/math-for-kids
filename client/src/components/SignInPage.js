@@ -79,8 +79,11 @@ class SignInPage extends Component {
                 <input type='submit' value='Sign In'/>
               </div>
 
-              <SignInWithGoogle onGoogleSignIn={this.triggerSignIn}/>
-
+              <div className="googleWrapper">
+                <SignInWithGoogle onGoogleSignIn={this.triggerSignIn}/>
+                <div className="googleIcon"></div>
+              </div>
+                
             </form>
 
             <div className="modal" id="modal" style={{display: this.state.modalState ? 'table' : 'none' }}>

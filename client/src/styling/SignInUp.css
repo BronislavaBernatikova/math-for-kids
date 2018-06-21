@@ -13,14 +13,12 @@
   background: rgba(0, 0, 0, 0.5);
   z-index:100;
 }
-
 .SignInUpPage form  div, .CreateNewChild form div {
   margin: 1vw;
 }
-
 .SignInUpPage form{
   /* border: black thin solid; */
-  width: 28vw;
+  width: 27vw;
   padding: 2vw;
   position: absolute;
   top: 23vh;
@@ -39,18 +37,48 @@
   text-align: center;
   max-width: 150px;
   border-radius: 5px;
+  outline: none;
+}
+.signInContainer-1 label {
+  font-family: 'Gaegu', cursive;
+  font-size: 1.5vw;
+  padding-top: 2vh;
+}
+/* GOOGLE SIGN-IN */
+.signInWithGoogle {
+  margin: 0 !important;
+}
+.signInContainer-2 {
+  margin-bottom: 0 !important;
 }
 .signInWithGoogleButton {
+  /* border: black solid thin; */
   background: radial-gradient(white, rgb(161,187,255));
   box-shadow: 5px 5px 3px grey;
   border: grey solid thin;
   font-family: 'Gaegu', cursive;
   font-size: 1.5vw;
   text-align: center;
-  max-width: 150px;
+  outline: none;
   border-radius: 5px;
+  margin: 1vw 0;
 }
-
+.googleIcon {
+  /* border: black solid thin; */
+  background-image: url("../images/google_icon1.png");
+  background-size: 100% 100%;
+  width: 48px;
+  height: 48px;
+  margin: 0 0 0 0.5vw !important;
+  background-repeat:no-repeat;
+}
+.googleWrapper {
+  /* border: black solid thin; */
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 0 1vw !important;
+  width: 20vw;
+}
 .signInContainer-1 input {
   font-family: 'Gaegu', cursive;
   font-size: 1.5vw;
@@ -58,11 +86,6 @@
   box-shadow: 5px 5px 3px grey;
   padding: 0.5vw;
   border-radius: 5px;
-}
-.signInContainer-1 label {
-  font-family: 'Gaegu', cursive;
-  font-size: 1.5vw;
-  padding-top: 2vh;
 }
 /* MODAL */
 .SignInUpPage .modal {
