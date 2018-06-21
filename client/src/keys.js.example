@@ -1,0 +1,5 @@
+const GoogleKeys = {
+  GOOGLE_CLIENT_ID : 'insert_your_google_client_id_here'
+}
+
+export { GoogleKeys };

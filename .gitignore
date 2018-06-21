@@ -2,3 +2,4 @@
 node_modules/
 jspm_packages/
 client/semantic/
+client/src/keys.js

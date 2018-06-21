@@ -21,6 +21,20 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <!-- -------------------------------------------------------------------------------------- -->
+        <!-- BEGIN Pre-requisites sign in with google-->
+        <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
+        <script>
+        // window.gapiPromise = new Promise(resolve => window.start = () => resolve(gapi))
+          var gapiPromise = (function(){
+            return new Promise(resolve => window.start = () => resolve(gapi))
+          }());
+          window.app = window.app || {};
+          window.app.gapiPromise = gapiPromise;
+        </script>
+
+        <!-- END Pre-requisites sign in with google-->
+    <!-- ---------------------------------------------------------------------------------------- -->
   </head>
   <body>
     <noscript>
