@@ -16,8 +16,8 @@
 .SignInUpPage form  div, .CreateNewChild form div {
   margin: 1vw;
 }
-.SignInUpPage form{
-  /* border: black thin solid; */
+.formWrapper {
+  border: black thin solid;
   width: 27vw;
   padding: 2vw;
   position: absolute;

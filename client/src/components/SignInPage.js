@@ -41,6 +41,7 @@ class SignInPage extends Component {
         password: formData.get('password')
       })
       .then( data => {
+        // console.log('data:',data);
         if(!data.error) {
           localStorage.setItem('jwt', data.token);
           localStorage.setItem('userId', data.user_id);
@@ -63,28 +64,29 @@ class SignInPage extends Component {
           <div className="bgi-2">
             <div className="wrapperDimm">
 
-            <form onSubmit={this.createToken}
-                  style={{display: this.state.canSeeTheForm ? 'block' : 'none' }}>
-              <div className="signInContainer-1">
-                <label htmlFor='email'>Email</label> <br />
-                <input type='email' id='email' name='email'/>
-              </div>
+            <div className="formWrapper"
+                 style={{display: this.state.canSeeTheForm ? 'block' : 'none' }}>
+              <form onSubmit={this.createToken}>
+                <div className="signInContainer-1">
+                  <label htmlFor='email'>Email</label> <br />
+                  <input type='email' id='email' name='email'/>
+                </div>
 
-              <div className="signInContainer-1">
-                <label htmlFor='password'>Password</label> <br />
-                <input type='password' id='password' name='password' />
-              </div>
+                <div className="signInContainer-1">
+                  <label htmlFor='password'>Password</label> <br />
+                  <input type='password' id='password' name='password' />
+                </div>
 
-              <div className="signInContainer-2">
-                <input type='submit' value='Sign In'/>
-              </div>
+                <div className="signInContainer-2">
+                  <input type='submit' value='Sign In'/>
+                </div>
+              </form>
 
               <div className="googleWrapper">
                 <SignInWithGoogle onGoogleSignIn={this.triggerSignIn}/>
                 <div className="googleIcon"></div>
               </div>
-                
-            </form>
+          </div>
 
             <div className="modal" id="modal" style={{display: this.state.modalState ? 'table' : 'none' }}>
               <div className="modal__dialog">

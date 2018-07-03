@@ -9,10 +9,10 @@ class SetUpNewQuiz extends Component {
       parentUser: {},
       currentQuizSetUps: [],
       customQuizes: [],
-      numberOfExpressions: null,
-      arithmeticOperator: null,
-      difficulty: null,
-      currentQuizId: null,
+      numberOfExpressions: " ", //changed
+      arithmeticOperator: " ", //changed
+      difficulty: " ",//changed
+      currentQuizId: " ", //changed
       customQuizId: " ",
       isEnabled: false
     }

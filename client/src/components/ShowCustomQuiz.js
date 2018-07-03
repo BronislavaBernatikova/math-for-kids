@@ -16,7 +16,7 @@ class ShowCustomQuiz extends Component {
     CustomQuiz
       .one(customQuizId)
       .then( customQuiz => {
-    
+
         this.setState({
           customQuiz: customQuiz
         })
@@ -43,7 +43,7 @@ class ShowCustomQuiz extends Component {
           {
             customExpressions && customExpressions.map((expression, index) => {
               return(
-                <div key="index">
+                <div key={index}>
                   <div className="border">{expression.expression}</div>
                   <div>{expression.solution}</div>
                 </div>
